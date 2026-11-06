@@ -1,0 +1,90 @@
+/* TEMPORARY: icons downloaded from Figma (BCDS – Token Studio, node 173:542) until the design system has an icon library.
+   An icon is a mask: its color is background-color, its size is width and height (default size.icon.sm). */
+
+.icon {
+  display: inline-block;
+  flex: none;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Material chevron_right, 24 px master; Figma's 16 and 20 px versions are the same path scaled. */
+.icon--chevron-right { -webkit-mask-image: url(chevron-right.svg); mask-image: url(chevron-right.svg); }
+
+/* Material arrow_drop_down, 24 px (Figma: Master Text Input, node 188:242). */
+.icon--arrow-drop-down { -webkit-mask-image: url(arrow-drop-down.svg); mask-image: url(arrow-drop-down.svg); }
+
+/* Material event, 24 px (Figma: date input, node 141:2652). */
+.icon--calendar { -webkit-mask-image: url(calendar.svg); mask-image: url(calendar.svg); }
+
+/* Material close, 16 px master (Figma: date range modal, node 512:3133). */
+.icon--close { -webkit-mask-image: url(close.svg); mask-image: url(close.svg); }
+
+/* Material check, 16 px master (Figma: trip type menu, node 202:663). */
+.icon--check { -webkit-mask-image: url(check.svg); mask-image: url(check.svg); }
+
+/* Material airplanemode_active (an airport) and apartment (a city, all airports), 20 px (Figma: node 1794:3196). */
+.icon--airplane { -webkit-mask-image: url(airplane.svg); mask-image: url(airplane.svg); }
+.icon--apartment { -webkit-mask-image: url(apartment.svg); mask-image: url(apartment.svg); }
+
+/* Material swap_vert 24 px and swap_horiz 20 px (Figma: RouteInput, node 141:2668). */
+.icon--swap-vert { -webkit-mask-image: url(swap-vert.svg); mask-image: url(swap-vert.svg); }
+.icon--swap-horiz { -webkit-mask-image: url(swap-horiz.svg); mask-image: url(swap-horiz.svg); }
+
+/* Material remove and add 16 px, perm_identity, child_care and child_friendly 20 px (Figma: travelers and class,
+   node 512:3245). */
+.icon--minus { -webkit-mask-image: url(minus.svg); mask-image: url(minus.svg); }
+.icon--plus { -webkit-mask-image: url(plus.svg); mask-image: url(plus.svg); }
+.icon--perm-identity { -webkit-mask-image: url(perm-identity.svg); mask-image: url(perm-identity.svg); }
+.icon--child-care { -webkit-mask-image: url(child-care.svg); mask-image: url(child-care.svg); }
+.icon--child-friendly { -webkit-mask-image: url(child-friendly.svg); mask-image: url(child-friendly.svg); }
+
+/* Material segment 20 px — the site menu (Figma: Header, node 138:190). */
+.icon--menu { -webkit-mask-image: url(menu.svg); mask-image: url(menu.svg); }
+
+/* Material arrow_right 16 px and its mirror for back (Figma: Savings, node 257:10040; #133). */
+.icon--arrow-left { -webkit-mask-image: url(arrow-left.svg); mask-image: url(arrow-left.svg); }
+.icon--arrow-right { -webkit-mask-image: url(arrow-right.svg); mask-image: url(arrow-right.svg); }
+
+/* Material counter_1 … counter_4, 32 px: a number in a filled circle (Figma: How we work, node 272:14105; #146). */
+.icon--counter-1 { -webkit-mask-image: url(counter-1.svg); mask-image: url(counter-1.svg); }
+.icon--counter-2 { -webkit-mask-image: url(counter-2.svg); mask-image: url(counter-2.svg); }
+.icon--counter-3 { -webkit-mask-image: url(counter-3.svg); mask-image: url(counter-3.svg); }
+.icon--counter-4 { -webkit-mask-image: url(counter-4.svg); mask-image: url(counter-4.svg); }
+
+/* Material expand_less and expand_more, 16 px — an open and a closed question (Figma: Q & A item, node 262:10761; #149). */
+.icon--expand-less { -webkit-mask-image: url(expand-less.svg); mask-image: url(expand-less.svg); }
+.icon--expand-more { -webkit-mask-image: url(expand-more.svg); mask-image: url(expand-more.svg); }
+
+/* Chat, phone and mail, 32 px — ways to contact us (Figma: Contact us, node 262:11436; #151). */
+.icon--chat { -webkit-mask-image: url(chat.svg); mask-image: url(chat.svg); }
+.icon--phone { -webkit-mask-image: url(phone.svg); mask-image: url(phone.svg); }
+.icon--mail { -webkit-mask-image: url(mail.svg); mask-image: url(mail.svg); }
+
+/* LinkedIn, Instagram and Facebook, 24 px; the ASTA logo — Figma draws it as a white fill through this PNG mask
+   (Figma: Footer Desktop, node 305:39155; #153). */
+.icon--linkedin { -webkit-mask-image: url(linkedin.svg); mask-image: url(linkedin.svg); }
+.icon--instagram { -webkit-mask-image: url(instagram.svg); mask-image: url(instagram.svg); }
+.icon--facebook { -webkit-mask-image: url(facebook.svg); mask-image: url(facebook.svg); }
+.icon--asta { -webkit-mask-image: url(asta.png); mask-image: url(asta.png); }
+
+/* Material chevron_left, 16 px; verified_user, 16 px; the security code of a card (CVC), 24 px
+   (Figma: Gift Card, Form 2 Steps, Step=2, node 23:9500; #157). */
+.icon--chevron-left { -webkit-mask-image: url(chevron-left.svg); mask-image: url(chevron-left.svg); }
+.icon--verified-user { -webkit-mask-image: url(verified-user.svg); mask-image: url(verified-user.svg); }
+.icon--cvc { -webkit-mask-image: url(cvc.svg); mask-image: url(cvc.svg); }
+
+/* Material check_circle, 24 px (Figma: Gift Card, Custom amount, node 39:9044; #160). */
+.icon--check-circle { -webkit-mask-image: url(check-circle.svg); mask-image: url(check-circle.svg); }
+
+/* Forced colors (Windows high contrast) drop backgrounds: a mask icon keeps a system text color. */
+@media (forced-colors: active) {
+  .icon { forced-color-adjust: none; background-color: CanvasText; }
+}

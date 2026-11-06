@@ -1,0 +1,248 @@
+/* Button — built from semantic tokens (Figma: BCDS – Token Studio, Master Button, node 173:542).
+   Constructor {Type}.{Size}.{Style}.{Effect} (#86):
+     Type   — from the markup: button (label, optional icon before or after it) or icon (no .button__label)
+     Size   — .button--sm | md (default, no class) | .button--lg
+     Style  — primary (default, no class) | .button--secondary | .button--brand | .button--ghost
+              | .button--glass | .button--glass-inverse | .button--inverse | .button--text-brand
+     Effect — none (default) | .button--shadow-md | .button--blur-default
+   Use only the named buttons of the collection (sandbox/pages/buttons.html, «Collection»).
+   Markup: <button class="button [size] [style] [effect]">
+             [<span class="button__icon icon icon--…" aria-hidden="true"></span>]
+             <span class="button__label">Label</span>
+             [<span class="button__icon …"></span>]
+           </button>
+   Icon only: no .button__label, aria-label on the button. The layout follows the markup (:has):
+   icon before the label → leading, after → trailing. Semantic tokens only (#82); MISSING marks a value without
+   a semantic token: it is not created, the browser default stays (BACKLOG.md «Не хватает токенов»).
+   Accessibility (#91, AGENTS.md «Доступность»): <button type="button|submit"> for an action, <a class="button" href>
+   for navigation; the name says what happens ("Search flights", not "Go"); icon only — aria-label; unavailable —
+   disabled, or aria-disabled="true" when it must stay focusable and explain why; toggles — aria-pressed or
+   aria-expanded. */
+
+.button {
+  /* Size: md by default; .button--sm and .button--lg override. */
+  --button-py: var(--space-component-py-md);
+  --button-px: var(--space-component-px-xl);
+  --button-px-icon-side: var(--space-component-px-md);
+  --button-px-label-side: var(--space-component-px-2xl);
+  --button-gap: var(--space-component-gap-sm);
+  --button-icon-size: var(--size-icon-xs);
+  --button-icon-only-py: var(--space-component-py-sm);
+  --button-icon-only-px: var(--space-component-px-sm);
+  --button-icon-only-size: var(--size-icon-md); /* icon only: 12 + 24 + 12 = 48, as tall as with a label */
+  --button-font-family: var(--typography-label-lg-font-family);
+  --button-font-size: var(--typography-label-lg-font-size);
+  --button-font-weight: var(--typography-label-lg-font-weight);
+  --button-line-height: var(--typography-label-lg-line-height);
+  --button-letter-spacing: var(--typography-label-lg-letter-spacing);
+
+  /* Style colors: primary by default; the style classes below override. */
+  --button-bg: var(--color-bg-action-primary-default);
+  --button-bg-hover: var(--color-bg-action-primary-hover);
+  --button-bg-pressed: var(--color-bg-action-primary-pressed);
+  --button-bg-disabled: var(--color-bg-action-primary-disabled);
+  --button-fg: var(--color-text-on-action);
+  --button-fg-disabled: var(--color-text-disabled);
+  --button-icon: var(--color-icon-on-action);
+  --button-icon-disabled: var(--color-icon-disabled);
+  --button-focus: var(--color-border-focus);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  padding: var(--button-py) var(--button-px);
+  border: 0;
+  border-radius: var(--shape-button);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
+  letter-spacing: var(--button-letter-spacing);
+  white-space: nowrap;
+  text-decoration: none; /* also on <a class="button"> */
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+
+/* Hit area at least the touch target, whatever the visible size. */
+.button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--size-touch-target-min));
+  height: max(100%, var(--size-touch-target-min));
+  transform: translate(-50%, -50%);
+}
+
+/* The content row is as tall as the icon (Figma: label wrap 16 px in sm and md, 20 px in lg), so heights are whole:
+   sm 40, md 48, lg 60. */
+.button__label {
+  display: inline-flex;
+  align-items: center;
+  height: var(--button-icon-size);
+}
+
+.button__icon {
+  width: var(--button-icon-size);
+  height: var(--button-icon-size);
+  background-color: var(--button-icon);
+}
+
+/* Optical alignment: the side with the icon gets less padding. */
+.button:has(> .button__icon + .button__label) { padding-inline: var(--button-px-icon-side) var(--button-px-label-side); }
+.button:has(> .button__label + .button__icon) { padding-inline: var(--button-px-label-side) var(--button-px-icon-side); }
+.button:not(:has(> .button__label)) {
+  --button-icon-size: var(--button-icon-only-size);
+  padding: var(--button-icon-only-py) var(--button-icon-only-px);
+}
+
+/* Sizes */
+.button--sm {
+  --button-py: var(--space-component-py-sm);
+  --button-px: var(--space-component-px-xl);
+  --button-px-icon-side: var(--space-component-px-sm);
+  --button-px-label-side: var(--space-component-px-xl);
+  --button-gap: var(--space-component-gap-xs);
+  --button-icon-only-py: var(--space-component-py-xs);
+  --button-icon-only-px: var(--space-component-px-xs);
+  --button-icon-only-size: var(--size-icon-xs); /* icon only: 32 visible, hit area 44 */
+}
+.button--lg {
+  --button-py: var(--space-component-py-lg);
+  --button-px: var(--space-component-px-2xl);
+  --button-px-icon-side: var(--space-component-px-lg);
+  --button-px-label-side: var(--space-component-px-2xl);
+  --button-gap: var(--space-component-gap-md);
+  --button-icon-size: var(--size-icon-sm);
+  --button-icon-only-py: var(--space-component-py-lg);
+  --button-icon-only-px: var(--space-component-px-lg);
+  --button-icon-only-size: var(--size-icon-sm);
+  --button-font-family: var(--typography-title-md-font-family);
+  --button-font-size: var(--typography-title-md-font-size);
+  --button-font-weight: var(--typography-title-md-font-weight);
+  --button-line-height: var(--typography-title-md-line-height);
+  --button-letter-spacing: var(--typography-title-md-letter-spacing);
+}
+
+/* States; aria-disabled looks like disabled but keeps the button focusable (the page must also block the click). */
+.button:hover:not(:disabled, [aria-disabled="true"]), .button.is-hover { background: var(--button-bg-hover); }
+.button:active:not(:disabled, [aria-disabled="true"]), .button.is-pressed { background: var(--button-bg-pressed); }
+
+/* The offset leaves a gap, so the ring shows on dark buttons too. */
+.button:focus-visible, .button.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--button-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+.button:disabled, .button[aria-disabled="true"], .button.is-disabled {
+  --button-icon: var(--button-icon-disabled);
+  background: var(--button-bg-disabled);
+  color: var(--button-fg-disabled);
+  cursor: not-allowed;
+}
+
+/* Styles */
+.button--secondary {
+  --button-bg: var(--color-bg-action-secondary-default);
+  --button-bg-hover: var(--color-bg-action-secondary-hover);
+  --button-bg-pressed: var(--color-bg-action-secondary-pressed);
+  --button-bg-disabled: var(--color-bg-action-secondary-disabled);
+  --button-fg: var(--color-text-primary);
+  --button-icon: var(--color-icon-primary);
+}
+.button--brand {
+  --button-bg: var(--color-bg-action-brand-default);
+  --button-bg-hover: var(--color-bg-action-brand-hover);
+  --button-bg-pressed: var(--color-bg-action-brand-pressed);
+  --button-bg-disabled: var(--color-bg-action-brand-disabled);
+  --button-fg: var(--color-text-on-brand);
+  --button-icon: var(--color-icon-on-brand);
+}
+.button--ghost {
+  --button-bg: var(--color-bg-action-ghost-default);
+  --button-bg-hover: var(--color-bg-action-ghost-hover);
+  --button-bg-pressed: var(--color-bg-action-ghost-pressed);
+  --button-bg-disabled: var(--color-bg-action-ghost-disabled);
+  --button-fg: var(--color-text-primary);
+  --button-icon: var(--color-icon-primary);
+}
+/* Inverse: on a dark section, e.g. the arrows of the Trust section (#147). */
+.button--inverse {
+  --button-bg: var(--color-bg-action-inverse-default);
+  --button-bg-hover: var(--color-bg-action-inverse-hover);
+  --button-bg-pressed: var(--color-bg-action-inverse-pressed);
+  --button-bg-disabled: var(--color-bg-action-inverse-disabled);
+  --button-fg: var(--color-text-inverse-primary);
+  --button-fg-disabled: var(--color-text-inverse-disabled);
+  --button-icon: var(--color-icon-inverse-primary);
+  --button-icon-disabled: var(--color-icon-inverse-disabled);
+  --button-focus: var(--color-border-inverse-focus);
+}
+/* Text brand: an action that reads as text — no background and no side padding, the label underlined on hover
+   (not only a color change); e.g. the action of a contact card (#151). Text color.text.link: color.text.brand
+   passes AA only for large text. */
+.button--text-brand {
+  --button-py: var(--space-component-py-xs);
+  --button-px: 0;
+  --button-px-icon-side: 0;
+  --button-px-label-side: 0;
+  --button-bg: var(--color-bg-action-ghost-default);
+  --button-bg-hover: var(--color-bg-action-ghost-default);
+  --button-bg-pressed: var(--color-bg-action-ghost-default);
+  --button-bg-disabled: var(--color-bg-action-ghost-default);
+  --button-fg: var(--color-text-link);
+  --button-icon: var(--color-icon-link);
+}
+.button--text-brand:hover:not(:disabled, [aria-disabled="true"]) .button__label, .button--text-brand.is-hover .button__label,
+.button--text-brand:active:not(:disabled, [aria-disabled="true"]) .button__label, .button--text-brand.is-pressed .button__label {
+  text-decoration: underline;
+}
+/* Glass: controls over photos and media, used with .button--blur-default. The border is drawn inside
+   (inset shadow, as Figma stroke Inside), so the size stays. */
+.button--glass, .button--glass-inverse { box-shadow: inset 0 0 0 var(--size-border-default) var(--button-border); }
+.button--glass {
+  --button-bg: var(--color-bg-surface-glass-default);
+  --button-bg-hover: var(--color-bg-surface-glass-hover);
+  --button-bg-pressed: var(--color-bg-surface-glass-pressed);
+  --button-bg-disabled: var(--color-bg-surface-glass-default); /* MISSING: disabled glass background; default glass kept */
+  --button-fg: var(--color-text-primary);
+  --button-icon: var(--color-icon-primary);
+  --button-border: var(--color-border-glass);
+}
+.button--glass-inverse {
+  --button-bg: var(--color-bg-surface-glass-inverse-default);
+  --button-bg-hover: var(--color-bg-surface-glass-inverse-hover);
+  --button-bg-pressed: var(--color-bg-surface-glass-inverse-pressed);
+  --button-bg-disabled: var(--color-bg-surface-glass-inverse-default); /* MISSING: disabled glass background; default glass kept */
+  --button-fg: var(--color-text-inverse-primary);
+  --button-fg-disabled: var(--color-text-inverse-disabled);
+  --button-icon: var(--color-icon-inverse-primary);
+  --button-icon-disabled: var(--color-icon-inverse-disabled);
+  --button-focus: var(--color-border-inverse-focus);
+  --button-border: var(--color-border-inverse-glass);
+}
+
+/* Effects */
+.button--shadow-md { box-shadow: var(--elevation-md); }
+.button--shadow-md:disabled, .button--shadow-md[aria-disabled="true"], .button--shadow-md.is-disabled { box-shadow: none; }
+.button--blur-default {
+  -webkit-backdrop-filter: blur(var(--effect-backdrop-default));
+  backdrop-filter: blur(var(--effect-backdrop-default));
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .button { transition: none; } }
+
+/* Forced colors (Windows high contrast) drop backgrounds and box-shadow: the shape comes from a border in system
+   colors; mask icons get a system color, otherwise their background would be dropped too. */
+@media (forced-colors: active) {
+  .button { border: var(--size-border-default) solid ButtonText; }
+  .button__icon { forced-color-adjust: none; background-color: ButtonText; }
+  .button:disabled, .button[aria-disabled="true"] { border-color: GrayText; color: GrayText; }
+  .button:disabled .button__icon, .button[aria-disabled="true"] .button__icon { background-color: GrayText; }
+}

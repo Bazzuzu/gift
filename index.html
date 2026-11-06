@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Business Class — Gift Card (test)</title>
+  <!-- A test page made of the Examples sections (#154, #157): its own address, http://127.0.0.1:8000/gift-card. Desktop only for now. -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="icons/icons.css">
+  <link rel="stylesheet" href="components/button.css">
+  <link rel="stylesheet" href="components/dropdown.css">
+  <link rel="stylesheet" href="components/input.css">
+  <link rel="stylesheet" href="components/menu.css">
+  <link rel="stylesheet" href="components/heading-group.css">
+  <link rel="stylesheet" href="components/accordion.css">
+  <link rel="stylesheet" href="components/choice.css">
+  <link rel="stylesheet" href="components/gift-form.css">
+  <link rel="stylesheet" href="components/point.css">
+  <link rel="stylesheet" href="components/directory.css">
+  <link rel="stylesheet" href="sections/section.css">
+  <link rel="stylesheet" href="sections/hero.css">
+  <link rel="stylesheet" href="sections/points.css">
+  <link rel="stylesheet" href="sections/faq.css">
+  <link rel="stylesheet" href="sections/global-directory.css">
+  <link rel="stylesheet" href="sections/footer.css">
+</head>
+<body>
+
+<main>
+  <!-- Gift Card Hero -->
+  <section class="hero hero--gift-card" aria-labelledby="gift-hero-title">
+    <div class="hero__media"><img class="hero__photo" src="images/gift-card-hero.jpg" alt=""></div>
+    <div class="hero__inner">
+      <header class="hero__header">
+        <a class="hero__logo" href="#examples"><img src="images/logo-business-class.svg" alt="Business Class"></a>
+        <div class="hero__actions">
+          <button class="dropdown dropdown--phone dropdown--inverse" type="button" aria-haspopup="menu" aria-expanded="false" popovertarget="dropdown-call"><span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span> <span class="dropdown__value">+1 888-315-7838</span></span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+          <button class="button button--glass button--blur-default" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
+        </div>
+      </header>
+      <div class="hero__body">
+        <div class="hero__text">
+          <h1 class="hero__title" id="gift-hero-title">Gift<br>the Business Class Experience</h1>
+          <p class="hero__lead">One voucher, any business or first class fare. Issued instantly by email and redeemable with our advisors on any route we sell.</p>
+          <hr class="hero__divider">
+          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> 10,044 reviews on <img class="hero__trustpilot" src="images/trustpilot-logo.svg" alt="Trustpilot"></p>
+          <ul class="hero__badges" aria-label="Accreditations">
+            <li><img src="images/badge-iata.svg" alt="IATA"></li>
+            <li><img src="images/badge-iatan.svg" alt="IATAN"></li>
+            <li><img src="images/badge-arc.svg" alt="ARC"></li>
+            <li><img src="images/badge-bbb.svg" alt="BBB A+ Accredited Business"></li>
+          </ul>
+        </div>
+        <div class="hero__form">
+          <div class="gift-form">
+            <form class="gift-form__step" data-step="value" aria-labelledby="gift-value-title" novalidate>
+              <div class="gift-form__head">
+                <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+                <div class="gift-form__side">
+                  <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-value-title" tabindex="-1">Select voucher value</h2><p class="heading-group__text" id="gift-value-text">The voucher is issued and redeemed in USD.</p></hgroup>
+                  <fieldset class="choice" aria-labelledby="gift-value-title" aria-describedby="gift-value-text">
+                    <label class="button button--secondary choice__option" for="gift-value-200"><input class="choice__radio" id="gift-value-200" type="radio" name="gift-value" value="200" data-image="images/200.png"><span class="button__label">$200</span></label>
+                    <label class="button button--secondary choice__option" for="gift-value-500"><input class="choice__radio" id="gift-value-500" type="radio" name="gift-value" value="500" data-image="images/500.png" checked><span class="button__label">$500</span></label>
+                    <label class="button button--secondary choice__option" for="gift-value-1000"><input class="choice__radio" id="gift-value-1000" type="radio" name="gift-value" value="1000" data-image="images/1000.png"><span class="button__label">$1000</span></label>
+                    <label class="button button--secondary choice__option" for="gift-value-custom"><input class="choice__radio" id="gift-value-custom" type="radio" name="gift-value" value="custom" data-image="images/custom.png"><span class="button__label">Custom</span></label>
+                    <div class="input input--strong choice__other"><div class="input__field"><span class="choice__currency" aria-hidden="true">$</span><input class="input__control choice__input" id="gift-value-amount" type="text" name="custom-value" inputmode="numeric" autocomplete="off" placeholder="Your amount" aria-label="Your amount, US dollars"><button class="input__action choice__apply" type="button" aria-label="Apply amount" aria-disabled="true" aria-describedby="gift-value-reason"><span class="input__icon icon icon--check-circle" aria-hidden="true"></span></button></div></div>
+                    <p id="gift-value-reason" data-reason hidden>Type an amount first</p>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="gift-form__body">
+              <hgroup class="heading-group heading-group--xs"><h2 class="heading-group__title" id="gift-recipient-title">Who it’s for</h2><p class="heading-group__text" id="gift-recipient-text">Linked to the recipient’s email and account.<br>Please check for typos.</p></hgroup>
+              <fieldset class="gift-form__fields" aria-labelledby="gift-recipient-title" aria-describedby="gift-recipient-text">
+                <div class="input"><label class="input__label" for="gift-recipient-name">Recipient name<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-recipient-name" type="text" name="recipient-name" autocomplete="off" placeholder="Jane Doe" required></div></div>
+                <div class="input"><label class="input__label" for="gift-recipient-email">Recipient email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-recipient-email" type="email" name="recipient-email" autocomplete="off" placeholder="jane@example.com" required></div></div>
+                <div class="input"><label class="input__label" for="gift-message">Personal message &amp; your name</label><div class="input__field"><textarea class="input__control" id="gift-message" name="message" rows="3" placeholder="Write a wish and don’t forget to sign your name!"></textarea></div></div>
+              </fieldset>
+              <button class="button gift-form__next" type="submit"><span class="button__label">Next</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+              </div>
+            </form>
+            <form class="gift-form__step" data-step="payment" aria-labelledby="gift-payment-title" novalidate hidden>
+              <div class="gift-form__head">
+                <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+                <div class="gift-form__side">
+                  <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-payment-title" tabindex="-1">Payment details</h2><p class="heading-group__text">All transactions are secure and encrypted.</p></hgroup>
+                  <hr class="gift-form__divider">
+                  <div class="gift-form__order">
+                    <h3 class="gift-form__order-title" id="gift-payment-order">Order</h3>
+                    <dl>
+                      <div class="gift-form__row"><dt>Voucher value:</dt><dd data-order="value">$500</dd></div>
+                      <div class="gift-form__row"><dt>Recipient:</dt><dd data-order="recipient"></dd></div>
+                      <div class="gift-form__row"><dt>Delivery:</dt><dd>Instant (Email)</dd></div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              <div class="gift-form__body">
+              <div class="input"><label class="input__label" for="gift-email">Your email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required></div></div>
+              <div class="input"><label class="input__label" for="gift-card-number">Card number<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-card-number" type="text" name="card-number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required><span class="input__images" role="img" aria-label="Mastercard, Visa, American Express, Discover"><img src="images/payment-mastercard.svg" alt=""><img src="images/payment-visa.svg" alt=""><img src="images/payment-amex.svg" alt=""><img src="images/payment-discover.svg" alt=""></span></div></div>
+              <div class="gift-form__pair">
+                <div class="input"><label class="input__label" for="gift-card-expiry">Expiration date<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-card-expiry" type="text" name="card-expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required></div></div>
+                <div class="input"><label class="input__label" for="gift-card-csc">Security code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-card-csc" type="text" name="card-csc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" required><span class="input__icon icon icon--cvc" aria-hidden="true"></span></div></div>
+              </div>
+              <div class="gift-form__pair">
+                <div class="input"><label class="input__label" for="gift-country">Country<span aria-hidden="true">*</span></label><div class="input__field"><select class="input__control" id="gift-country" name="country" autocomplete="country" required>
+                  <option value="US" selected>United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="IE">Ireland</option>
+                  <option value="FR">France</option>
+                  <option value="DE">Germany</option>
+                  <option value="IT">Italy</option>
+                  <option value="ES">Spain</option>
+                  <option value="AU">Australia</option>
+                  <option value="AE">United Arab Emirates</option>
+                </select><span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span></div></div>
+                <div class="input"><label class="input__label" for="gift-postal-code">ZIP code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-postal-code" type="text" name="postal-code" autocomplete="postal-code" placeholder="12345" required></div></div>
+              </div>
+              <p class="gift-form__terms">By continuing, you agree to our <a href="#examples">Terms and Conditions</a>.</p>
+              <div class="gift-form__actions">
+                <button class="button button--secondary gift-form__back" type="button"><span class="button__icon icon icon--chevron-left" aria-hidden="true"></span><span class="button__label">Back</span></button>
+                <button class="button gift-form__pay" type="submit"><span class="button__label">Pay $500</span><span class="button__icon icon icon--verified-user" aria-hidden="true"></span></button>
+              </div>
+              </div>
+            </form>
+            <div class="gift-form__step" data-step="done" role="region" aria-labelledby="gift-done-title" hidden>
+              <div class="gift-form__head">
+                <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+                <div class="gift-form__side">
+                  <span class="gift-form__done-icon icon icon--check" aria-hidden="true"></span>
+                  <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-done-title" tabindex="-1">Thank You for Your Purchase.</h2><p class="heading-group__text">Your gift voucher card is on the way.<br>Delivering to the recipient by email — no further action needed.</p></hgroup>
+                </div>
+              </div>
+              <div class="gift-form__body">
+              <hr class="gift-form__divider">
+                  <div class="gift-form__order">
+                    <h3 class="gift-form__order-title" id="gift-done-order">Order</h3>
+                    <dl>
+                      <div class="gift-form__row"><dt>Voucher value:</dt><dd data-order="value">$500</dd></div>
+                      <div class="gift-form__row"><dt>Recipient:</dt><dd data-order="recipient"></dd></div>
+                      <div class="gift-form__row"><dt>Delivery:</dt><dd>Instant (Email)</dd></div>
+                    </dl>
+                  </div>
+              <hr class="gift-form__divider">
+              <a class="button gift-form__home" href="home-page"><span class="button__label">Go to Home Page</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section--inverse points" aria-labelledby="points-title">
+    <div class="points__inner">
+      <hgroup class="heading-group heading-group--lg heading-group--center heading-group--inverse"><h2 class="heading-group__title" id="points-title">How It Works</h2><p class="heading-group__text">Three simple steps to give the gift of seamless travel.</p></hgroup>
+      <ol class="points__list">
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-1" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Choose &amp; Personalize</h3><p class="heading-group__text">Select a preset or enter a custom amount, valid for any business or first class flight. Add the recipient’s details and a heartfelt personal note.</p></hgroup></li>
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-2" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Fast, Secure Checkout</h3><p class="heading-group__text">Complete your payment in seconds with bank-grade encryption. No account or registration needed — your official receipt arrives instantly.</p></hgroup></li>
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-3" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Instant Delivery &amp; Booking</h3><p class="heading-group__text">The digital voucher lands in their inbox right away with a unique code and direct access to a dedicated travel advisor for effortless booking.</p></hgroup></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--subtle faq" aria-labelledby="faq-title">
+    <div class="faq__inner">
+      <hgroup class="heading-group"><h2 class="heading-group__title" id="faq-title">Frequently Asked Questions</h2><p class="heading-group__text">More answers can be found on the dedicated <a href="#examples">FAQ page</a>.</p></hgroup>
+      <div class="faq__columns">
+        <div class="faq__column">
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q1" aria-labelledby="faq-q1-text" aria-expanded="true" aria-controls="faq-a1"><span class="accordion__question" id="faq-q1-text">What is a Gift Voucher?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-less" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a1" role="region" aria-labelledby="faq-q1"><p>A Gift Voucher is a prepaid credit that can be redeemed towards any business or first class fare booked with Business Class.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q2" aria-labelledby="faq-q2-text" aria-expanded="true" aria-controls="faq-a2"><span class="accordion__question" id="faq-q2-text">How does it work?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-less" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a2" role="region" aria-labelledby="faq-q2"><p>Choose a value, enter the recipient’s email and your details, and pay securely. The voucher is emailed to the recipient with redemption instructions.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q3" aria-labelledby="faq-q3-text" aria-expanded="true" aria-controls="faq-a3"><span class="accordion__question" id="faq-q3-text">What happens with the unused portion?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-less" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a3" role="region" aria-labelledby="faq-q3"><p>Any remaining balance stays on the voucher and can be used towards a future booking, subject to the voucher’s validity period.</p></div></div>
+        </div>
+        <div class="faq__column">
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q4" aria-labelledby="faq-q4-text" aria-expanded="true" aria-controls="faq-a4"><span class="accordion__question" id="faq-q4-text">When can the recipient redeem the voucher?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-less" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a4" role="region" aria-labelledby="faq-q4"><p>As soon as the recipient receives the voucher email, they can contact an advisor to book a flight using the voucher.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q5" aria-labelledby="faq-q5-text" aria-expanded="true" aria-controls="faq-a5"><span class="accordion__question" id="faq-q5-text">For how long will the voucher be valid?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-less" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a5" role="region" aria-labelledby="faq-q5"><p>Vouchers are valid for 12 months from the date of purchase.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q6" aria-labelledby="faq-q6-text" aria-expanded="true" aria-controls="faq-a6"><span class="accordion__question" id="faq-q6-text">When and how will the recipient receive the gift?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-less" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a6" role="region" aria-labelledby="faq-q6"><p>The voucher is issued and emailed to the recipient’s address immediately after payment is confirmed.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Directory -->
+  <section class="section global-directory" aria-labelledby="directory-title">
+    <div class="global-directory__inner">
+      <hgroup class="heading-group"><h2 class="heading-group__title" id="directory-title">Global Directory</h2><p class="heading-group__text">Direct access to our specialized advisory desks and regional offices.</p></hgroup>
+      <ul class="directory" aria-label="Contacts">
+        <li class="directory__card"><span class="directory__icon"><span class="icon icon--phone" aria-hidden="true"></span></span><h3 class="directory__title" id="directory-phone-title">North America Advisory Team</h3>
+          <ul class="directory__list" aria-labelledby="directory-phone-title">
+            <li>New Booking Team: <a href="tel:+18885157402">+1 888-515-7402</a></li>
+            <li>Customer Support: <a href="tel:+18778529150">+1 877-852-9150</a></li>
+            <li>Concierge team: <a href="tel:+18886838737">+1 888-683-8737</a></li>
+          </ul></li>
+        <li class="directory__card"><span class="directory__icon"><span class="icon icon--mail" aria-hidden="true"></span></span><h3 class="directory__title" id="directory-mail-title">Get in Touch via Email</h3>
+          <ul class="directory__list" aria-labelledby="directory-mail-title">
+            <li>General Inquiries: <a href="mailto:info@business-class.com">info@business-class.com</a></li>
+            <li>Affiliates &amp; Partnerships: <a href="mailto:affiliate@business-class.com">affiliate@business-class.com</a></li>
+            <li>Marketing: <a href="mailto:marketing.team@business-class.com">marketing.team@business-class.com</a></li>
+          </ul></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="section section--inverse footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand"><a href="#examples"><img class="footer__logo" src="images/logo-business-class-24.svg" alt="Business Class"></a><p class="footer__legal">© Business Travel Group LLC<br>Florida FST #ST41395</p></div>
+        <nav class="footer__nav" aria-label="Footer">
+            <div class="footer__group"><h2 class="footer__title">Information</h2>
+              <ul class="footer__links">
+              <li><a href="#examples">Frequently Asked Questions</a></li>
+              <li><a href="#examples">Payment Options</a></li>
+              <li><a href="#examples">Contact</a></li>
+              <li><a href="#examples">How it Works</a></li>
+              <li><a href="#examples">Reviews</a></li>
+              <li><a href="#examples">Glossary</a></li>
+              </ul></div>
+            <div class="footer__group"><h2 class="footer__title">Company</h2>
+              <ul class="footer__links">
+              <li><a href="#examples">Best Deals</a></li>
+              <li><a href="#examples">What We Offer</a></li>
+              <li><a href="#examples">About Us</a></li>
+              <li><a href="#examples">Corporate</a></li>
+              <li><a href="#examples">Blog</a></li>
+              </ul></div>
+            <div class="footer__group"><h2 class="footer__title">Policies</h2>
+              <ul class="footer__links">
+              <li><a href="#examples">Privacy Policy</a></li>
+              <li><a href="#examples">Terms and Conditions</a></li>
+              <li><a href="#examples">Cookie Policy</a></li>
+              </ul></div>
+        </nav>
+        <div class="footer__media"><h2 class="footer__title">Social media</h2><p class="footer__note">Stay updated on our latest developments by following us on Social Media</p><ul class="footer__social" aria-label="Social media"><li><a href="#examples" aria-label="Business Class on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li><li><a href="#examples" aria-label="Business Class on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li><li><a href="#examples" aria-label="Business Class on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li></ul></div>
+      </div>
+      <ul class="footer__badges" aria-label="Accreditations"><li><span role="img" aria-label="ASTA, American Society of Travel Advisors"><span class="icon icon--asta" aria-hidden="true"></span></span></li><li><img src="images/badge-iata-40.svg" alt="IATA"></li><li><img src="images/badge-fda.png" alt="Florida Department of Agriculture and Consumer Services"></li></ul>
+    </div>
+  </footer>
+
+<!-- The call menu of the header: copied from the Examples page. -->
+<div class="menu menu--caption call-menu" id="dropdown-call" role="menu" aria-label="Call" popover>
+          <a class="menu__option" role="menuitem" href="tel:+18883157838" tabindex="-1" aria-label="Call 24/7 Phone Deals, USA 888-315-7838"><span class="menu__caption">24/7 Phone Deals</span><span class="menu__label">USA 888-315-7838</span></a>
+          <a class="menu__option" role="menuitem" href="tel:+18778529150" tabindex="-1" aria-label="Call Customer Service, USA 877-852-9150"><span class="menu__caption">Customer Service</span><span class="menu__label">USA 877-852-9150</span></a>
+        </div>
+
+  <script type="module" src="page.js"></script>
+  <script type="module" src="components/modality.js"></script>
+  <script type="module" src="components/menu.js"></script>
+  <script type="module" src="components/dropdown.js"></script>
+  <script type="module" src="components/contact-form.js"></script>
+  <script type="module" src="components/choice.js"></script>
+  <script type="module" src="components/gift-form.js"></script>
+  <script type="module" src="components/accordion.js"></script>
+</body>
+</html>

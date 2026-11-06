@@ -1,0 +1,40 @@
+/* Section base (#155) — the background of a page section; the section's own stylesheet sets the rest. Sections are
+   told apart by the background or by a divider: neighbours with the same background get a line on the border between
+   them — color.border.default (on a dark one color.border.inverse.default), as wide as the content: up to
+   size.content.max-width inside space.section.px.md, the side padding of every section. Neighbours are siblings, or
+   the last section of <main> and the one right after it (the footer). A section on a photo (the hero) has no .section,
+   so the section after it has no line.
+   Background: .section (color.bg.section.default) | .section--subtle | .section--accent | .section--inverse.
+   Markup: <section class="section [section--subtle | section--accent | section--inverse] logos" aria-labelledby="title"> … </section>
+           <footer class="section section--inverse footer"> … </footer>
+   Semantic tokens only (#82). */
+
+.section {
+  --section-divider: var(--color-border-default);
+  position: relative;
+  background: var(--color-bg-section-default);
+}
+.section--subtle { background: var(--color-bg-section-subtle); }
+.section--accent { background: var(--color-bg-section-accent); }
+.section--inverse { --section-divider: var(--color-border-inverse-default); background: var(--color-bg-section-inverse-default); }
+
+/* The same background: default after default (no modifier), subtle after subtle, and so on. */
+:is(
+  .section:not(.section--subtle, .section--accent, .section--inverse) + .section:not(.section--subtle, .section--accent, .section--inverse),
+  .section--subtle + .section--subtle,
+  .section--accent + .section--accent,
+  .section--inverse + .section--inverse,
+  main:has(> .section:not(.section--subtle, .section--accent, .section--inverse):last-child) + .section:not(.section--subtle, .section--accent, .section--inverse),
+  main:has(> .section--subtle:last-child) + .section--subtle,
+  main:has(> .section--accent:last-child) + .section--accent,
+  main:has(> .section--inverse:last-child) + .section--inverse
+)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: var(--space-section-px-md);
+  left: var(--space-section-px-md);
+  max-width: var(--size-content-max-width);
+  margin-inline: auto;
+  border-top: var(--size-border-default) solid var(--section-divider);
+}

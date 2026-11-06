@@ -1,0 +1,136 @@
+/* Menu — a list opened by a button (#110, #113, #114): a popover in the top layer (#57) under the button, or under the
+   field the button sits in. role="listbox" — choose one value (button options); role="menu" — actions (link items,
+   <a class="menu__option" role="menuitem" href>). menu.js places it, handles the keyboard and the choice.
+   Used by: country code (phone.css; Figma 1800:3870), currency, trip type and call (dropdowns; Figma 193:857,
+   202:663, 1810:4066).
+   Markup: <div class="menu [menu--text]" id="…" role="listbox" aria-label="…" | aria-labelledby="header id" popover>
+             [<p class="menu__header" id="…">Currency:</p>]
+             <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="USD">
+               [<img class="menu__flag" src="flags/us.svg" alt="">]
+               <span class="menu__label">USD</span> [<span class="menu__note">($)</span>]
+               [<span class="menu__check icon icon--check" aria-hidden="true"></span>]
+             </button>
+           </div>
+   The button: <button popovertarget="…" aria-haspopup="listbox" aria-expanded="false" data-value="USD">.
+   Rows: .menu — with a 24 picture: padding 12, gaps 12 (48); .menu--text — text only: padding 16, gap 8, the row as
+   tall as the check (48), options not chosen in color.text.secondary; .menu--caption — a caption above the label
+   (typography.label.md, color.text.secondary; gap 4). A check marks the chosen option; without
+   .menu__check there is no mark (country code, as in Figma). Width by content, not narrower than the button; up to 8
+   rows (size.container.height.400), then it scrolls. Semantic tokens only (#82). */
+
+.menu {
+  --menu-room: 100vh; /* the room above or below the button, set by menu.js */
+  --menu-anchor-width: auto; /* the button's width, set by menu.js */
+  --menu-px: var(--space-component-px-sm);
+  --menu-py: var(--space-component-py-sm);
+  --menu-gap: var(--space-component-gap-md);
+  position: absolute; /* in the top layer: document coordinates, scrolls with the page without jitter (#111) */
+  inset: auto; /* the popover's centering off; menu.js sets left and top (or bottom) */
+  width: max-content; /* by content even at the right edge of the screen, where the room would squeeze it */
+  min-width: var(--menu-anchor-width);
+  max-height: min(var(--size-container-height-400), calc(var(--menu-room) - var(--space-component-gap-xs)));
+  margin: var(--space-component-gap-xs) 0; /* the gap from the button, above or below */
+  padding: var(--space-component-py-xs) var(--space-component-px-xs);
+  border: 0;
+  border-radius: var(--shape-menu);
+  background: var(--color-bg-surface-default);
+  box-shadow: var(--elevation-sm);
+  color: var(--color-text-primary);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.menu:popover-open, .menu--preview { display: grid; }
+.menu--preview { position: static; margin: 0; }
+
+.menu__header {
+  margin: 0;
+  padding: var(--menu-py) var(--menu-px);
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-weight: var(--typography-label-md-font-weight);
+  line-height: var(--typography-label-md-line-height);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+}
+
+.menu__option {
+  display: flex;
+  align-items: center;
+  gap: var(--menu-gap);
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: var(--menu-py) var(--menu-px);
+  border: 0;
+  border-radius: var(--shape-menu-item); /* 4 in a menu of 8 — the owner's exception to the nested rule (#111) */
+  background: none;
+  color: inherit;
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+  text-align: start;
+  text-decoration: none; /* also on <a class="menu__option"> */
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+.menu__option:hover, .menu__option.is-hover { background: var(--color-bg-surface-subtle); }
+.menu__option:active, .menu__option.is-pressed { background: var(--color-bg-surface-strong); }
+/* Focus inside the row, so it does not overlap the neighbours (like the airport option). */
+.menu__option:focus-visible, .menu__option.is-focus {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--size-focus-ring-width) var(--color-border-focus);
+}
+
+/* A color image, not a mask; a missing file keeps its place (menu.js). */
+.menu__flag {
+  display: block;
+  flex: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+.menu__flag.is-missing { visibility: hidden; }
+.menu__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.menu__note { color: var(--color-text-tertiary); }
+
+/* The check takes its place in every row, so the width does not change with the choice. */
+.menu__check {
+  width: var(--size-icon-xs);
+  height: var(--size-icon-xs);
+  margin-inline-start: auto;
+  background-color: var(--color-icon-positive);
+}
+.menu__option:not([aria-selected="true"]) .menu__check { visibility: hidden; }
+
+/* Text rows (trip type): roomier, the choice also in the text color — the check says it without color (WCAG 1.4.1). */
+.menu--text {
+  --menu-px: var(--space-component-px-md);
+  --menu-py: var(--space-component-py-md);
+  --menu-gap: var(--space-component-gap-sm);
+}
+.menu--text .menu__option:not([aria-selected="true"]) { color: var(--color-text-secondary); }
+
+/* Caption rows (call): the caption above the label, 12 + 12 + 4 + 14 + 12 = 54. */
+.menu--caption .menu__option {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-component-gap-xs);
+}
+.menu__caption {
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-weight: var(--typography-label-md-font-weight);
+  line-height: var(--typography-label-md-line-height);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .menu__option { transition: none; } }
+@media (forced-colors: active) {
+  .menu { border: var(--size-border-default) solid CanvasText; } /* the shadow is dropped */
+  .menu__option:focus-visible { outline: var(--size-focus-ring-width) solid Highlight; }
+  .menu__check { forced-color-adjust: none; background-color: CanvasText; }
+}

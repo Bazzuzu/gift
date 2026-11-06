@@ -1,0 +1,13 @@
+/* Base of every sandbox page — the sandbox (index.html) and the standalone pages, e.g. home-page.html (#154):
+   box sizing and the page body. Semantic tokens only (#82). */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg-canvas-default);
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-md-font-family);
+  -webkit-font-smoothing: antialiased; /* macOS: no stem thickening, text as in Figma (#85) */
+  -moz-osx-font-smoothing: grayscale;
+}

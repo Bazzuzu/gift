@@ -1,0 +1,98 @@
+/* Choice — pick one value with buttons (Figma: Gift Card, Form 2 steps, Settings, node 23:9462; #157): native radios
+   drawn as collection buttons — the chosen one is primary, the others secondary (#86, #95). E.g. the value of a gift
+   voucher. Two equal columns, space.component.gap.md apart; buttons md.
+   Markup: <fieldset class="choice" aria-labelledby="title">
+             <label class="button button--secondary choice__option" for="id">
+               <input class="choice__radio" id="id" type="radio" name="…" value="200" checked>
+               <span class="button__label">$200</span></label>
+             …
+           </fieldset>
+   Own value (#160) — the last option is Custom (value="custom"); after the options, in the same fieldset:
+             <div class="input input--strong choice__other">
+               <div class="input__field">
+                 <span class="choice__currency" aria-hidden="true">$</span>
+                 <input class="input__control choice__input" type="text" name="…" inputmode="numeric" autocomplete="off"
+                   placeholder="Your amount" aria-label="Your amount, US dollars">
+                 <button class="input__action choice__apply" type="button" aria-label="Apply amount" aria-disabled="true">
+                   <span class="input__icon icon icon--check-circle" aria-hidden="true"></span></button>
+               </div>
+             </div>
+             <p id="…" data-reason hidden>Type an amount first</p>
+   Choosing Custom opens the field; the apply icon (or Enter) makes the amount the label of Custom and keeps Custom
+   chosen; a click elsewhere, Escape or the focus leaving the choice closes it with nothing changed.
+   The radio stays in the accessibility tree and takes the focus (one Tab stop, the arrows choose); the label shows it.
+   The chosen one is filled — a change of fill, not of hue (WCAG 1.4.1); its state is the radio's checked.
+   Semantic tokens only (#82). */
+
+.choice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-component-gap-md);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* The radio under the button: invisible, still focusable and clickable through the label. */
+.choice__radio {
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The text changes color together with the fill, so it never stands light on a light fill. */
+.choice__option { transition-property: background-color, color; }
+
+/* Chosen: the primary look of the collection. */
+.choice__option:has(:checked) {
+  --button-bg: var(--color-bg-action-primary-default);
+  --button-bg-hover: var(--color-bg-action-primary-hover);
+  --button-bg-pressed: var(--color-bg-action-primary-pressed);
+  --button-bg-disabled: var(--color-bg-action-primary-disabled);
+  --button-fg: var(--color-text-on-action);
+  --button-icon: var(--color-icon-on-action);
+}
+
+/* The focus ring of the radio is drawn on its button. */
+.choice__option:has(:focus-visible) {
+  outline: var(--size-focus-ring-width) solid var(--button-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+/* Own value (#160; Figma: Gift Card, Custom amount, node 39:9044): the last option, Custom, opens a field over the
+   last row — as wide as the choice, as tall as a button, so nothing moves. The field is the text field of the
+   collection, strong (#89), in the shape of a button: "$" typography.label.lg, the value, the apply icon (a functional
+   icon, check-circle). It grows from the place of Custom to the whole row (motion.duration.fast, motion.easing.enter;
+   without movement under prefers-reduced-motion). Behaviour — choice.js. */
+.choice { position: relative; }
+.choice__other { position: absolute; right: 0; bottom: 0; left: 0; }
+.choice:not([data-open]) .choice__other { visibility: hidden; }
+.choice__other .input__field { border-radius: var(--shape-button); background: var(--color-bg-surface-default); }
+.choice__currency {
+  flex: none;
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+/* Nothing to apply yet: the icon looks disabled, the button stays focusable and says why (aria-describedby). */
+.choice__apply[aria-disabled="true"] { cursor: not-allowed; }
+.choice__apply[aria-disabled="true"] .input__icon { background-color: var(--color-icon-disabled); }
+.choice[data-open] .choice__other {
+  clip-path: inset(0 round var(--shape-button));
+  transition: clip-path var(--motion-duration-fast) var(--motion-easing-enter);
+}
+@starting-style {
+  .choice[data-open] .choice__other { clip-path: inset(0 0 0 50% round var(--shape-button)); }
+}
+@media (prefers-reduced-motion: reduce) { .choice[data-open] .choice__other { transition: none; } }
+
+/* Accessibility: forced colors drop the fill — the chosen button takes the system highlight. */
+@media (forced-colors: active) {
+  .choice__option { border: var(--size-border-default) solid ButtonText; }
+  .choice__option:has(:checked) { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .choice__option:has(:focus-visible) { outline-color: Highlight; }
+}

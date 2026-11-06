@@ -1,0 +1,38 @@
+/* Point — an icon beside a heading and a paragraph, no card around them (Figma: Gift Card, Minor components/Medium
+   points, node 23:10368; #157). For steps and benefits in a row; not interactive. The icon is in a box, as in the icon
+   card (#146): space.component.px.md around it, shape.icon-container.sm, icon size.icon.lg; the text is the heading
+   group xs (#132), space.component.gap.2xl from the box.
+   Surface — default (a dark box, color.bg.surface.inverse.subtle, as in the icon card) | .point--inverse (on a dark
+   section: color.bg.surface.light.subtle; the heading group gets --inverse too).
+   Markup: <li class="point [point--inverse]">   or <article aria-labelledby>
+             <span class="point__icon"><span class="icon icon--counter-1" aria-hidden="true"></span></span>
+             <hgroup class="heading-group heading-group--xs [heading-group--inverse]">
+               <h3 class="heading-group__title">Heading</h3><p class="heading-group__text">…</p></hgroup>
+           </li>
+   The heading level follows the page. Semantic tokens only (#82). */
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-component-gap-2xl); /* Figma: space/component/px/xl, the same 24 */
+}
+
+.point__icon {
+  display: flex;
+  flex: none;
+  padding: var(--space-component-px-md);
+  border-radius: var(--shape-icon-container-sm);
+  background: var(--color-bg-surface-inverse-subtle);
+  color: var(--color-icon-inverse-primary);
+}
+.point__icon .icon { width: var(--size-icon-lg); height: var(--size-icon-lg); }
+/* Figma also blurs the backdrop of the box; on a plain section it changes nothing, so it is left out. */
+.point--inverse .point__icon { background: var(--color-bg-surface-light-subtle); }
+
+.point .heading-group { flex: auto; min-width: 0; }
+
+/* Accessibility: forced colors drop the background — the icon box gets a border, the mask a system color. */
+@media (forced-colors: active) {
+  .point__icon { border: var(--size-border-default) solid CanvasText; }
+  .point__icon .icon { forced-color-adjust: none; background-color: CanvasText; }
+}

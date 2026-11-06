@@ -1,0 +1,135 @@
+/* Home page hero — the first screen: photo, site header, the search form and the offer (Figma: BCDS – Token Studio,
+   Above the fold, node 1823:33279; #119). A section made of collection parts: currency and phone dropdowns on dark glass
+   (#112), the icon-glass button (#95), the search form (#117). Desktop only for now: tablet and mobile — after the
+   design (BACKLOG.md).
+   Markup: <section class="hero" aria-labelledby="hero-title">
+             <div class="hero__media"><img class="hero__photo" src="images/home-hero.png" alt=""></div>
+             <div class="hero__inner">
+               <header class="hero__header"> logo link, <div class="hero__actions"> USD, phone, menu </div> </header>
+               <div class="hero__body">
+                 <div class="hero__text"> title (h1 on the home page), hr, lead, hr, rating, badges </div>
+                 <div class="hero__form"> the search form </div>
+               </div>
+             </div>
+           </section>
+   The text comes first in the markup (heading, then the form for screen readers); the grid shows the form on the left.
+   The text column has no controls, so the Tab order still follows what a person sees.
+   Variant — .hero--gift-card (#157): the text on the left, the gift voucher form on the right, a darker scrim.
+   Semantic tokens only (#82). */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: min(100vh, var(--size-container-height-960)); /* the screen, up to 960; more only if the content needs it */
+  padding: var(--space-container-py-md) var(--space-section-px-md) 0;
+  overflow: hidden;
+  color: var(--color-text-inverse-primary);
+}
+
+/* The photo covers the section; the scrim over it keeps white text readable. */
+.hero__media { position: absolute; inset: 0; }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: var(--color-bg-scrim-dark-subtle); }
+.hero__photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Later in the markup, so it paints over the media without a z-index. */
+.hero__inner {
+  position: relative;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--size-content-max-width);
+}
+
+.hero__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-component-py-sm) 0;
+}
+.hero__logo { display: flex; border-radius: var(--shape-button); }
+.hero__logo img { display: block; }
+.hero__logo:focus-visible {
+  outline: var(--size-focus-ring-width) solid var(--color-border-inverse-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+.hero__actions { display: flex; align-items: center; gap: var(--space-component-gap-md); }
+/* Over the photo the ring of the light glass button is white, as on every dark surface. */
+.hero .button--glass { --button-focus: var(--color-border-inverse-focus); }
+
+/* Two equal columns: the form centered on the left, the text on the right. */
+.hero__body {
+  display: grid;
+  flex: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "form text";
+  align-items: center;
+  gap: var(--space-section-gap-xl); /* Figma: space/section/gap/md; xl by the owner (#124) */
+  padding-bottom: var(--space-container-py-lg);
+}
+.hero__form {
+  grid-area: form;
+  justify-self: center;
+  width: var(--size-container-width-400);
+  max-width: 100%;
+}
+
+.hero__text {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section-gap-sm);
+}
+.hero__title, .hero__lead, .hero__divider { width: 100%; max-width: var(--size-text-width-sm); margin: 0; }
+.hero__title {
+  font-family: var(--typography-display-md-font-family);
+  font-size: var(--typography-display-md-font-size);
+  font-weight: var(--typography-display-md-font-weight);
+  line-height: var(--typography-display-md-line-height);
+  letter-spacing: var(--typography-display-md-letter-spacing);
+}
+.hero__divider { border: 0; border-top: var(--size-border-default) solid var(--color-border-inverse-default); }
+.hero__lead {
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-weight: var(--typography-body-lg-font-weight);
+  line-height: var(--typography-body-lg-line-height);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+
+/* Trustpilot rating: stars, the count and the logo — pictures in their own colors, as the flags. */
+.hero__rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-xs);
+  margin: 0;
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+.hero__stars { display: flex; gap: var(--space-component-gap-2xs); padding-right: var(--space-component-px-xs); }
+.hero__stars img, .hero__trustpilot { display: block; }
+
+.hero__badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-container-gap-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hero__badges img { display: block; }
+
+/* Gift Card (Figma: Gift Card, Hero, node 1:5043; #157): the text on the left, space.container.px.lg from the edge,
+   the form on the right — the gift voucher form, size.container.width.480; a darker scrim for its photo
+   (color.bg.scrim.dark.default). The text comes first in the markup and on the screen. */
+.hero--gift-card .hero__media::after { background: var(--color-bg-scrim-dark-default); }
+.hero--gift-card .hero__body { grid-template-areas: "text form"; }
+.hero--gift-card .hero__text { padding-left: var(--space-container-px-lg); }
+.hero--gift-card .hero__form { width: var(--size-container-width-480); }
+
+/* Accessibility: forced colors drop the scrim but keep the photo; the browser puts a backplate behind the text. */

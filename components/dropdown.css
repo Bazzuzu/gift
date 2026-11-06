@@ -1,0 +1,183 @@
+/* Dropdown — one button that opens a menu: label, divider, arrow (Figma: BCDS – Token Studio, SplitButtons, node 141:113;
+   #112). The divider only looks like a split: the whole pill is one button (hover, press, focus, name).
+   Collection — use only these:
+     .dropdown--currency  48 tall: one line in typography.title.sm, divider 20, arrow 24
+     .dropdown--phone     48 tall: two lines — caption typography.label.md, value typography.title.sm, right-aligned
+     .dropdown--small     40 tall, width size.container.width.120: label typography.label.lg with an ellipsis, arrow 16,
+                          no divider and no blur
+     .dropdown--edit      32 tall: typography.label.lg, divider 16, arrow 16
+     .dropdown--small.travelers-dropdown  Class/Travelers: small as wide as its text, opens the travelers dialog
+                          (travelers.css, #115)
+   Surface: default (color.bg.action.secondary.*) | .dropdown--inverse — dark glass over photos (currency, phone only).
+   Markup: <button class="dropdown dropdown--currency [dropdown--inverse]" type="button" aria-haspopup="listbox|menu"
+             aria-expanded="false" [aria-label="Currency: USD"]>
+             <span class="dropdown__label">USD</span>
+               phone: <span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span>
+                      <span class="dropdown__value">+1 888-315-7838</span></span>
+             [<span class="dropdown__divider" aria-hidden="true"></span>]   not in .dropdown--small
+             <span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span>
+           </button>
+   aria-haspopup by what opens: listbox — a choice of a value (currency, small), menu — actions (phone, edit), dialog —
+   the travelers dialog (aria-controls, no aria-expanded). Menus: currency and trip type (listbox), call (menu, below);
+   edit — after its design (BACKLOG.md). Semantic tokens only (#82). */
+
+.dropdown {
+  /* Type: currency by default; the type classes below override. */
+  --dropdown-py: var(--space-component-py-xs);
+  --dropdown-pl: var(--space-component-px-lg);
+  --dropdown-pr: var(--space-component-px-md);
+  --dropdown-gap: var(--space-component-gap-md);
+  --dropdown-icon-size: var(--size-icon-md);
+  --dropdown-divider-size: var(--size-icon-sm);
+  --dropdown-font-family: var(--typography-title-sm-font-family);
+  --dropdown-font-size: var(--typography-title-sm-font-size);
+  --dropdown-font-weight: var(--typography-title-sm-font-weight);
+  --dropdown-line-height: var(--typography-title-sm-line-height);
+  --dropdown-letter-spacing: var(--typography-title-sm-letter-spacing);
+
+  /* Surface: default; .dropdown--inverse overrides. */
+  --dropdown-bg: var(--color-bg-action-secondary-default);
+  --dropdown-bg-hover: var(--color-bg-action-secondary-hover);
+  --dropdown-bg-pressed: var(--color-bg-action-secondary-pressed);
+  --dropdown-bg-disabled: var(--color-bg-action-secondary-disabled);
+  --dropdown-fg: var(--color-text-primary);
+  --dropdown-fg-disabled: var(--color-text-disabled);
+  --dropdown-icon: var(--color-icon-primary);
+  --dropdown-icon-disabled: var(--color-icon-disabled);
+  --dropdown-divider: var(--color-border-default);
+  --dropdown-divider-disabled: var(--color-border-subtle);
+  --dropdown-focus: var(--color-border-focus);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dropdown-gap);
+  margin: 0;
+  padding: var(--dropdown-py) var(--dropdown-pr) var(--dropdown-py) var(--dropdown-pl);
+  border: 0;
+  border-radius: var(--shape-button);
+  background: var(--dropdown-bg);
+  color: var(--dropdown-fg);
+  font-family: var(--dropdown-font-family);
+  font-size: var(--dropdown-font-size);
+  font-weight: var(--dropdown-font-weight);
+  line-height: var(--dropdown-line-height);
+  letter-spacing: var(--dropdown-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(var(--effect-backdrop-default));
+  backdrop-filter: blur(var(--effect-backdrop-default));
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+
+/* Hit area at least the touch target, whatever the visible size (edit is 32). */
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--size-touch-target-min));
+  height: max(100%, var(--size-touch-target-min));
+  transform: translate(-50%, -50%);
+}
+
+.dropdown__label { min-width: 0; }
+.dropdown__divider {
+  flex: none;
+  height: var(--dropdown-divider-size);
+  border-left: var(--size-border-default) solid var(--dropdown-divider); /* a border: forced colors keep it */
+}
+.dropdown__icon {
+  width: var(--dropdown-icon-size);
+  height: var(--dropdown-icon-size);
+  background-color: var(--dropdown-icon);
+}
+
+/* States */
+.dropdown:hover:not(:disabled), .dropdown.is-hover { background: var(--dropdown-bg-hover); }
+.dropdown:active:not(:disabled), .dropdown.is-pressed { background: var(--dropdown-bg-pressed); }
+.dropdown:focus-visible, .dropdown.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--dropdown-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+.dropdown:disabled {
+  --dropdown-icon: var(--dropdown-icon-disabled);
+  --dropdown-divider: var(--dropdown-divider-disabled);
+  background: var(--dropdown-bg-disabled);
+  color: var(--dropdown-fg-disabled);
+  cursor: not-allowed;
+}
+
+/* Types */
+/* Currency and phone are 48 tall whatever the lines: the row of a 24 icon with py.sm above and below. */
+.dropdown--currency, .dropdown--phone {
+  min-height: calc(var(--size-icon-md) + var(--space-component-py-sm) + var(--space-component-py-sm));
+}
+.dropdown--phone .dropdown__label {
+  display: grid;
+  gap: var(--space-component-gap-2xs);
+  text-align: end;
+  /* MISSING: Figma pads the two lines 2 on top (space/inset/xxs); no semantic padding of 2 (BACKLOG.md). */
+}
+.dropdown__caption {
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-weight: var(--typography-label-md-font-weight);
+  line-height: var(--typography-label-md-line-height);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+}
+.dropdown--small {
+  --dropdown-py: var(--space-component-py-sm);
+  --dropdown-pl: var(--space-component-px-md);
+  --dropdown-pr: var(--space-component-px-sm);
+  --dropdown-gap: var(--space-component-gap-xs);
+  --dropdown-icon-size: var(--size-icon-xs);
+  width: var(--size-container-width-120);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.dropdown--small .dropdown__label { width: 100%; overflow: hidden; text-overflow: ellipsis; text-align: start; }
+.dropdown--edit {
+  --dropdown-pr: var(--space-component-px-sm);
+  --dropdown-icon-size: var(--size-icon-xs);
+  --dropdown-divider-size: var(--size-icon-xs);
+}
+/* Small and edit: label text, the row as tall as the 16 arrow (small 12 + 16 + 12 = 40, edit 8 + 16 + 8 = 32). */
+.dropdown--small, .dropdown--edit {
+  --dropdown-font-family: var(--typography-label-lg-font-family);
+  --dropdown-font-size: var(--typography-label-lg-font-size);
+  --dropdown-font-weight: var(--typography-label-lg-font-weight);
+  --dropdown-line-height: var(--typography-label-lg-line-height);
+  --dropdown-letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+
+/* Surface: dark glass over photos, like the glass-inverse button (#86): the border is drawn inside. */
+.dropdown--inverse {
+  --dropdown-bg: var(--color-bg-surface-glass-inverse-default);
+  --dropdown-bg-hover: var(--color-bg-surface-glass-inverse-hover);
+  --dropdown-bg-pressed: var(--color-bg-surface-glass-inverse-pressed);
+  --dropdown-bg-disabled: var(--color-bg-surface-glass-inverse-default); /* MISSING: disabled glass background; default glass kept */
+  --dropdown-fg: var(--color-text-inverse-primary);
+  --dropdown-fg-disabled: var(--color-text-inverse-disabled);
+  --dropdown-icon: var(--color-icon-inverse-primary);
+  --dropdown-icon-disabled: var(--color-icon-inverse-disabled);
+  --dropdown-divider: var(--color-border-inverse-default);
+  --dropdown-divider-disabled: var(--color-border-inverse-subtle);
+  --dropdown-focus: var(--color-border-inverse-focus);
+  box-shadow: inset 0 0 0 var(--size-border-default) var(--color-border-inverse-glass);
+}
+
+/* Call menu of the phone type (#114, Figma: Call, node 1810:4066): the shared menu with role="menu", caption rows and
+   tel: links; width size.container.width.160 as in Figma, narrower than the button. */
+.menu.call-menu { width: var(--size-container-width-160); min-width: 0; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .dropdown { transition: none; } }
+
+/* Forced colors drop backgrounds and box-shadow: the shape comes from a border, the mask icon gets a system color. */
+@media (forced-colors: active) {
+  .dropdown { border: var(--size-border-default) solid ButtonText; }
+  .dropdown__icon { forced-color-adjust: none; background-color: ButtonText; }
+  .dropdown:disabled { border-color: GrayText; color: GrayText; }
+  .dropdown:disabled .dropdown__icon { background-color: GrayText; }
+}

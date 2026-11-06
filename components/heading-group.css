@@ -1,0 +1,133 @@
+/* Heading group — eyebrow, heading and text in one block (Figma: BCDS – Token Studio, Heading & Subheading,
+   node 1299:8124; #132). For sections, containers and inside components (the deal card uses xs).
+   Size — .heading-group--xs | --sm | md (default, no class) | --lg | --xl (Figma: 2XS, XS, SM, MD, LG).
+   Align — left (default) | .heading-group--center. Surface — default | .heading-group--inverse (on dark).
+   The parts follow the markup: no eyebrow or text in it — none on screen. xs has no eyebrow in Figma.
+   Markup: <hgroup class="heading-group [size] [heading-group--center] [heading-group--inverse]">
+             [<p class="heading-group__eyebrow">Eyebrow</p>]
+             <h2 class="heading-group__title">Heading</h2>   the level follows the page, not the size
+             [<p class="heading-group__text">Subheading</p>]
+           </hgroup>
+   The eyebrow is written in normal case and shown in capitals by CSS, so screen readers do not spell it.
+   Headline sizes are responsive tokens: lg and xl get smaller on tablet and mobile by themselves.
+   Semantic tokens only (#82). */
+
+.heading-group {
+  /* Size: md by default; the size classes below override. */
+  --heading-group-gap: var(--space-component-gap-sm);
+  --heading-group-eyebrow-font-family: var(--typography-label-md-font-family);
+  --heading-group-eyebrow-font-size: var(--typography-label-md-font-size);
+  --heading-group-eyebrow-font-weight: var(--typography-label-md-font-weight);
+  --heading-group-eyebrow-line-height: var(--typography-label-md-line-height);
+  --heading-group-eyebrow-letter-spacing: var(--typography-label-md-letter-spacing);
+  --heading-group-title-font-family: var(--typography-headline-sm-font-family);
+  --heading-group-title-font-size: var(--typography-headline-sm-font-size);
+  --heading-group-title-font-weight: var(--typography-headline-sm-font-weight);
+  --heading-group-title-line-height: var(--typography-headline-sm-line-height);
+  --heading-group-title-letter-spacing: var(--typography-headline-sm-letter-spacing);
+  --heading-group-text-font-family: var(--typography-body-md-font-family);
+  --heading-group-text-font-size: var(--typography-body-md-font-size);
+  --heading-group-text-font-weight: var(--typography-body-md-font-weight);
+  --heading-group-text-line-height: var(--typography-body-md-line-height);
+  --heading-group-text-letter-spacing: var(--typography-body-md-letter-spacing);
+
+  /* Surface: default; .heading-group--inverse overrides. */
+  --heading-group-eyebrow-color: var(--color-text-secondary);
+  --heading-group-title-color: var(--color-text-primary);
+  --heading-group-text-color: var(--color-text-secondary);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--heading-group-gap);
+  margin: 0;
+}
+.heading-group > * { max-width: var(--size-text-width-md); margin: 0; }
+
+.heading-group__eyebrow {
+  color: var(--heading-group-eyebrow-color);
+  font-family: var(--heading-group-eyebrow-font-family);
+  font-size: var(--heading-group-eyebrow-font-size);
+  font-weight: var(--heading-group-eyebrow-font-weight);
+  line-height: var(--heading-group-eyebrow-line-height);
+  letter-spacing: var(--heading-group-eyebrow-letter-spacing);
+  text-transform: uppercase;
+}
+.heading-group__title {
+  color: var(--heading-group-title-color);
+  font-family: var(--heading-group-title-font-family);
+  font-size: var(--heading-group-title-font-size);
+  font-weight: var(--heading-group-title-font-weight);
+  line-height: var(--heading-group-title-line-height);
+  letter-spacing: var(--heading-group-title-letter-spacing);
+}
+.heading-group__text {
+  color: var(--heading-group-text-color);
+  font-family: var(--heading-group-text-font-family);
+  font-size: var(--heading-group-text-font-size);
+  font-weight: var(--heading-group-text-font-weight);
+  line-height: var(--heading-group-text-line-height);
+  letter-spacing: var(--heading-group-text-letter-spacing);
+}
+/* A link in the text (e.g. "the dedicated FAQ page", #149): underlined, not only colored; on dark — the text color. */
+.heading-group__text a { color: var(--color-text-link); text-decoration: underline; }
+.heading-group--inverse .heading-group__text a { color: inherit; }
+.heading-group__text a:focus-visible {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+.heading-group--inverse .heading-group__text a:focus-visible { outline-color: var(--color-border-inverse-focus); }
+
+/* Sizes */
+.heading-group--xs {
+  --heading-group-gap: var(--space-component-gap-xs);
+  --heading-group-title-font-family: var(--typography-title-md-font-family);
+  --heading-group-title-font-size: var(--typography-title-md-font-size);
+  --heading-group-title-font-weight: var(--typography-title-md-font-weight);
+  --heading-group-title-line-height: var(--typography-title-md-line-height);
+  --heading-group-title-letter-spacing: var(--typography-title-md-letter-spacing);
+}
+.heading-group--sm {
+  --heading-group-title-font-family: var(--typography-title-lg-font-family);
+  --heading-group-title-font-size: var(--typography-title-lg-font-size);
+  --heading-group-title-font-weight: var(--typography-title-lg-font-weight);
+  --heading-group-title-line-height: var(--typography-title-lg-line-height);
+  --heading-group-title-letter-spacing: var(--typography-title-lg-letter-spacing);
+}
+.heading-group--lg, .heading-group--xl {
+  --heading-group-text-font-family: var(--typography-body-lg-font-family);
+  --heading-group-text-font-size: var(--typography-body-lg-font-size);
+  --heading-group-text-font-weight: var(--typography-body-lg-font-weight);
+  --heading-group-text-line-height: var(--typography-body-lg-line-height);
+  --heading-group-text-letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+.heading-group--lg {
+  --heading-group-title-font-family: var(--typography-headline-md-font-family);
+  --heading-group-title-font-size: var(--typography-headline-md-font-size);
+  --heading-group-title-font-weight: var(--typography-headline-md-font-weight);
+  --heading-group-title-line-height: var(--typography-headline-md-line-height);
+  --heading-group-title-letter-spacing: var(--typography-headline-md-letter-spacing);
+}
+.heading-group--xl {
+  --heading-group-gap: var(--space-component-gap-md);
+  --heading-group-eyebrow-font-family: var(--typography-label-lg-font-family); /* Figma label.md; label.lg (#132) */
+  --heading-group-eyebrow-font-size: var(--typography-label-lg-font-size);
+  --heading-group-eyebrow-font-weight: var(--typography-label-lg-font-weight);
+  --heading-group-eyebrow-line-height: var(--typography-label-lg-line-height);
+  --heading-group-eyebrow-letter-spacing: var(--typography-label-lg-letter-spacing);
+  --heading-group-title-font-family: var(--typography-headline-lg-font-family);
+  --heading-group-title-font-size: var(--typography-headline-lg-font-size);
+  --heading-group-title-font-weight: var(--typography-headline-lg-font-weight);
+  --heading-group-title-line-height: var(--typography-headline-lg-line-height);
+  --heading-group-title-letter-spacing: var(--typography-headline-lg-letter-spacing);
+}
+
+/* Align */
+.heading-group--center { align-items: center; text-align: center; }
+
+/* Surface: on dark sections and photos. */
+.heading-group--inverse {
+  --heading-group-eyebrow-color: var(--color-text-inverse-secondary);
+  --heading-group-title-color: var(--color-text-inverse-primary);
+  --heading-group-text-color: var(--color-text-inverse-secondary);
+}

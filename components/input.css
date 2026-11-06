@@ -1,0 +1,346 @@
+/* Input — text field with the label on the border line (Figma: BCDS – Token Studio, Master Text Input, node 188:242).
+   Constructor {Size}.{Border}:
+     Size   — md (default, no class) | .input--lg
+     Border — default (no class, color.border.default) | .input--strong (color.border.strong); when to use which —
+              BACKLOG.md
+   Markup: <div class="input [size] [border]">
+             [<label class="input__label" for="id">Label</label>]
+             <div class="input__field">
+               <input class="input__control" id="id" placeholder="Placeholder" [aria-label="…"] [aria-describedby="id-text"]>
+               [icon]
+             </div>
+             [<p class="input__supporting" id="id-text">Supporting text</p>]
+           </div>
+   Optional parts (#90):
+     Label      — without it the control needs aria-label (the placeholder is not a label).
+     Icon       — informative: <span class="input__icon icon icon--…" aria-hidden="true"></span>;
+                  functional: <button class="input__action" type="button" aria-label="…">
+                                <span class="input__icon icon icon--…" aria-hidden="true"></span></button>
+     Supporting — linked with aria-describedby.
+   Button field (#101): <button class="input__field"> with <span class="input__value [is-placeholder]"> — opens a
+   picker (dates, airports) instead of typing. Pair (#101): .input-pair — two fields in one frame, side by side or
+   .input-pair--stacked; used by the date range and the route. Phone (#108): the country code button before the
+   control — phone.css. Several lines (#157): <textarea class="input__control" rows="3"> instead of the input. A list
+   (#157): <select class="input__control"> and the informative arrow-drop-down icon after it. Pictures (#157):
+   <span class="input__images" role="img" aria-label="…"> with <img alt=""> after the control (the accepted cards).
+   States follow the markup: :hover, :focus-visible inside, a value, disabled on the control, aria-invalid="true" for an
+   error. Focus border only for :focus-visible (#98): a date field or an icon button gets it only from the keyboard,
+   so after a mouse choice the focus returns to the field without the border. A text field is :focus-visible on a click
+   too, so modality.js tells the two apart (#104): a click or a tap — 1 px (size.border.default), the keyboard — 2 px
+   (size.focus-ring.width); the color is color.border.focus in both. Without the script — 2 px.
+   Forced states for the sandbox: .is-hover, .is-focus (also on .input__action). Semantic tokens only (#82); MISSING marks a value without
+   a semantic token: it is not created, the browser default stays (BACKLOG.md «Не хватает токенов»).
+   Accessibility (#91, AGENTS.md «Доступность»): a name for every control (label or aria-label); type, name and
+   autocomplete by purpose (email, tel, given-name…); an error always has text in the supporting text, linked with
+   aria-describedby, never color only; functional icon — aria-label, plus aria-expanded / aria-pressed for toggles. */
+
+.input {
+  /* Size: md by default; .input--lg overrides. */
+  --input-py: var(--space-component-py-sm);
+  --input-font-family: var(--typography-body-md-font-family);
+  --input-font-size: var(--typography-body-md-font-size);
+  --input-font-weight: var(--typography-body-md-font-weight);
+  --input-line-height: var(--typography-body-md-line-height);
+  --input-letter-spacing: var(--typography-body-md-letter-spacing);
+  --input-label-font-family: var(--typography-label-md-font-family);
+  --input-label-font-size: var(--typography-label-md-font-size);
+  --input-label-font-weight: var(--typography-label-md-font-weight);
+  --input-label-line-height: var(--typography-label-md-line-height);
+  --input-label-letter-spacing: var(--typography-label-md-letter-spacing);
+
+  /* Colors: default border; .input--strong and the states below override. */
+  --input-border: var(--color-border-default);
+  --input-border-width: var(--size-border-default);
+  --input-border-hover: var(--color-border-active);
+  --input-label: var(--color-text-secondary);
+  --input-supporting: var(--color-text-secondary);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-2xs);
+  min-width: var(--size-container-width-120);
+}
+
+/* The label sits on the border line: centered on it, its background hides the line behind the text.
+   Text starts where the value starts (px.xs + px.xs = px.md). */
+.input__label {
+  position: absolute;
+  top: 0;
+  left: var(--space-component-px-xs);
+  transform: translateY(-50%);
+  padding: 0 var(--space-component-px-xs);
+  background: var(--color-bg-surface-default); /* the surface under the field; on other surfaces — BACKLOG.md */
+  color: var(--input-label);
+  font-family: var(--input-label-font-family);
+  font-size: var(--input-label-font-size);
+  font-weight: var(--input-label-font-weight);
+  line-height: var(--input-label-line-height);
+  letter-spacing: var(--input-label-letter-spacing);
+  white-space: nowrap;
+  right: var(--space-component-px-xs); /* a long label is cut with an ellipsis inside the field width */
+  width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The box: border drawn inside (#87), so the height is whole: md 48, lg 56. Less padding on the icon side. */
+.input__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-xs);
+  padding: var(--input-py) var(--space-component-px-sm) var(--input-py) var(--space-component-px-md);
+  border-radius: var(--shape-input);
+  box-shadow: inset 0 0 0 var(--input-border-width) var(--input-border);
+  cursor: text;
+  transition: box-shadow var(--motion-duration-fast) var(--motion-easing-move);
+}
+.input__field:not(:has(.input__icon)) { padding-right: var(--space-component-px-md); } /* no icon: even padding */
+
+/* The content row is as tall as the icon (Figma: text frame 24 px). */
+.input__control {
+  width: 100%;
+  min-width: 0;
+  height: var(--size-icon-md);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none; /* focus is shown on .input__field */
+  background: none;
+  color: var(--color-text-primary);
+  font-family: var(--input-font-family);
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  letter-spacing: var(--input-letter-spacing);
+  text-overflow: ellipsis;
+}
+/* Several lines (#157): <textarea class="input__control" rows="3"> — rows set the height (Figma: 80, 3 lines ≈ 84),
+   the person can make it taller; the box keeps the text at the top. */
+textarea.input__control {
+  height: auto;
+  line-height: var(--input-line-height);
+  resize: vertical;
+}
+.input__field:has(> textarea.input__control) { align-items: flex-start; }
+/* A list (#157): <select class="input__control" autocomplete="country"> with the arrow-drop-down icon after it; the
+   browser draws the open list, fills it in and lets an agent choose by the option text. The icon lies over the end
+   of the select and lets the click through, so the whole field opens the list. */
+select.input__control {
+  appearance: none;
+  padding-right: calc(var(--space-component-gap-xs) + var(--size-icon-md));
+  cursor: pointer;
+}
+/* The field stays unpositioned, or it would paint over the label on its line; the icon is placed against
+   .input, whose right edge is the field's. */
+.input__field:has(> select.input__control) { cursor: pointer; }
+.input__field:has(> select.input__control) > .input__icon {
+  position: absolute;
+  right: var(--space-component-px-sm);
+  pointer-events: none;
+}
+/* Pictures after the control (#157), e.g. the accepted cards: at their own size, space.component.gap.xs apart. */
+.input__images { display: flex; flex: none; gap: var(--space-component-gap-xs); }
+.input__images img { display: block; }
+.input__field:has(> .input__images) { padding-right: var(--space-component-px-sm); }
+.input__control::placeholder {
+  color: var(--color-text-tertiary); /* Figma: text.disabled (2.8:1); tertiary passes WCAG AA 4.5:1 */
+  opacity: unset; /* Firefox dims placeholders by default */
+}
+
+.input__icon {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  background-color: var(--color-icon-primary);
+}
+
+/* Functional icon: an icon button inside the field (e.g. clear, show password, open the list). Visible size = the icon,
+   hit area at least the touch target; ghost action colors on hover and press. */
+.input__action {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-button);
+  background: var(--color-bg-action-ghost-default);
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+.input__action::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size-touch-target-min);
+  height: var(--size-touch-target-min);
+  transform: translate(-50%, -50%);
+}
+.input__action:hover:not(:disabled), .input__action.is-hover { background: var(--color-bg-action-ghost-hover); }
+.input__action:active:not(:disabled), .input__action.is-pressed { background: var(--color-bg-action-ghost-pressed); }
+.input__action:focus-visible, .input__action.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+.input__action:disabled { background: var(--color-bg-action-ghost-disabled); cursor: not-allowed; }
+
+.input__supporting {
+  margin: 0;
+  padding: 0 var(--space-component-px-xs) 0 var(--space-component-px-md);
+  color: var(--input-supporting);
+  font-family: var(--typography-body-sm-font-family);
+  font-size: var(--typography-body-sm-font-size);
+  font-weight: var(--typography-body-sm-font-weight);
+  line-height: var(--typography-body-sm-line-height);
+  letter-spacing: var(--typography-body-sm-letter-spacing);
+}
+
+/* Size */
+.input--lg {
+  --input-py: var(--space-component-py-md);
+  --input-font-family: var(--typography-body-lg-font-family);
+  --input-font-size: var(--typography-body-lg-font-size);
+  --input-font-weight: var(--typography-body-lg-font-weight);
+  --input-line-height: var(--typography-body-lg-line-height);
+  --input-letter-spacing: var(--typography-body-lg-letter-spacing);
+  --input-label-font-family: var(--typography-label-lg-font-family);
+  --input-label-font-size: var(--typography-label-lg-font-size);
+  --input-label-font-weight: var(--typography-label-lg-font-weight);
+  --input-label-line-height: var(--typography-label-lg-line-height);
+  --input-label-letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+
+/* Border */
+.input--strong { --input-border: var(--color-border-strong); }
+
+/* States */
+.input:hover .input__field, .input.is-hover .input__field { --input-border: var(--input-border-hover); }
+/* Focus from the keyboard: a darker and wider border (size.focus-ring.width), so it shows without relying on color
+   alone. After a click or a tap a text field keeps the default width, only the color changes (#104). Only the field's
+   own control lights the border; a button inside (functional icon, country code) shows its own ring (#109). :where()
+   keeps the old specificity, so an error still wins. */
+.input:has(:where(.input__control, button.input__field):focus-visible) .input__field, .input.is-focus .input__field {
+  --input-border: var(--color-border-focus);
+  --input-border-width: var(--size-focus-ring-width);
+}
+[data-modality="pointer"] .input:has(:where(.input__control, button.input__field):focus-visible) .input__field, .input.is-focus-pointer .input__field {
+  --input-border: var(--color-border-focus);
+  --input-border-width: var(--size-border-default);
+}
+/* Error and disabled set the border color on the box, so they win over hover and focus (an error stays red on focus,
+   the wider focus border still shows). */
+.input:has(.input__control[aria-invalid="true"]) {
+  --input-label: var(--color-text-critical);
+  --input-supporting: var(--color-text-critical);
+}
+.input:has(.input__control[aria-invalid="true"]) .input__field { --input-border: var(--color-border-critical); }
+.input:has(.input__control:disabled) {
+  --input-label: var(--color-text-disabled);
+  --input-supporting: var(--color-text-disabled);
+}
+.input:has(.input__control:disabled) .input__field { --input-border: var(--color-border-subtle); cursor: not-allowed; }
+.input:has(.input__control:disabled) .input__control,
+.input:has(.input__control:disabled) .input__control::placeholder { color: var(--color-text-disabled); cursor: not-allowed; }
+.input:has(.input__control:disabled) .input__icon { background-color: var(--color-icon-disabled); }
+
+/* Button field: a <button class="input__field"> opens a picker (dates, airports) instead of a text control. */
+button.input__field {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+button.input__field:focus-visible { outline: none; } /* focus is the wider border */
+
+/* The browser's clear button of a search field: the close icon in color.icon.primary instead of the native blue (#107). */
+.input__control[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  background-color: var(--color-icon-primary);
+  -webkit-mask: url(../icons/close.svg) center / contain no-repeat;
+  mask: url(../icons/close.svg) center / contain no-repeat;
+  cursor: pointer;
+}
+
+/* The value of a button field; the content row is as tall as the icon, like the text field. */
+.input__value {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-family: var(--input-font-family);
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--size-icon-md);
+  letter-spacing: var(--input-letter-spacing);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.input__value.is-placeholder { color: var(--color-text-tertiary); }
+
+/* Pair: two fields in one frame. Equal halves meet at the divider; the halves have no border of their own, the
+   focused half gets the focus border up to the divider (#97). Side by side; .input-pair--stacked — one under the other. */
+.input-pair {
+  --input-pair-border: var(--color-border-strong);
+  position: relative;
+  display: flex;
+  border-radius: var(--shape-input);
+  box-shadow: inset 0 0 0 var(--size-border-default) var(--input-pair-border);
+  transition: box-shadow var(--motion-duration-fast) var(--motion-easing-move);
+}
+.input-pair::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--size-border-default);
+  background: var(--input-pair-border);
+  transform: translateX(-50%);
+}
+.input-pair:hover, .input-pair.is-hover { --input-pair-border: var(--color-border-active); }
+/* While a half is focused, its border is the line in the middle. */
+.input-pair:has(.input :focus-visible, .input.is-focus)::after { background: transparent; }
+.input-pair > .input {
+  --input-border: transparent;
+  --input-border-hover: transparent;
+  width: 100%;
+  min-width: 0; /* equal halves whatever the text: the width does not jump when the values swap (#103) */
+}
+.input-pair > .input:first-child .input__field { border-radius: var(--shape-input) 0 0 var(--shape-input); }
+.input-pair > .input:last-child .input__field { border-radius: 0 var(--shape-input) var(--shape-input) 0; }
+
+.input-pair--stacked { flex-direction: column; }
+.input-pair--stacked::after {
+  top: 50%;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: var(--size-border-default);
+  transform: translateY(-50%);
+}
+.input-pair--stacked > .input:first-child .input__field { border-radius: var(--shape-input) var(--shape-input) 0 0; }
+.input-pair--stacked > .input:last-child .input__field { border-radius: 0 0 var(--shape-input) var(--shape-input); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .input__field, .input__action, .input-pair { transition: none; } }
+
+/* Forced colors (Windows high contrast) drop box-shadow and backgrounds: the box gets a border in system colors,
+   mask icons get a system color. An error has no red here, so its text in the supporting text is required. */
+@media (forced-colors: active) {
+  .input-pair::after { display: none; } /* each half gets its own border */
+  .input__field { border: var(--input-border-width) solid CanvasText; }
+  .input:has(:where(.input__control, button.input__field):focus-visible) .input__field { border-color: Highlight; }
+  .input:has(.input__control:disabled) .input__field { border-color: GrayText; }
+  .input__icon { forced-color-adjust: none; background-color: CanvasText; }
+  .input__action .input__icon { background-color: ButtonText; }
+  .input:has(.input__control:disabled) .input__icon { background-color: GrayText; }
+}

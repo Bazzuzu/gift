@@ -1,0 +1,151 @@
+/* Gift voucher form — three steps in one card (Figma: Gift Card, Form 2 Steps, node 23:9456; #157): the value and who
+   it is for, the payment, thank you. Made of collection parts: the heading group sm and xs (#132), the value choice
+   (choice.css), text fields md, a text area and a list (#89), buttons primary and secondary (#95). The card is the same
+   as the search form's (#117); width up to size.container.width.480.
+   Markup: <div class="gift-form">
+             <form class="gift-form__step" data-step="value" aria-labelledby="title 1" novalidate>
+               <div class="gift-form__head"> <div class="gift-form__media"><img class="gift-form__image" alt=""></div>
+                 <div class="gift-form__side"> heading group sm (title tabindex="-1"), .choice </div> </div>
+               <div class="gift-form__body"> heading group xs «Who it’s for», <fieldset class="gift-form__fields"> name, email,
+                 message </fieldset>, <button class="button gift-form__next" type="submit"> Next, chevron-right </button> </div>
+             </form>
+             <form class="gift-form__step" data-step="payment" aria-labelledby="title 2" novalidate hidden>
+               head: picture; side: heading group sm, <hr class="gift-form__divider">, the order (.gift-form__order)
+               <div class="gift-form__body"> your email, card number (.input__images — the accepted cards), <div class="gift-form__pair"> expiry, security
+               code </div>, <div class="gift-form__pair"> country (select), ZIP code </div>, <p class="gift-form__terms">
+               <div class="gift-form__actions"> secondary Back with chevron-left, primary Pay with verified-user </div> </div>
+             </form>
+             <div class="gift-form__step" data-step="done" role="region" aria-labelledby="title 3" hidden>
+               head: picture; side: check icon, heading group sm; <div class="gift-form__body"> divider, the order, divider,
+               <a class="button gift-form__home" href> Go to Home Page </a> </div>
+             </div>
+           </div>
+   The steps share the two rows of a grid (#162): the head as tall as the tallest head, the body as tall as the tallest
+   body — the picture and the buttons stand at the same place on every step; a hidden step keeps its place but is not
+   seen, not read and not in the Tab order (visibility: hidden). The picture of the card stands at
+   the bottom of its column and goes up over the top of the card, as in Figma. The heading level follows the page.
+   Steps, checking and formats — gift-form.js. Not built yet: the custom value (BACKLOG.md). Semantic tokens only (#82). */
+
+/* Two rows shared by all steps (#162): the head (picture and details) and the body. Each step takes both rows as a
+   subgrid, so the head is as tall as the tallest head of any step — the picture does not jump — and the body as tall
+   as the tallest body; the buttons go to the bottom of the body. */
+.gift-form {
+  display: grid;
+  grid-template-areas: "head" "body";
+  grid-template-rows: auto 1fr;
+  row-gap: var(--space-component-gap-xl);
+  width: 100%;
+  max-width: var(--size-container-width-480);
+  padding: var(--space-component-py-xl) var(--space-component-px-xl);
+  border-radius: var(--shape-card);
+  background: var(--color-bg-surface-default);
+  box-shadow: var(--elevation-md); /* Figma Shadow/Medium is 0 6 12, elevation.md is 0 4 12 */
+}
+
+.gift-form__step {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: head-start / body-end;
+  grid-column: head;
+  min-width: 0;
+  margin: 0;
+}
+.gift-form__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-xl);
+  min-width: 0;
+}
+/* The buttons (with the terms over them on step 2) stand at the bottom of the card on every step. */
+.gift-form__body > :is(.gift-form__next, .gift-form__terms, .gift-form__home) { margin-top: auto; }
+.gift-form__step[hidden] { visibility: hidden; }
+/* The heading takes the focus when its step opens, so a screen reader reads it; it is not a control — no ring. */
+.gift-form__step [tabindex="-1"]:focus { outline: none; }
+
+/* The head: the picture of the card on the left, the heading and what goes with it on the right. */
+.gift-form__head { display: flex; gap: var(--space-container-gap-md); }
+.gift-form__media { position: relative; flex: auto; }
+.gift-form__image { position: absolute; bottom: 0; left: 0; display: block; width: 100%; height: auto; }
+.gift-form__side {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-container-gap-xs);
+  width: var(--size-container-width-240);
+}
+
+.gift-form__divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+}
+
+.gift-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-container-gap-md);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* Two fields in a row: equal halves. */
+.gift-form__pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-container-gap-md); }
+
+/* The order: a title and rows "label — value", the value at the right edge. */
+.gift-form__order { display: flex; flex-direction: column; gap: var(--space-component-gap-xs); }
+.gift-form__step[data-step="done"] .gift-form__order { gap: var(--space-component-gap-sm); }
+.gift-form__order-title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+}
+.gift-form__order dl { display: flex; flex-direction: column; gap: inherit; margin: 0; }
+.gift-form__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-component-gap-md);
+  font-family: var(--typography-body-md-font-family);
+  font-size: var(--typography-body-md-font-size);
+  font-weight: var(--typography-body-md-font-weight);
+  line-height: var(--typography-body-md-line-height);
+  letter-spacing: var(--typography-body-md-letter-spacing);
+}
+.gift-form__row dt { color: var(--color-text-tertiary); white-space: nowrap; }
+.gift-form__row dd { min-width: 0; margin: 0; overflow: hidden; color: var(--color-text-primary); text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+
+.gift-form__terms {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-body-sm-font-family);
+  font-size: var(--typography-body-sm-font-size);
+  font-weight: var(--typography-body-sm-font-weight);
+  line-height: var(--typography-body-sm-line-height);
+  letter-spacing: var(--typography-body-sm-letter-spacing);
+  text-align: center;
+}
+/* Underlined, not only colored (WCAG 1.4.1), as links in a heading group (#149). */
+.gift-form__terms a { color: var(--color-text-link); text-decoration: underline; }
+.gift-form__terms a:focus-visible {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+.gift-form__next, .gift-form__home { width: 100%; }
+/* Back at its own width, Pay takes the rest. */
+.gift-form__actions { display: flex; gap: var(--space-container-gap-sm); }
+.gift-form__actions .gift-form__pay { flex: auto; }
+
+/* Thank you: a large check over the heading. */
+.gift-form__done-icon { width: var(--size-icon-2xl); height: var(--size-icon-2xl); background-color: var(--color-icon-positive); }
+
+/* Accessibility: forced colors drop the background and the shadow — the form keeps a border. */
+@media (forced-colors: active) {
+  .gift-form { border: var(--size-border-default) solid CanvasText; }
+}

@@ -1,0 +1,88 @@
+/* Directory — contact cards side by side in one frame (Figma: Gift Card, Info section, Contacts card, node 32:21925;
+   #157): an icon, a heading at the bottom of the card, a line, then rows "label: link" — phones (tel:) and emails
+   (mailto:). Not a card itself: the frame and the lines between the cards are borders size.border.default
+   color.border.subtle, the corners of the frame shape.card.
+   Card — space.component.py.lg / px.lg, parts space.component.gap.md apart, at least size.container.height.280 tall
+   and size.container.width.320 wide; the icon box as in the light icon card (#151) but color.bg.surface.subtle
+   (space.component.px.sm, shape.icon-container.sm, icon size.icon.lg color.icon.primary); heading typography.title.md;
+   rows typography.body.md, the label color.text.tertiary, the link color.text.link underlined (as links in a heading
+   group, #149).
+   Markup: <ul class="directory" aria-label="Contacts">
+             <li class="directory__card">
+               <span class="directory__icon"><span class="icon icon--phone" aria-hidden="true"></span></span>
+               <h3 class="directory__title" id="…">North America Advisory Team</h3>
+               <ul class="directory__list" aria-labelledby="…">
+                 <li>New Booking Team: <a href="tel:+18885157402">+1 888-515-7402</a></li> …
+               </ul>
+             </li>
+           </ul>
+   As wide as its container; the cards share it equally. The heading level follows the page. Semantic tokens only (#82). */
+
+.directory {
+  display: grid;
+  grid-auto-columns: minmax(var(--size-container-width-320), 1fr);
+  grid-auto-flow: column;
+  margin: 0;
+  padding: 0;
+  border: var(--size-border-default) solid var(--color-border-subtle);
+  border-radius: var(--shape-card);
+  list-style: none;
+}
+
+.directory__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-md);
+  min-height: var(--size-container-height-280);
+  padding: var(--space-component-py-lg) var(--space-component-px-lg);
+}
+.directory__card + .directory__card { border-left: var(--size-border-default) solid var(--color-border-subtle); }
+
+.directory__icon {
+  display: flex;
+  align-self: flex-start;
+  padding: var(--space-component-px-sm);
+  border-radius: var(--shape-icon-container-sm);
+  background: var(--color-bg-surface-subtle);
+  color: var(--color-icon-primary);
+}
+.directory__icon .icon { width: var(--size-icon-lg); height: var(--size-icon-lg); }
+
+/* The heading goes to the bottom of the card: in a row the headings and the lines line up. */
+.directory__title {
+  margin: auto 0 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+}
+
+.directory__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-md);
+  margin: 0;
+  padding: var(--space-component-gap-md) 0 0;
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+  list-style: none;
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-body-md-font-family);
+  font-size: var(--typography-body-md-font-size);
+  font-weight: var(--typography-body-md-font-weight);
+  line-height: var(--typography-body-md-line-height);
+  letter-spacing: var(--typography-body-md-letter-spacing);
+}
+/* Underlined, not only colored (WCAG 1.4.1). */
+.directory__list a { color: var(--color-text-link); text-decoration: underline; }
+.directory__list a:focus-visible {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+/* Accessibility: forced colors drop the background — the icon box gets a border, the mask a system color. */
+@media (forced-colors: active) {
+  .directory__icon { border: var(--size-border-default) solid CanvasText; }
+  .directory__icon .icon { forced-color-adjust: none; background-color: CanvasText; }
+}

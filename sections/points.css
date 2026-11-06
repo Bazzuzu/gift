@@ -1,0 +1,33 @@
+/* Points section — a centered heading and points in a row (Figma: Gift Card, Minor components/Medium points, "How It
+   Works", node 23:10368; #157). Made of collection parts: the heading group lg, centered (#132), and the point
+   (point.css). The points share the row equally, space.container.gap.lg apart; steps go in an <ol> in their order.
+   Markup: <section class="section section--inverse points" aria-labelledby="title">
+             <div class="points__inner">
+               <hgroup class="heading-group heading-group--lg heading-group--center heading-group--inverse"> heading, text </hgroup>
+               <ol class="points__list"> <li class="point point--inverse"> … </li> × 3 </ol>
+             </div>
+           </section>
+   On a light section — the point and the heading group without --inverse. Desktop only; tablet and mobile — after the
+   design (BACKLOG.md). The background — .section (#155). Semantic tokens only (#82). */
+
+.points {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-section-py-md) var(--space-section-px-md);
+}
+.points__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section-gap-md);
+  width: 100%;
+  max-width: var(--size-content-max-width);
+}
+.points__list {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: var(--space-container-gap-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

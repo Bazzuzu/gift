@@ -1,0 +1,84 @@
+/* Accordion — questions that open and close their answers (Figma: BCDS – Token Studio, Q & A item, expanded v2 and
+   collapsed V2, node 262:10761; #149). APG Accordion: the question is a heading with a button in it — the whole row is
+   the button; the answer is a region under the question, hidden when closed. Each question opens on its own.
+   On the right — the look of icon-ghost sm (a <span class="button">, only its look: the name is the question) with
+   expand-less (open) or expand-more (closed). Between the questions of a list — a divider. Behavior — accordion.js.
+   Markup: <div class="accordion">
+             <h3 class="accordion__heading">   the level follows the page
+               <button class="accordion__toggle" type="button" id="q" aria-labelledby="q-text" aria-expanded="true"
+                 aria-controls="a"><span class="accordion__question" id="q-text">Question</span>
+                 <span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon
+                   icon--expand-less" aria-hidden="true"></span></span></button></h3>
+             <div class="accordion__answer" id="a" role="region" aria-labelledby="q"><p>Answer</p></div>
+           </div>   closed: aria-expanded="false", the answer hidden, icon--expand-more
+   Semantic tokens only (#82). */
+
+/* Two columns: the question with the answer under it, and the icon. The icon hangs beside both (Figma: the text and
+   the button side by side), so its column is as wide as icon-ghost sm and the item at least as tall. */
+.accordion {
+  --accordion-icon-width: calc(var(--space-component-px-xs) + var(--size-icon-xs) + var(--space-component-px-xs));
+  --accordion-icon-height: calc(var(--space-component-py-xs) + var(--size-icon-xs) + var(--space-component-py-xs));
+  display: grid;
+  grid-template-columns: [text-start] minmax(0, 1fr) [text-end] var(--accordion-icon-width) [row-end];
+  align-content: start;
+  column-gap: var(--space-container-gap-lg);
+  min-height: var(--accordion-icon-height);
+}
+/* Figma: the answer, 24, the divider, 24 (the list gap), the next question. */
+.accordion + .accordion {
+  margin-top: var(--space-component-gap-2xl);
+  padding-top: var(--space-container-gap-md);
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+}
+
+.accordion__heading {
+  display: grid;
+  grid-column: text-start / row-end;
+  grid-template-columns: subgrid;
+  margin: 0;
+}
+.accordion__toggle {
+  position: relative; /* the icon is placed in it */
+  display: grid;
+  grid-column: text-start / row-end;
+  grid-template-columns: subgrid;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-primary);
+  text-align: start;
+  cursor: pointer;
+}
+.accordion__question {
+  grid-column: text-start / text-end;
+  padding-top: var(--space-component-py-2xs); /* Figma: the question 4 lower, to the middle of the icon */
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+}
+.accordion__icon { position: absolute; top: 0; right: 0; }
+/* The icon is only a look: its hover, press and focus ring follow the whole row. */
+.accordion__toggle:hover .accordion__icon { background: var(--button-bg-hover); }
+.accordion__toggle:active .accordion__icon { background: var(--button-bg-pressed); }
+.accordion__toggle:focus-visible { outline: none; }
+.accordion__toggle:focus-visible .accordion__icon {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+.accordion__answer {
+  grid-column: text-start / text-end;
+  margin-top: var(--space-component-gap-xs);
+  color: var(--color-text-secondary);
+  /* body.lg (Figma v2: body.md) — the owner's choice, easier to read (#150) */
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-weight: var(--typography-body-lg-font-weight);
+  line-height: var(--typography-body-lg-line-height);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+.accordion__answer[hidden] { display: none; }
+.accordion__answer p { margin: 0; }

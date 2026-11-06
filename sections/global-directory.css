@@ -1,0 +1,23 @@
+/* Global Directory section — a heading and the contact cards of the advisory desks (Figma: Gift Card, Info section,
+   node 32:21925; #157). Made of collection parts: the heading group md (#132) and the directory (directory.css).
+   Markup: <section class="section global-directory" aria-labelledby="title">
+             <div class="global-directory__inner">
+               <hgroup class="heading-group"> heading, text </hgroup>
+               <ul class="directory" aria-label="Contacts"> … </ul>
+             </div>
+           </section>
+   Desktop only; tablet and mobile — after the design (BACKLOG.md). The background — .section (#155). Semantic tokens
+   only (#82). */
+
+.global-directory {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-section-py-md) var(--space-section-px-md);
+}
+.global-directory__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section-gap-md);
+  width: 100%;
+  max-width: var(--size-content-max-width);
+}
