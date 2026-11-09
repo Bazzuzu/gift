@@ -13,7 +13,7 @@
                  <p class="heading-group__text">…</p></hgroup>   heading and text — the heading group xs (#132)
                <hr class="card__divider">
                <div class="card__footer">
-                 <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span>
+                 <p class="card__price"><span class="card__was">Regular price <s>$4,321</s></span>
                    <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
                  <a class="card__link" href="…" aria-labelledby="view title">
                    <span class="button button--sm button--brand card__action"><span class="button__label" id="view">View</span>
@@ -88,10 +88,12 @@
   border-top: var(--size-border-default) solid var(--color-border-subtle);
 }
 
-/* Price and View share the row in halves; compact — the price takes the rest next to the icon button. */
+/* Price and View share the row in halves; the price column is never narrower than its text (#173): a long old price
+   ("Regular price $10,480") narrows View instead of breaking onto a second line. Compact — the price takes the rest
+   next to the icon button. */
 .card__footer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(max-content, 1fr) 1fr;
   align-items: end;
   gap: var(--space-component-gap-md);
 }
