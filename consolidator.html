@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Business Class — Consolidator (test)</title>
-  <!-- A test page made of the Examples sections (#154, #164): its own address, http://127.0.0.1:8000/consolidator. Desktop only for now. -->
+  <!-- A test page made of the Examples sections (#154, #164): its own address, http://127.0.0.1:8000/consolidator. Desktop; the hero also on mobile (#174). -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="icons/icons.css">
@@ -42,13 +42,14 @@
 <main>
   <!-- Consolidator Hero -->
   <section class="hero hero--light" aria-labelledby="consolidator-hero-title">
-    <div class="hero__media"><img class="hero__photo" src="images/consolidator-hero.jpg" alt=""></div>
+    <div class="hero__media"><img class="hero__photo" src="images/consolidator-hero.jpg" alt="" loading="lazy"><img class="hero__photo hero__photo--mobile" src="images/consolidator-hero-mobile.jpg" alt="" loading="lazy"></div>
     <div class="hero__inner">
       <header class="hero__header">
-        <a class="hero__logo" href="#examples"><img src="images/logo-business-class-color.svg" alt="Business Class"></a>
+        <a class="hero__logo" href="#examples"><img class="hero__logo-full" src="images/logo-business-class-color.svg" alt="Business Class"><span class="hero__logo-compact"><img src="images/logo-business-class-sign-color.svg" alt="Business Class"><img src="images/logo-business-class-text-color.svg" alt=""></span></a>
         <div class="hero__actions">
           <button class="dropdown dropdown--currency" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency: USD" popovertarget="dropdown-currency" data-value="USD" data-name="Currency"><span class="dropdown__label">USD</span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
           <button class="dropdown dropdown--phone" type="button" aria-haspopup="menu" aria-expanded="false" popovertarget="dropdown-call"><span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span> <span class="dropdown__value">+1 888-315-7838</span></span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+          <a class="dropdown dropdown--call hero__call" href="tel:+18883157838" aria-label="24/7 Phone Deals: call +1 888-315-7838"><span class="dropdown__label">24/7 Phone Deals</span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--call" aria-hidden="true"></span></a>
           <button class="button" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
         </div>
       </header>
@@ -57,8 +58,9 @@
           <h1 class="hero__title" id="consolidator-hero-title">Business Class Consolidator Fares</h1>
           <hr class="hero__divider">
           <p class="hero__lead">The same premium cabin, a better price. Business class consolidator fares offer wholesale rates with 15–60% savings on select Business and First Class flights.</p>
+          <button class="button button--lg button--shadow-md hero__cta" type="button" aria-haspopup="dialog" aria-controls="quote-dialog"><span class="button__label">Check Your Price</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
           <hr class="hero__divider">
-          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> 12,044 reviews on <img class="hero__trustpilot" src="images/trustpilot-logo-on-light.svg" alt="Trustpilot"></p>
+          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> <span>12,044 reviews</span> <span>on</span> <img class="hero__trustpilot" src="images/trustpilot-logo-on-light.svg" alt="Trustpilot"></p>
           <ul class="hero__badges" aria-label="Accreditations">
             <li><img src="images/badge-iata-on-light.svg" alt="IATA"></li>
             <li><img src="images/badge-iatan-on-light.svg" alt="IATAN"></li>
@@ -891,6 +893,86 @@
         </div>
       </dialog>
 <div class="menu phone-menu" id="phone-countries" role="listbox" aria-label="Country code" popover></div>
+<!-- The form of the Consolidator hero on mobile: the bottom panel of its cta "Check Your Price" (#174). -->
+<dialog class="modal search-dialog" id="quote-dialog" aria-labelledby="quote-dialog-title">
+  <div class="search-dialog__header">
+    <h2 class="search-dialog__title" id="quote-dialog-title">Check Your Price</h2>
+    <button class="button button--sm button--secondary modal__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
+  </div>
+  <form class="search-form search-form--contact" aria-label="Get a price quote" novalidate>
+    <div class="search-form__settings">
+      <button class="dropdown dropdown--small" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Trip type: Round-trip" popovertarget="quote-sheet-trip" data-value="RT" data-name="Trip type"><span class="dropdown__label">Round-trip</span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+      <button class="dropdown dropdown--small travelers-dropdown" type="button" aria-haspopup="dialog" aria-controls="travelers" aria-label="Travelers and class: Business / 1 Traveler" data-adults="1" data-children="0" data-infants="0" data-class="Business"><span class="dropdown__label">Business / 1 Traveler</span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+    </div>
+    <div class="input-pair route" role="group" aria-label="Route">
+      <div class="input input--strong">
+        <span class="input__label" id="quote-sheet-from-label">From</span>
+        <button class="input__field route__field" type="button" aria-haspopup="dialog" aria-controls="airport-search" aria-labelledby="quote-sheet-from-label quote-sheet-from-value" data-kind="from" data-value="New York (NYC)" data-placeholder="Airport or city">
+          <span class="input__value" id="quote-sheet-from-value">New York (NYC)</span>
+        </button>
+      </div>
+      <button class="route__swap" type="button" aria-label="Swap departure and destination"><span class="icon icon--swap-horiz" aria-hidden="true"></span></button>
+      <div class="input input--strong">
+        <span class="input__label" id="quote-sheet-to-label">To</span>
+        <button class="input__field route__field" type="button" aria-haspopup="dialog" aria-controls="airport-search" aria-labelledby="quote-sheet-to-label quote-sheet-to-value" data-kind="to" data-value="London (LHR)" data-placeholder="Airport or city">
+          <span class="input__value" id="quote-sheet-to-value">London (LHR)</span>
+        </button>
+      </div>
+    </div>
+    <div class="input-pair search-form__dates" role="group" aria-label="Travel dates">
+      <div class="input input--strong date">
+        <span class="input__label" id="quote-sheet-departure-label">Departure</span>
+        <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-range" aria-labelledby="quote-sheet-departure-label quote-sheet-departure-value">
+          <span class="input__value" id="quote-sheet-departure-value">Fri, Nov 20</span>
+        </button>
+      </div>
+      <div class="input input--strong date">
+        <span class="input__label" id="quote-sheet-return-label">Return</span>
+        <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-range" aria-labelledby="quote-sheet-return-label quote-sheet-return-value">
+          <span class="input__value" id="quote-sheet-return-value">Wed, Nov 25</span>
+        </button>
+      </div>
+    </div>
+    <div class="input input--strong date search-form__date" hidden>
+      <span class="input__label" id="quote-sheet-date-label">Departure</span>
+      <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-single" aria-labelledby="quote-sheet-date-label quote-sheet-date-value">
+        <span class="input__value" id="quote-sheet-date-value">Fri, Nov 20</span>
+        <span class="input__icon icon icon--calendar" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="input input--strong">
+      <label class="input__label" for="quote-sheet-name">Name<span aria-hidden="true">*</span></label>
+      <div class="input__field">
+        <input class="input__control" type="text" id="quote-sheet-name" name="name" autocomplete="name" placeholder="Your name" required>
+      </div>
+    </div>
+    <div class="input input--strong">
+      <label class="input__label" for="quote-sheet-email">Email<span aria-hidden="true">*</span></label>
+      <div class="input__field">
+        <input class="input__control" type="email" id="quote-sheet-email" name="email" autocomplete="email" placeholder="Contact email" required>
+      </div>
+    </div>
+    <div class="input input--strong phone" data-country="US">
+      <label class="input__label" for="quote-sheet-phone">Phone number<span aria-hidden="true">*</span></label>
+      <div class="input__field">
+        <button class="phone__country" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: United States, +1" popovertarget="quote-sheet-countries" data-value="US">
+          <img class="phone__flag" src="flags/us.svg" alt="">
+          <span class="phone__code">+1</span>
+          <span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span>
+        </button>
+        <span class="phone__divider" aria-hidden="true"></span>
+        <input class="input__control phone__number" type="tel" id="quote-sheet-phone" name="phone" autocomplete="tel-national" placeholder="XXX XXX XXXX" required>
+      </div>
+    </div>
+    <button class="button button--lg button--shadow-md search-form__submit" type="submit"><span class="button__label">Get My Quote</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+  </form>
+  <div class="menu menu--text" id="quote-sheet-trip" role="listbox" aria-label="Trip type" popover>
+    <button class="menu__option" type="button" role="option" aria-selected="true" tabindex="-1" data-value="RT"><span class="menu__label">Round-trip</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+    <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="OW"><span class="menu__label">One-way</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+    <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="MC"><span class="menu__label">Multi-city</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+  </div>
+  <div class="menu phone-menu" id="quote-sheet-countries" role="listbox" aria-label="Country code" popover></div>
+</dialog>
 
   <script type="module" src="page.js"></script>
   <script type="module" src="components/modality.js"></script>

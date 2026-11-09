@@ -68,6 +68,9 @@
 .icon--phone { -webkit-mask-image: url(phone.svg); mask-image: url(phone.svg); }
 .icon--mail { -webkit-mask-image: url(mail.svg); mask-image: url(mail.svg); }
 
+/* Material call, 16 px — the call link of the mobile header (Figma: Consolidator page, ATF, Call action; #175). */
+.icon--call { -webkit-mask-image: url(call.svg); mask-image: url(call.svg); }
+
 /* LinkedIn, Instagram and Facebook, 24 px; the ASTA logo — Figma draws it as a white fill through this PNG mask
    (Figma: Footer Desktop, node 305:39155; #153). */
 .icon--linkedin { -webkit-mask-image: url(linkedin.svg); mask-image: url(linkedin.svg); }

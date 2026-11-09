@@ -8,6 +8,8 @@
      .dropdown--edit      32 tall: typography.label.lg, divider 16, arrow 16
      .dropdown--small.travelers-dropdown  Class/Travelers: small as wide as its text, opens the travelers dialog
                           (travelers.css, #115)
+     .dropdown--call      32 tall, green: a link that calls, not a menu (#175) — typography.label.md, divider and the
+                          call icon 16, color.bg.action.positive.*; the phone of the mobile header
    Surface: default (color.bg.action.secondary.*) | .dropdown--inverse — dark glass over photos (currency, phone only).
    Markup: <button class="dropdown dropdown--currency [dropdown--inverse]" type="button" aria-haspopup="listbox|menu"
              aria-expanded="false" [aria-label="Currency: USD"]>
@@ -19,7 +21,11 @@
            </button>
    aria-haspopup by what opens: listbox — a choice of a value (currency, small), menu — actions (phone, edit), dialog —
    the travelers dialog (aria-controls, no aria-expanded). Menus: currency and trip type (listbox), call (menu, below);
-   edit — after its design (BACKLOG.md). Semantic tokens only (#82). */
+   edit — after its design (BACKLOG.md).
+   Call: <a class="dropdown dropdown--call" href="tel:+18883157838" aria-label="24/7 Phone Deals: call +1 888-315-7838">
+           <span class="dropdown__label">24/7 Phone Deals</span><span class="dropdown__divider" aria-hidden="true"></span>
+           <span class="dropdown__icon icon icon--call" aria-hidden="true"></span></a>
+         the name starts with the visible text and says what happens. Semantic tokens only (#82). */
 
 .dropdown {
   /* Type: currency by default; the type classes below override. */
@@ -149,6 +155,33 @@
   --dropdown-font-weight: var(--typography-label-lg-font-weight);
   --dropdown-line-height: var(--typography-label-lg-line-height);
   --dropdown-letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+
+/* Call (Figma: Consolidator page, ATF mobile, Call action; #175): a tel: link in the pill of the type — label.md, the
+   divider and the call icon 16; 8 + 16 + 8 = 32 tall, the hit area 44 (::before). Its own green surface: white text on
+   color.bg.action.positive.default is 4.6:1 (AA). */
+.dropdown--call {
+  --dropdown-pl: var(--space-component-px-sm);
+  --dropdown-pr: var(--space-component-px-xs);
+  --dropdown-gap: var(--space-component-gap-sm);
+  --dropdown-icon-size: var(--size-icon-xs);
+  --dropdown-divider-size: var(--size-icon-xs); /* Figma 12: no size token of 12 — the line is as tall as the icon */
+  --dropdown-font-family: var(--typography-label-md-font-family);
+  --dropdown-font-size: var(--typography-label-md-font-size);
+  --dropdown-font-weight: var(--typography-label-md-font-weight);
+  --dropdown-line-height: var(--typography-label-md-line-height);
+  --dropdown-letter-spacing: var(--typography-label-md-letter-spacing);
+  --dropdown-bg: var(--color-bg-action-positive-default);
+  --dropdown-bg-hover: var(--color-bg-action-positive-hover);
+  --dropdown-bg-pressed: var(--color-bg-action-positive-pressed);
+  --dropdown-fg: var(--color-text-on-action);
+  --dropdown-icon: var(--color-icon-on-action);
+  --dropdown-divider: var(--color-border-inverse-default); /* Figma: white 48% — no such inverse border */
+  text-decoration: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  /* MISSING: the 4 px ring of black 12% around the pill and the light gradient over the green (Figma: Call action) —
+     no semantic border width of 4, no gradient token (BACKLOG.md); not drawn. */
 }
 
 /* Surface: dark glass over photos, like the glass-inverse button (#86): the border is drawn inside. */

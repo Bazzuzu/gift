@@ -2,7 +2,8 @@
 // digits are kept; a pasted or autofilled number with the country code ("+1 (212) 555-0123") loses the code, a national
 // one loses the trunk 0 ("06 12 34 56 78" in France); a full number takes no more typed digits. The caret stays after
 // the same digit, and Backspace or Delete on a space removes the digit next to it.
-// Country menu (#110): .phone__country opens #phone-countries — the shared menu (menu.js, menu.css) under the field.
+// Country menu (#110): .phone__country opens its .phone-menu (popovertarget; on pages #phone-countries) — the shared menu
+// (menu.js, menu.css) under the field.
 // Pages are inserted into index.html, so events are delegated.
 
 // Mock data — the countries of the flags in Figma: name, dial code, national number template (X — a digit). The flag is
@@ -90,12 +91,12 @@ document.addEventListener('input', (event) => {
 });
 
 // Country menu (#110, #113): the shared menu (menu.js) with options built from COUNTRIES on the first opening; a choice
-// sets the country of the field.
-const MENU = 'phone-countries';
+// sets the country of the field. Any .phone-menu: a form inside a modal dialog has its own copy there — a menu outside
+// the dialog would be inert (#174).
 
 document.addEventListener('menu-open', (event) => {
   const menu = event.target;
-  if (menu.id !== MENU || menu.childElementCount) return;
+  if (!menu.matches('.phone-menu') || menu.childElementCount) return;
   for (const [id, { name, code }] of Object.entries(COUNTRIES)) {
     const option = document.createElement('button');
     option.className = 'menu__option';

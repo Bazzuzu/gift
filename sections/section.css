@@ -5,7 +5,7 @@
    the last section of <main> and the one right after it (the footer). A section on a photo (the hero) has no .section,
    so the section after it has no line.
    Background: .section (color.bg.section.default) | .section--sunken (#165) | .section--subtle | .section--accent |
-   .section--inverse.
+   .section--inverse. On mobile a section scrolls sideways inside itself when its content is wider (#176).
    Markup: <section class="section [section--sunken | section--subtle | section--accent | section--inverse] logos"
              aria-labelledby="title"> … </section>
            <footer class="section section--inverse footer"> … </footer>
@@ -20,6 +20,11 @@
 .section--subtle { background: var(--color-bg-section-subtle); }
 .section--accent { background: var(--color-bg-section-accent); }
 .section--inverse { --section-divider: var(--color-border-inverse-default); background: var(--color-bg-section-inverse-default); }
+
+/* On a phone (#176) a section not built for mobile yet scrolls sideways inside itself, not the page: the page stays as
+   wide as the screen, so the fixed parts — the bottom panel of a dialog (#96) — keep their place. The dark sections
+   need no min-content (footer, trust): the background is under the whole scroll area. */
+[data-breakpoint="mobile"] .section { min-width: 0; overflow-x: auto; }
 
 /* The same background: default after default (no modifier), subtle after subtle, and so on. */
 :is(
