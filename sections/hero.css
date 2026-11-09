@@ -145,22 +145,27 @@
 .hero--light .hero__divider { border-top-color: var(--color-border-subtle); }
 .hero--light .hero__logo:focus-visible { outline-color: var(--color-border-focus); }
 
-/* Light on mobile (Figma: Consolidator page, ATF, node 145:25770; #174). The parts of the mobile screen are in the
-   markup and hidden elsewhere: the photo for a phone (.hero__photo--mobile), the compact logo (sign and two-line text,
-   .hero__logo-compact), the call link (dropdown--call, #175) and the cta "Check Your Price" (.hero__cta) — it opens the
-   form in a bottom panel (.modal.search-dialog, search-form.css). Tablet keeps the desktop layout for now. Both photos
-   are loading="lazy": the hidden one (display: none) is not downloaded (#177). */
-.hero__photo--mobile, .hero__logo-compact, .hero__call, .hero__cta { display: none; }
+/* Light on mobile (Figma: Consolidator page, ATF, node 127:14168; #174, #178). The parts of the mobile screen are in
+   the markup and hidden elsewhere: the photo for a phone (.hero__photo--mobile — the wing at 50% over
+   color.bg.section.accent, one picture), the compact logo (sign and two-line text, dark, .hero__logo-compact), the call
+   link (dropdown--call, #175), the menu button icon-glass sm (.hero__menu-compact) and the cta "Check Your Price"
+   (.hero__cta) — it opens the form in a bottom panel (.modal.search-dialog, search-form.css). Tablet keeps the desktop
+   layout for now. Both photos are loading="lazy": the hidden one (display: none) is not downloaded (#177). */
+.hero__photo--mobile, .hero__logo-compact, .hero__call, .hero__menu-compact, .hero__cta { display: none; }
+/* On a light photo the ring of the glass button is dark, as on every light surface. */
+.hero--light .button--glass { --button-focus: var(--color-border-focus); }
 
-/* No form on the screen: the header — the compact logo, the call link and the menu; the text at the bottom of the
-   screen — the title, the lead, the cta, the rating and the badges across the width, no lines. Below the badges
-   section.py.xl twice, as in Figma: the browser toolbar of a phone covers the bottom of the screen. */
+/* No form on the screen: the header — the compact logo, the call link and the menu, space.container.gap.md apart; the
+   text at the bottom of the screen — the title, the lead, the cta, a line (color.border.default), the rating and the
+   badges across the width, space.section.gap.md apart. Below the badges section.py.xl twice, as in Figma: the browser
+   toolbar of a phone covers the bottom of the screen. */
 [data-breakpoint="mobile"] .hero--light { padding-bottom: var(--space-section-py-xl); }
 [data-breakpoint="mobile"] .hero--light .hero__photo:not(.hero__photo--mobile),
 [data-breakpoint="mobile"] .hero--light .hero__logo-full,
 [data-breakpoint="mobile"] .hero--light .hero__actions .dropdown:not(.hero__call),
+[data-breakpoint="mobile"] .hero--light .hero__actions .button:not(.hero__menu-compact),
 [data-breakpoint="mobile"] .hero--light .hero__form,
-[data-breakpoint="mobile"] .hero--light .hero__divider { display: none; }
+[data-breakpoint="mobile"] .hero--light .hero__title + .hero__divider { display: none; }
 [data-breakpoint="mobile"] .hero--light .hero__photo--mobile { display: block; }
 /* Narrower than the Figma frame (402) the logo scales down — both pictures by the same share, keeping their shape;
    the call link and the menu keep their size. */
@@ -168,9 +173,8 @@
 [data-breakpoint="mobile"] .hero--light :is(.hero__logo, .hero__logo-compact, .hero__logo-compact img) { min-width: 0; }
 [data-breakpoint="mobile"] .hero--light .hero__logo-compact { display: flex; align-items: center; }
 [data-breakpoint="mobile"] .hero--light .hero__logo-compact img { height: auto; }
-[data-breakpoint="mobile"] .hero--light .hero__call { display: inline-flex; }
-[data-breakpoint="mobile"] .hero--light .hero__actions { flex: none; gap: var(--space-component-gap-sm); }
-[data-breakpoint="mobile"] .hero--light .hero__inner { gap: var(--space-section-gap-md); }
+[data-breakpoint="mobile"] .hero--light :is(.hero__call, .hero__menu-compact) { display: inline-flex; }
+[data-breakpoint="mobile"] .hero--light .hero__actions { flex: none; gap: var(--space-container-gap-md); }
 [data-breakpoint="mobile"] .hero--light .hero__body {
   display: flex;
   flex-direction: column;
@@ -178,22 +182,26 @@
   padding: var(--space-section-py-xl) 0;
 }
 [data-breakpoint="mobile"] .hero--light .hero__text { gap: 0; padding-left: 0; }
-[data-breakpoint="mobile"] .hero--light :is(.hero__title, .hero__lead) { max-width: none; }
+[data-breakpoint="mobile"] .hero--light :is(.hero__title, .hero__lead, .hero__divider) { max-width: none; }
 [data-breakpoint="mobile"] .hero--light .hero__title { margin-bottom: var(--space-container-gap-md); }
 [data-breakpoint="mobile"] .hero--light .hero__cta {
   display: flex;
   width: 100%;
   margin: var(--space-section-gap-md) 0;
 }
+[data-breakpoint="mobile"] .hero--light .hero__divider {
+  margin-bottom: var(--space-section-gap-md);
+  border-top-color: var(--color-border-default); /* Figma: black 16% on the photo; desktop keeps .subtle */
+}
 [data-breakpoint="mobile"] .hero--light .hero__rating {
   justify-content: space-between;
-  margin-bottom: var(--space-container-gap-md);
-  padding: 0 var(--space-component-px-xs);
+  margin-bottom: var(--space-section-gap-md);
+  padding: 0 var(--space-component-px-md);
 }
 [data-breakpoint="mobile"] .hero--light .hero__badges {
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 var(--space-component-px-sm);
+  padding: 0 var(--space-component-px-md);
 }
 
 /* Accessibility: forced colors drop the scrim but keep the photo; the browser puts a backplate behind the text. */
