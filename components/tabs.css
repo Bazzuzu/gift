@@ -1,0 +1,70 @@
+/* Tabs — switch content in place, e.g. regions over a deals carousel (Figma: BCDS – Token Studio, Regions navigation,
+   node 659:6610; #133). A row of labels over a line; the chosen one is darker and underlined. Not for going to another
+   page: links get a <nav> instead. Behavior — tabs.js (APG Tabs, automatic activation).
+   Markup: <div class="tabs__list" role="tablist" aria-label="Regions">
+             <button class="tabs__tab" type="button" role="tab" id="tab-a" aria-selected="true" aria-controls="panel-a">
+               Europe</button>
+             <button class="tabs__tab" type="button" role="tab" id="tab-b" aria-selected="false" aria-controls="panel-b"
+               tabindex="-1">Oceania</button> …
+           </div>
+           <div class="tabs__panel" role="tabpanel" id="panel-a" aria-labelledby="tab-a"> … </div>
+           <div class="tabs__panel" role="tabpanel" id="panel-b" aria-labelledby="tab-b" hidden> … </div>
+   Too many labels for the width — the row scrolls sideways. Semantic tokens only (#82). */
+
+.tabs__list {
+  position: relative;
+  display: flex;
+  gap: var(--space-container-gap-lg);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+/* The line under the labels; the indicator of the chosen tab is drawn over it. */
+.tabs__list::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-bottom: var(--size-border-default) solid var(--color-border-subtle);
+}
+
+.tabs__tab {
+  position: relative;
+  flex: none;
+  margin: 0;
+  padding: 0 0 var(--space-component-py-sm);
+  border: 0;
+  border-radius: var(--shape-menu-item);
+  background: none;
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--motion-duration-fast) var(--motion-easing-move);
+}
+.tabs__tab:hover, .tabs__tab.is-hover { color: var(--color-text-secondary); }
+.tabs__tab[aria-selected="true"] { color: var(--color-text-primary); }
+.tabs__tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-bottom: var(--size-border-strong) solid var(--color-border-active);
+}
+/* The row scrolls, so an outer ring would be cut: the ring is drawn inside the label. */
+.tabs__tab:focus-visible, .tabs__tab.is-focus {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--size-focus-ring-width) var(--color-border-focus);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .tabs__tab { transition: none; } }
+@media (forced-colors: active) {
+  .tabs__tab:focus-visible { outline: var(--size-focus-ring-width) solid Highlight; }
+  .tabs__tab[aria-selected="true"]::after { border-bottom-color: CanvasText; }
+}

@@ -1,0 +1,37 @@
+/* Modal — the shared <dialog> of the calendar and the airport search (#102). Opened with showModal() by modal.js from
+   a field with aria-haspopup="dialog" aria-controls="id"; closes on .modal__close, Escape and a click outside; the
+   focus returns to the field. Height from the content, at most the viewport minus the margin.
+   Tablet and desktop: centered, margin space.section.py.md above and below (80 on desktop). Mobile: a bottom panel —
+   full width, at the bottom, margin only above, top corners rounded (#96).
+   Markup: <dialog class="modal [component]" id="…" aria-label|aria-labelledby> … <button class="… modal__close"
+             type="button" aria-label="Close"> … </dialog>
+   Semantic tokens only (#82). */
+
+.modal {
+  --modal-space: calc(100% - var(--space-section-py-md) - var(--space-section-py-md)); /* viewport minus margin y */
+  width: fit-content;
+  max-height: var(--modal-space);
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-modal-default);
+  background: var(--color-bg-surface-default);
+  box-shadow: var(--elevation-lg); /* Figma Shadow/Large has a second layer — BACKLOG.md */
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+.modal::backdrop { background: var(--color-bg-overlay-default); }
+
+/* Mobile: a bottom panel. In the sandbox the breakpoint comes from data-breakpoint (size.breakpoint.*, #82); in the
+   product — @media with the same tokens. */
+[data-breakpoint="mobile"] .modal {
+  --modal-space: calc(100% - var(--space-section-py-md)); /* margin only above */
+  width: 100%;
+  max-width: 100%;
+  margin: auto 0 0;
+  border-radius: var(--shape-modal-default) var(--shape-modal-default) 0 0;
+}
+
+/* Forced colors: the shadow is dropped, so the modal gets a border. */
+@media (forced-colors: active) {
+  .modal { border: var(--size-border-default) solid CanvasText; }
+}

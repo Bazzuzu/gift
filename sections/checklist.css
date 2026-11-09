@@ -1,0 +1,60 @@
+/* Checklist section — a collage of two photos and a heading with things to check in two columns (Figma: Consolidator
+   page, Dinamic Content, "What to check", node 1:5847; #170). Made of collection parts: the heading group lg and xs
+   (#132). Two equal columns, space.section.gap.xl apart: the collage on the left, the text on the right.
+   Collage — a square (size.media.1x1, at least size.container.width.320): a small photo
+   (size.container.width.240) at the top left and a large one from size.container.width.160 / .height.160 to the
+   bottom right, corners shape.image.lg, the top left one shape.image.sm. The small photo is a picture with its
+   corners and the cut around the large one (from Figma, stored upright).
+   Markup: <section class="section section--inverse checklist" aria-labelledby="title">
+             <div class="checklist__inner">
+               <div class="checklist__collage"> <img class="checklist__small" alt=""> <img class="checklist__large" alt=""> </div>
+               <div class="checklist__text">
+                 <hgroup class="heading-group heading-group--lg heading-group--inverse"> heading, text </hgroup>
+                 <ul class="checklist__list"> <li><hgroup class="heading-group heading-group--xs heading-group--inverse"> … </hgroup></li> × 6 </ul>
+               </div>
+             </div>
+           </section>
+   The items go row by row: two in a row, space.container.gap.lg apart. On a light section — the heading groups
+   without --inverse. Desktop only; tablet and mobile — after the design (BACKLOG.md). The background — .section
+   (#155). Semantic tokens only (#82). */
+
+.checklist {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-section-py-md) var(--space-section-px-md);
+}
+.checklist__inner {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: var(--space-section-gap-xl);
+  width: 100%;
+  max-width: var(--size-content-max-width);
+}
+
+.checklist__collage {
+  position: relative;
+  min-width: var(--size-container-width-320);
+  aspect-ratio: var(--size-media-1x1);
+}
+.checklist__small, .checklist__large { position: absolute; display: block; }
+.checklist__small { top: 0; left: 0; width: var(--size-container-width-240); height: auto; }
+.checklist__large {
+  top: var(--size-container-height-160);
+  left: var(--size-container-width-160);
+  width: calc(100% - var(--size-container-width-160));
+  height: calc(100% - var(--size-container-height-160));
+  border-radius: var(--shape-image-sm) var(--shape-image-lg) var(--shape-image-lg);
+  object-fit: cover;
+}
+
+.checklist__text { display: flex; flex-direction: column; gap: var(--space-container-gap-lg); }
+.checklist__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-container-gap-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

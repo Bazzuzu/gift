@@ -1,0 +1,198 @@
+/* Airport search — the dialog of the route fields (Figma: BCDS – Token Studio, Flying from, node 1794:3196; #102, #105).
+   On the shared modal (modal.css, modal.js), width size.container.width.400 (#103), height from the content. Title, close
+   button (icon-secondary), search field (.input--lg.input--strong), then sections of places, or the search results.
+   Flying from: Recent locations (up to 3, Clear) and Based on your location (up to 7 nearest airports).
+   Going to: Recent destinations (up to 7, Clear) and Popular destinations (7 from the departure).
+   An option: icon (city — apartment, airport — airplane), city and country, airport, code; choosing it writes
+   "City (CODE)" to the field. Behavior and mock data — airport.js. Semantic tokens only (#82). */
+
+.airport { width: var(--size-container-width-400); }
+.airport[open] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-md) 0 var(--space-component-py-md) var(--space-component-px-md);
+}
+/* The right padding is on the parts, so the scroll area reaches the edge and its scrollbar sits 4 from it (#107). */
+.airport__header, .airport > .input { margin-right: var(--space-component-px-md); }
+
+/* Title and search: 8 above and below, 24 between (12 + the modal gap 12). */
+.airport__header {
+  padding-top: var(--space-component-py-xs);
+  margin-bottom: var(--space-component-gap-md);
+}
+.airport > .input { margin-bottom: var(--space-component-py-xs); }
+.airport__title {
+  margin: 0;
+  padding: 0 var(--space-component-px-2xl); /* clear of the close button */
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+  text-align: center;
+}
+.airport__close {
+  position: absolute;
+  top: var(--space-component-py-sm);
+  right: var(--space-component-px-sm);
+}
+
+/* The status (search count) and the results scroll together. */
+.airport__body {
+  min-height: 0;
+  margin-right: var(--space-component-px-2xs); /* the scrollbar: 4 from the edge */
+  padding-right: var(--space-component-px-sm); /* 4 + 12 = 16: the content lines up with the search */
+  overflow-x: hidden; /* the hit area of Clear at the edge must not scroll sideways */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.airport__results, .airport__section { display: grid; gap: var(--space-component-gap-md); }
+
+/* Section header and the search status share the look. */
+.airport__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-component-gap-lg);
+  padding: var(--space-component-py-xs) var(--space-component-px-xs);
+}
+.airport__heading, .airport__status {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-sm-font-family);
+  font-size: var(--typography-body-sm-font-size);
+  font-weight: var(--typography-body-sm-font-weight);
+  line-height: var(--typography-body-sm-line-height);
+  letter-spacing: var(--typography-body-sm-letter-spacing);
+}
+.airport__status:not(:empty) {
+  padding: var(--space-component-py-xs) var(--space-component-px-xs);
+  margin-bottom: var(--space-component-gap-md);
+}
+
+.airport__clear {
+  position: relative;
+  flex: none;
+  width: var(--size-list-trailing); /* one column with the codes (#106) */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.airport__clear::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--size-touch-target-min));
+  height: max(100%, var(--size-touch-target-min));
+  transform: translate(-50%, -50%);
+}
+.airport__clear:focus-visible {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+.airport__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.airport__option {
+  --airport-icon: var(--color-icon-secondary); /* Figma: 64% */
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-md);
+  width: 100%;
+  margin: 0;
+  padding: var(--space-component-py-xs) var(--space-component-px-xs);
+  border: 0;
+  border-radius: var(--shape-icon-container-sm); /* owner's choice (#105): the same radius as the icon background */
+  background: var(--color-bg-action-ghost-default);
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+/* Hover: the row takes the tint, the icon gets darker (Figma: Newark, #106). */
+.airport__option:hover, .airport__option.is-hover {
+  --airport-icon: var(--color-icon-primary);
+  background: var(--color-bg-surface-subtle);
+}
+.airport__option:active, .airport__option.is-pressed {
+  --airport-icon: var(--color-icon-primary);
+  background: var(--color-bg-surface-strong);
+}
+/* Focus inside the row, so it does not overlap the neighbours. */
+.airport__option:focus-visible, .airport__option.is-focus {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--size-focus-ring-width) var(--color-border-focus);
+}
+
+/* Icon: 20 in a 44 background (20 + 12 on each side). */
+.airport__icon {
+  display: flex;
+  flex: none;
+  padding: var(--space-component-py-sm);
+  border-radius: var(--shape-icon-container-sm);
+  background: var(--color-bg-surface-subtle);
+}
+.airport__icon .icon {
+  background-color: var(--airport-icon);
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+
+.airport__place { display: grid; width: 100%; min-width: 0; }
+.airport__city, .airport__name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.airport__city {
+  color: var(--color-text-primary);
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-weight: var(--typography-body-lg-font-weight);
+  line-height: var(--typography-body-lg-line-height);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+.airport__name {
+  color: var(--color-text-secondary);
+  font-family: var(--typography-body-md-font-family);
+  font-size: var(--typography-body-md-font-size);
+  font-weight: var(--typography-body-md-font-weight);
+  line-height: var(--typography-body-md-line-height);
+  letter-spacing: var(--typography-body-md-letter-spacing);
+}
+.airport__code {
+  flex: none;
+  width: var(--size-list-trailing); /* one column with Clear (#106) */
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+  text-align: center;
+}
+
+/* Mobile (the bottom panel — modal.css): the last row clears the iPhone home indicator. */
+[data-breakpoint="mobile"] .airport[open] { padding-bottom: max(var(--space-component-py-md), env(safe-area-inset-bottom)); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .airport__option, .airport__icon .icon { transition: none; } }
+@media (forced-colors: active) {
+  .airport__option:focus-visible { outline: var(--size-focus-ring-width) solid Highlight; }
+  .airport__icon .icon { forced-color-adjust: none; background-color: ButtonText; }
+}

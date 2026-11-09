@@ -1,0 +1,119 @@
+/* Carousel — a row of cards that scrolls sideways, with back and next buttons (Figma: BCDS – Token Studio, Savings,
+   Deals, node 257:10057; arrows — node 1851:39008; #133, #134). The cards keep their width (Figma:
+   size.container.width.320) and stop at a card's edge; the last one can show in part. The buttons are icon-glass md
+   (with blur) with arrow-left / arrow-right: on the left and right edges of the row, half over it, centered on the
+   cards' photos (size.container.height.240, card.css). At its end a button fades out (#135), but not in a loop
+   (data-carousel-loop, #138); a button beside the row would be aria-disabled instead. Behavior — carousel.js.
+   Markup: <div data-carousel> …
+             <div class="carousel-frame">
+               <div class="carousel-frame__steps">
+                 <button class="button button--glass button--blur-default" type="button" aria-label="Previous deals"
+                   aria-controls="track" data-carousel-step="-1"> arrow-left </button>
+                 <button … aria-label="Next deals" aria-controls="track" data-carousel-step="1"> arrow-right </button>
+               </div>
+               <ul class="carousel" id="track" aria-label="Deals"><li class="carousel__item"> a card </li> … </ul>
+             </div>
+           </div>
+   With tabs, the frame holds every panel with its own .carousel; the buttons move the one that is shown. In the markup
+   the buttons go before the row: Tab reaches them before the cards.
+   Pages (#136): .carousel--pages — every item is a page as wide as the row, <ul class="carousel__page"> of small cards
+   in three columns and two rows; a button moves a page. .carousel-frame--middle — the buttons at the middle of the
+   row, not on the photos. <div class="carousel-dots" role="img" aria-label="Page 1 of 4"> under the frame — a dot
+   for every page of the shown row, built by carousel.js. Semantic tokens only (#82). */
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--size-container-width-320);
+  gap: var(--space-container-gap-md);
+  margin: 0;
+  /* Room for the card's focus ring above and below: the row clips what overflows. */
+  padding: calc(var(--size-focus-ring-width) + var(--size-focus-ring-offset)) 0;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x proximity; /* mandatory would pull the row back from its end, when the end is not a card edge */
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel__item { display: flex; scroll-snap-align: start; }
+
+/* Pages of small cards: three columns, two rows (Figma: Type15, Deals, node 940:7827). */
+.carousel--pages { grid-auto-columns: 100%; gap: var(--space-container-gap-sm); }
+.carousel__page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-container-gap-sm);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The buttons sit over the row, in a strip as tall as the cards' photo; the strip lets clicks through to the cards. */
+.carousel-frame { position: relative; }
+.carousel-frame__steps {
+  position: absolute;
+  /* the row's padding and the card's border */
+  top: calc(var(--size-focus-ring-width) + var(--size-focus-ring-offset) + var(--size-border-default));
+  right: 0;
+  left: 0;
+  z-index: var(--layer-raised);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--size-container-height-240);
+  pointer-events: none;
+}
+.carousel-frame__steps > .button {
+  pointer-events: auto;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-easing-move),
+    opacity var(--motion-duration-fast) var(--motion-easing-move);
+}
+/* At its end (carousel.js): hidden, but in place — the other button stays on its edge. Visibility waits for the fade
+   only when hiding: a button that shows is focusable at once (carousel.js may move the focus to it). */
+.carousel-frame__steps > [data-carousel-end] {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    background-color var(--motion-duration-fast) var(--motion-easing-move),
+    opacity var(--motion-duration-fast) var(--motion-easing-move),
+    visibility var(--motion-duration-fast) var(--motion-easing-move);
+}
+.carousel-frame__steps > :first-child { translate: -50% 0; }
+.carousel-frame__steps > :last-child { translate: 50% 0; }
+/* The buttons at the middle of the whole row (pages of small cards), within the row's padding. */
+.carousel-frame--middle .carousel-frame__steps {
+  top: calc(var(--size-focus-ring-width) + var(--size-focus-ring-offset));
+  bottom: calc(var(--size-focus-ring-width) + var(--size-focus-ring-offset));
+  height: auto;
+}
+
+/* Page dots (Figma: Slider navigation, node 973:10728): they only show the page — the buttons and the scroll move it.
+   Not buttons: dots 12 apart would be below the target size of WCAG 2.5.8. The current page is a longer pill. */
+.carousel-dots { display: flex; justify-content: center; gap: var(--space-component-gap-md); }
+.carousel-dots[hidden] { display: none; }
+/* Light motion (#137): the current pill flows to the next page — it shrinks to a dot while the next dot grows; new
+   dots (another region, the first render) fade in. */
+.carousel-dots__dot {
+  width: var(--size-indicator-dot);
+  height: var(--size-indicator-dot);
+  border-radius: var(--shape-indicator);
+  background: var(--color-bg-surface-strong);
+  transition:
+    width var(--motion-duration-slow) var(--motion-easing-move),
+    background-color var(--motion-duration-slow) var(--motion-easing-move),
+    opacity var(--motion-duration-normal) var(--motion-easing-enter);
+}
+@starting-style { .carousel-dots__dot { opacity: 0; } }
+.carousel-dots__dot[data-current] { width: var(--size-indicator-active); background: var(--color-icon-primary); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .carousel { scroll-behavior: auto; }
+  .carousel-frame__steps > .button, .carousel-dots__dot { transition: none; }
+}
+@media (forced-colors: active) {
+  .carousel-dots__dot { forced-color-adjust: none; background: GrayText; }
+  .carousel-dots__dot[data-current] { background: CanvasText; }
+}

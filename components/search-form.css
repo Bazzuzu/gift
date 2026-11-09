@@ -1,0 +1,47 @@
+/* Search form — trip type, class and travelers, route, dates and the search button (Figma: BCDS – Token Studio,
+   SearchForm, Type=Round trip, node 141:2582; #117). Made only of collection parts: dropdown--small with the trip type
+   menu, Class/Travelers with its dialog (#115), the stacked route (lg, #101), the date range or one date (lg, strong,
+   #94), the cta button (#95). As wide as its container, from size.container.width.240 to .480 (Figma: 400).
+   Markup: <form class="search-form" role="search" aria-label="Search flights">
+             <div class="search-form__settings"> trip type dropdown, Class/Travelers dropdown </div>
+             <div class="input-pair input-pair--stacked route" role="group" aria-label="Route"> … </div>
+             <div class="input-pair search-form__dates" role="group" aria-label="Travel dates"> Departure, Return </div>
+             <div class="input input--strong input--lg date search-form__date" hidden> Departure, one date </div>
+             <button class="button button--lg button--shadow-md search-form__submit" type="submit">
+               <span class="button__label">Check Your Price</span></button>
+           </form>
+   The trip type switches the dates: Round-trip — the range, One-way and Multi-city — one date (search-form.js).
+   With contacts — .search-form--contact (Figma: Consolidator page, Hero, Full, node 2:8440; #167): a request for a
+   price, not a search — <form class="search-form search-form--contact" aria-label="Get a price quote" novalidate>
+   without role="search". The route side by side (md, swap-horiz), the dates md; then Name*, Email* and Phone number*
+   md, as in the contact form (#118), every field with the strong border; the cta "Get My Quote" with chevron-right.
+   The required fields are checked on send as in the contact form (contact-form.js).
+   Not built yet: the "or" divider with the Call Us block, the Edit search request variant (BACKLOG.md).
+   Semantic tokens only (#82). */
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-xl);
+  width: 100%;
+  min-width: var(--size-container-width-240);
+  max-width: var(--size-container-width-480);
+  padding: var(--space-component-py-xl) var(--space-component-px-xl);
+  border-radius: var(--shape-card);
+  background: var(--color-bg-surface-default);
+  box-shadow: var(--elevation-md); /* Figma Shadow/Medium is 0 6 12, elevation.md is 0 4 12 */
+}
+.search-form [hidden] { display: none; } /* the date fields set their own display */
+
+/* Trip type and Class/Travelers share the row, each at least 120. Figma splits it in halves with 12 px text; with the
+   14 px text of dropdown--small "Business / 1 Traveler" does not fit a half, so each takes its text and the rest of
+   the row is shared. */
+.search-form__settings { display: flex; gap: var(--space-component-gap-md); }
+.search-form__settings .dropdown { flex: auto; width: auto; min-width: var(--size-container-width-120); }
+
+.search-form__submit { width: 100%; }
+
+/* Accessibility: forced colors drop the background and the shadow — the form keeps a border. */
+@media (forced-colors: active) {
+  .search-form { border: var(--size-border-default) solid CanvasText; }
+}

@@ -1,0 +1,52 @@
+/* Tag — a short label on a photo or a card (Figma: BCDS – Token Studio, Tag, node 200:286; #125, #143).
+   Size — .tag--sm | .tag--lg, always set: there is no md, the default size stays free (#143).
+     sm — on a photo or a card (Figma: SM); lg — a larger tag, the label can be composite (Figma: MD).
+   Type — default (dark) | .tag--positive | .tag--critical | .tag--subtle (on a light surface; Figma: onLight).
+   Not interactive: a <span> or a list item, no shadow.
+   Markup: <span class="tag tag--sm|tag--lg [tag--positive | tag--critical | tag--subtle]">Tag label</span>
+   Composite label (lg, subtle; Figma: OnLight + Read time): each part in a <span>, a divider between them —
+     <span>Travel tips</span><span class="tag__divider" aria-hidden="true"></span><span>5 min read</span>
+   Semantic tokens only (#82). */
+
+.tag {
+  /* Size: set by .tag--sm or .tag--lg. */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-component-gap-sm); /* between the parts of a composite label */
+  padding: var(--tag-pt) var(--tag-px) var(--tag-pb);
+  border-radius: var(--shape-tag);
+  background: var(--color-bg-surface-inverse-default);
+  color: var(--color-text-inverse-primary);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-weight: var(--typography-label-md-font-weight);
+  line-height: var(--typography-label-md-line-height);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  white-space: nowrap;
+}
+.tag--sm {
+  --tag-px: var(--space-component-px-xs); /* smaller than the Figma MD tag by the owner (#126, #142) */
+  /* Optical centre (#141): two pixels more at the top, one at the bottom. */
+  --tag-pt: calc(var(--space-component-py-2xs) + var(--space-component-optical-min) + var(--space-component-optical-min));
+  --tag-pb: calc(var(--space-component-py-2xs) + var(--space-component-optical-min));
+}
+.tag--lg {
+  /* As in Figma MD; no optical correction for now (#143). */
+  --tag-px: var(--space-component-px-md);
+  --tag-pt: var(--space-component-py-xs);
+  --tag-pb: var(--space-component-py-xs);
+}
+
+.tag--positive { background: var(--color-bg-action-positive-default); color: var(--color-text-on-action); }
+.tag--critical { background: var(--color-bg-action-critical-default); color: var(--color-text-on-action); }
+.tag--subtle { background: var(--color-bg-surface-subtle); color: var(--color-text-secondary); }
+
+/* The divider of a composite label: a line as tall as the text, drawn as a border. */
+.tag__divider { align-self: stretch; }
+.tag--subtle .tag__divider { border-left: var(--size-border-default) solid var(--color-border-subtle); }
+/* MISSING: the divider on default, positive and critical — no design yet (BACKLOG.md); it is not drawn. */
+
+/* Accessibility: forced colors drop the background — the shape comes from a border; the divider stays a border. */
+@media (forced-colors: active) {
+  .tag { border: var(--size-border-default) solid CanvasText; }
+}

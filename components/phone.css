@@ -1,0 +1,102 @@
+/* Phone — the phone number with the country code (Figma: BCDS – Token Studio, Contact phone, node 154:906; #108).
+   On the text field (input.css): size md | .input--lg, border default | .input--strong.
+   Markup: <div class="input input--strong [input--lg] phone" data-country="US">
+             <label class="input__label" for="id">Phone number<span aria-hidden="true">*</span></label>
+             <div class="input__field">
+               <button class="phone__country" type="button" aria-haspopup="listbox" aria-expanded="false"
+                 aria-label="Country code: United States, +1" popovertarget="phone-countries" data-value="US">
+                 <img class="phone__flag" src="flags/us.svg" alt="">
+                 <span class="phone__code">+1</span>
+                 <span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span>
+               </button>
+               <span class="phone__divider" aria-hidden="true"></span>
+               <input class="input__control phone__number" type="tel" id="id" name="…" autocomplete="tel-national"
+                 placeholder="XXX XXX XXXX" required>
+             </div>
+           </div>
+   Country: flag, dial code, arrow — a button that opens the country menu (below); its width follows the code (+1, +44,
+   +380), not the fixed 24 / 28 of Figma. The divider keeps the color of the field's
+   border at rest (default or strong). The number is formatted by the country's template — phone.js.
+   Semantic tokens only (#82). */
+
+.phone { --phone-divider: var(--input-border); } /* the border at rest: hover, focus and error change only the frame */
+.phone .input__field {
+  gap: var(--space-component-gap-lg);
+  padding-right: var(--space-component-px-md); /* the arrow is in the country button, not at the edge */
+}
+/* The number stays readable in a narrow field: the whole template fits (the field's own minimum, input.css). */
+.phone .input__control { min-width: var(--size-container-width-120); }
+
+.phone__country {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-component-gap-sm);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--shape-button);
+  background: none;
+  color: var(--color-text-primary);
+  font-family: var(--input-font-family);
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  line-height: var(--size-icon-md); /* the content row is as tall as the icon, like the text field */
+  letter-spacing: var(--input-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* Hit area: the touch target in height, within the field's padding. */
+.phone__country::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: var(--size-touch-target-min);
+  transform: translateY(-50%);
+}
+.phone__country:focus-visible, .phone__country.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+/* MISSING: hover and pressed of the country button — no design yet (BACKLOG.md); only the pointer cursor. */
+
+/* A color image, not a mask: the colors are part of the flag. Not downloaded yet — an empty place (phone.js). */
+.phone__flag {
+  display: block;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+.phone__flag.is-missing { visibility: hidden; }
+
+/* A border, not a background: forced colors keep borders. */
+.phone__divider {
+  align-self: stretch;
+  border-left: var(--size-border-default) solid var(--phone-divider);
+}
+
+/* Disabled: the number and the country button together. */
+.phone:has(.input__control:disabled) { --phone-divider: var(--color-border-subtle); }
+.phone__country:disabled { color: var(--color-text-disabled); cursor: not-allowed; }
+/* MISSING: a dimmed flag — no semantic opacity for disabled content (BACKLOG.md); the flag stays in color. */
+
+/* Country menu (#110, Figma: Country code menu, node 1800:3870): the shared menu (menu.css, menu.js), id
+   phone-countries; phone.js builds the options: flag, country, dial code. Width 240 as in Figma (not by content), the
+   text in typography.body.lg, the code in color.text.secondary; no check: the menu opens with the focus on the chosen
+   country. */
+.menu.phone-menu { width: var(--size-container-width-240); min-width: 0; }
+.phone-menu .menu__option {
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-weight: var(--typography-body-lg-font-weight);
+  line-height: var(--typography-body-lg-line-height);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+.phone-menu .menu__note { color: var(--color-text-secondary); }
+
+/* Accessibility */
+@media (forced-colors: active) {
+  .phone__country .input__icon { background-color: ButtonText; }
+}

@@ -14,7 +14,8 @@
            </section>
    The text comes first in the markup (heading, then the form for screen readers); the grid shows the form on the left.
    The text column has no controls, so the Tab order still follows what a person sees.
-   Variant — .hero--gift-card (#157): the text on the left, the gift voucher form on the right, a darker scrim.
+   Variants — .hero--gift-card (#157): the text on the left, the gift voucher form on the right, a darker scrim;
+   .hero--light (#166): a light photo with no scrim and dark text, the text on the left, the form on the right.
    Semantic tokens only (#82). */
 
 .hero {
@@ -128,8 +129,19 @@
    the form on the right — the gift voucher form, size.container.width.480; a darker scrim for its photo
    (color.bg.scrim.dark.default). The text comes first in the markup and on the screen. */
 .hero--gift-card .hero__media::after { background: var(--color-bg-scrim-dark-default); }
-.hero--gift-card .hero__body { grid-template-areas: "text form"; }
-.hero--gift-card .hero__text { padding-left: var(--space-container-px-lg); }
+:is(.hero--gift-card, .hero--light) .hero__body { grid-template-areas: "text form"; }
+:is(.hero--gift-card, .hero--light) .hero__text { padding-left: var(--space-container-px-lg); }
 .hero--gift-card .hero__form { width: var(--size-container-width-480); }
+
+/* Light (Figma: Consolidator page, Hero, node 1:5000; #166): a light photo needs no scrim — the text is dark
+   (color.text.primary), the lines color.border.subtle, the focus ring color.border.focus. The text on the left, the
+   form on the right, as on the Gift Card; the title up to size.text-width.md, as in Figma (the lead and the lines stay
+   at .sm). In the header: the color logo, the dropdowns on the default surface (no --inverse), the icon-primary menu
+   button; the rating and the badges — their on-light pictures (-on-light.svg). */
+.hero--light { color: var(--color-text-primary); }
+.hero--light .hero__title { max-width: var(--size-text-width-md); }
+.hero--light .hero__media::after { content: none; }
+.hero--light .hero__divider { border-top-color: var(--color-border-subtle); }
+.hero--light .hero__logo:focus-visible { outline-color: var(--color-border-focus); }
 
 /* Accessibility: forced colors drop the scrim but keep the photo; the browser puts a backplate behind the text. */

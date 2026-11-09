@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Business Class — Consolidator (test)</title>
+  <!-- A test page made of the Examples sections (#154, #164): its own address, http://127.0.0.1:8000/consolidator. Desktop only for now. -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="icons/icons.css">
+  <link rel="stylesheet" href="components/button.css">
+  <link rel="stylesheet" href="components/dropdown.css">
+  <link rel="stylesheet" href="components/input.css">
+  <link rel="stylesheet" href="components/modal.css">
+  <link rel="stylesheet" href="components/menu.css">
+  <link rel="stylesheet" href="components/date.css">
+  <link rel="stylesheet" href="components/calendar.css">
+  <link rel="stylesheet" href="components/route.css">
+  <link rel="stylesheet" href="components/airport.css">
+  <link rel="stylesheet" href="components/phone.css">
+  <link rel="stylesheet" href="components/travelers.css">
+  <link rel="stylesheet" href="components/search-form.css">
+  <link rel="stylesheet" href="components/heading-group.css">
+  <link rel="stylesheet" href="components/tag.css">
+  <link rel="stylesheet" href="components/card.css">
+  <link rel="stylesheet" href="components/accordion.css">
+  <link rel="stylesheet" href="components/point.css">
+  <link rel="stylesheet" href="components/tabs.css">
+  <link rel="stylesheet" href="components/carousel.css">
+  <link rel="stylesheet" href="sections/section.css">
+  <link rel="stylesheet" href="sections/hero.css">
+  <link rel="stylesheet" href="sections/points.css">
+  <link rel="stylesheet" href="sections/advantages.css">
+  <link rel="stylesheet" href="sections/checklist.css">
+  <link rel="stylesheet" href="sections/deals.css">
+  <link rel="stylesheet" href="sections/faq.css">
+  <link rel="stylesheet" href="sections/footer.css">
+</head>
+<body>
+
+<main>
+  <!-- Consolidator Hero -->
+  <section class="hero hero--light" aria-labelledby="consolidator-hero-title">
+    <div class="hero__media"><img class="hero__photo" src="images/consolidator-hero.jpg" alt=""></div>
+    <div class="hero__inner">
+      <header class="hero__header">
+        <a class="hero__logo" href="#examples"><img src="images/logo-business-class-color.svg" alt="Business Class"></a>
+        <div class="hero__actions">
+          <button class="dropdown dropdown--currency" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency: USD" popovertarget="dropdown-currency" data-value="USD" data-name="Currency"><span class="dropdown__label">USD</span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+          <button class="dropdown dropdown--phone" type="button" aria-haspopup="menu" aria-expanded="false" popovertarget="dropdown-call"><span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span> <span class="dropdown__value">+1 888-315-7838</span></span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+          <button class="button" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
+        </div>
+      </header>
+      <div class="hero__body">
+        <div class="hero__text">
+          <h1 class="hero__title" id="consolidator-hero-title">Business Class Consolidator Fares</h1>
+          <hr class="hero__divider">
+          <p class="hero__lead">The same premium cabin, a better price. Business class consolidator fares offer wholesale rates with 15–60% savings on select Business and First Class flights.</p>
+          <hr class="hero__divider">
+          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> 12,044 reviews on <img class="hero__trustpilot" src="images/trustpilot-logo-on-light.svg" alt="Trustpilot"></p>
+          <ul class="hero__badges" aria-label="Accreditations">
+            <li><img src="images/badge-iata-on-light.svg" alt="IATA"></li>
+            <li><img src="images/badge-iatan-on-light.svg" alt="IATAN"></li>
+            <li><img src="images/badge-arc-on-light.svg" alt="ARC"></li>
+            <li><img src="images/badge-bbb-on-light.svg" alt="BBB A+ Accredited Business"></li>
+          </ul>
+        </div>
+        <div class="hero__form">
+          <form class="search-form search-form--contact" aria-label="Get a price quote" novalidate>
+            <div class="search-form__settings">
+              <button class="dropdown dropdown--small" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Trip type: Round-trip" popovertarget="dropdown-trip" data-value="RT" data-name="Trip type"><span class="dropdown__label">Round-trip</span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+              <button class="dropdown dropdown--small travelers-dropdown" type="button" aria-haspopup="dialog" aria-controls="travelers" aria-label="Travelers and class: Business / 1 Traveler" data-adults="1" data-children="0" data-infants="0" data-class="Business"><span class="dropdown__label">Business / 1 Traveler</span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="input-pair route" role="group" aria-label="Route">
+              <div class="input input--strong">
+                <span class="input__label" id="quote-from-label">From</span>
+                <button class="input__field route__field" type="button" aria-haspopup="dialog" aria-controls="airport-search" aria-labelledby="quote-from-label quote-from-value" data-kind="from" data-value="New York (NYC)" data-placeholder="Airport or city">
+                  <span class="input__value" id="quote-from-value">New York (NYC)</span>
+                </button>
+              </div>
+              <button class="route__swap" type="button" aria-label="Swap departure and destination"><span class="icon icon--swap-horiz" aria-hidden="true"></span></button>
+              <div class="input input--strong">
+                <span class="input__label" id="quote-to-label">To</span>
+                <button class="input__field route__field" type="button" aria-haspopup="dialog" aria-controls="airport-search" aria-labelledby="quote-to-label quote-to-value" data-kind="to" data-value="London (LHR)" data-placeholder="Airport or city">
+                  <span class="input__value" id="quote-to-value">London (LHR)</span>
+                </button>
+              </div>
+            </div>
+            <div class="input-pair search-form__dates" role="group" aria-label="Travel dates">
+              <div class="input input--strong date">
+                <span class="input__label" id="quote-departure-label">Departure</span>
+                <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-range" aria-labelledby="quote-departure-label quote-departure-value">
+                  <span class="input__value" id="quote-departure-value">Fri, Nov 20</span>
+                </button>
+              </div>
+              <div class="input input--strong date">
+                <span class="input__label" id="quote-return-label">Return</span>
+                <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-range" aria-labelledby="quote-return-label quote-return-value">
+                  <span class="input__value" id="quote-return-value">Wed, Nov 25</span>
+                </button>
+              </div>
+            </div>
+            <div class="input input--strong date search-form__date" hidden>
+              <span class="input__label" id="quote-date-label">Departure</span>
+              <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-single" aria-labelledby="quote-date-label quote-date-value">
+                <span class="input__value" id="quote-date-value">Fri, Nov 20</span>
+                <span class="input__icon icon icon--calendar" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="input input--strong">
+              <label class="input__label" for="quote-name">Name<span aria-hidden="true">*</span></label>
+              <div class="input__field">
+                <input class="input__control" type="text" id="quote-name" name="name" autocomplete="name" placeholder="Your name" required>
+              </div>
+            </div>
+            <div class="input input--strong">
+              <label class="input__label" for="quote-email">Email<span aria-hidden="true">*</span></label>
+              <div class="input__field">
+                <input class="input__control" type="email" id="quote-email" name="email" autocomplete="email" placeholder="Contact email" required>
+              </div>
+            </div>
+            <div class="input input--strong phone" data-country="US">
+              <label class="input__label" for="quote-phone">Phone number<span aria-hidden="true">*</span></label>
+              <div class="input__field">
+                <button class="phone__country" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: United States, +1" popovertarget="phone-countries" data-value="US">
+                  <img class="phone__flag" src="flags/us.svg" alt="">
+                  <span class="phone__code">+1</span>
+                  <span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span>
+                </button>
+                <span class="phone__divider" aria-hidden="true"></span>
+                <input class="input__control phone__number" type="tel" id="quote-phone" name="phone" autocomplete="tel-national" placeholder="XXX XXX XXXX" required>
+              </div>
+            </div>
+            <button class="button button--lg button--shadow-md search-form__submit" type="submit"><span class="button__label">Get My Quote</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Book -->
+  <section class="section points" aria-labelledby="why-title">
+    <div class="points__inner">
+      <hgroup class="heading-group heading-group--lg heading-group--center"><h2 class="heading-group__title" id="why-title">Why Book Consolidator Fares with Business-Class.com</h2><p class="heading-group__text">We combine negotiated wholesale airline rates with hands-on, white-glove itinerary management — so you never trade peace of mind for savings.</p></hgroup>
+      <ul class="points__list">
+        <li class="point point--center"><span class="point__icon"><span class="icon icon--travel-explore" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--center"><h3 class="heading-group__title">Your Own Travel Advisor</h3><p class="heading-group__text">Work directly with a dedicated flight specialist who helps you compare options, find convenient connections, and choose flights that suit your schedule and budget.</p></hgroup></li>
+        <li class="point point--center"><span class="point__icon"><span class="icon icon--gpp-good" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--center"><h3 class="heading-group__title">Clear Fare Conditions</h3><p class="heading-group__text">Know what you’re booking before you pay. Your travel advisor walks you through the fare rules, including cancellation and change policies, baggage allowances, and any applicable restrictions.</p></hgroup></li>
+        <li class="point point--center"><span class="point__icon"><span class="icon icon--support-agent" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--center"><h3 class="heading-group__title">Support When You Need It</h3><p class="heading-group__text">Plans change, flights get delayed, and questions come up. Our team is here to help with your booking and assist you when travel disruptions affect your itinerary.</p></hgroup></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Advantages -->
+  <section class="section section--sunken advantages" aria-labelledby="advantages-title">
+    <div class="advantages__inner">
+      <hgroup class="heading-group heading-group--lg advantages__intro"><h2 class="heading-group__title" id="advantages-title">The Advantage Behind Business Class Consolidator Fares</h2><p class="heading-group__text">The price you see online isn’t necessarily the best available one. Airlines also distribute Business and First Class fares through wholesale channels, giving consolidators access to rates that standard booking searches may miss. <a href="#examples">Business-Class.com</a> brings these fares within reach, helping travelers enjoy premium cabins at a fraction of the usual price.</p></hgroup>
+      <div class="advantages__photos">
+        <span class="advantages__photo"><img src="images/advantage-city.jpg" alt=""></span>
+        <span class="advantages__photo"><img src="images/advantage-wing.jpg" alt=""></span>
+      </div>
+      <div class="advantages__photos">
+        <span class="advantages__photo"><img src="images/advantage-cabin.jpg" alt=""></span>
+      </div>
+      <ul class="advantages__list">
+        <li><hgroup class="heading-group heading-group--sm"><h3 class="heading-group__title">Exclusive Access to Wholesale Fares</h3><p class="heading-group__text">Go beyond publicly advertised prices. Consolidator channels unlock premium airline fares that aren’t always available on popular booking platforms, creating opportunities for significant savings.</p></hgroup></li>
+        <li><hgroup class="heading-group heading-group--sm"><h3 class="heading-group__title">Genuine Airline Tickets. No Mileage Trading.</h3><p class="heading-group__text">Your ticket is issued through official airline reservation systems, with a booking reference you can verify directly with the carrier. We don’t trade or resell loyalty miles. You receive a genuine airline ticket, booked in your name.</p></hgroup></li>
+        <li><hgroup class="heading-group heading-group--sm"><h3 class="heading-group__title">Better Fares Across Routes and Seasons</h3><p class="heading-group__text">From transatlantic flights to long-haul journeys across the globe, consolidator pricing opens up opportunities to save. Our travel advisors search available fares to find the strongest options for your destination and dates.</p></hgroup></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- How to Book -->
+  <section class="section section--inverse points" aria-labelledby="how-to-book-title">
+    <div class="points__inner">
+      <hgroup class="heading-group heading-group--lg heading-group--center heading-group--inverse"><h2 class="heading-group__title" id="how-to-book-title">How to Book Business Class Consolidator Fares</h2><p class="heading-group__text">From finding the right fare to boarding your flight, your dedicated travel advisor makes the entire process simple.</p></hgroup>
+      <ol class="points__list">
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-1" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Explore Your Options</h3><p class="heading-group__text">Share your destination and travel dates to unlock private, unpublished Business Class inventory.</p></hgroup></li>
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-2" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Review Private Quotes</h3><p class="heading-group__text">Your personal travel advisor finds competitive consolidator fares and presents flight options tailored to your schedule, comfort, and budget.</p></hgroup></li>
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-3" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Confirm Your Journey</h3><p class="heading-group__text">Review your itinerary, price, and fare conditions before confirming. Once your booking is complete, you’ll receive your official airline e-ticket and reservation details.</p></hgroup></li>
+        <li class="point point--inverse"><span class="point__icon"><span class="icon icon--counter-4" aria-hidden="true"></span></span><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Enjoy the Journey</h3><p class="heading-group__text">Settle into your premium cabin knowing our team is here to help. From seat selection and special requests to unexpected travel changes, support is just a call away.</p></hgroup></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- What to Check -->
+  <section class="section section--inverse checklist" aria-labelledby="checklist-title">
+    <div class="checklist__inner">
+      <div class="checklist__collage">
+        <img class="checklist__small" src="images/checklist-seat-small.png" alt="">
+        <img class="checklist__large" src="images/checklist-seat.jpg" alt="">
+      </div>
+      <div class="checklist__text">
+        <hgroup class="heading-group heading-group--lg heading-group--inverse"><h2 class="heading-group__title" id="checklist-title">What to check Before Booking Consolidator Tickets</h2><p class="heading-group__text">To ensure a smooth journey, verify these six essential details before confirming any premium flight.</p></hgroup>
+        <ul class="checklist__list">
+          <li><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">All-Inclusive Total Price</h3><p class="heading-group__text">Ensure your final quote includes all government taxes, carrier surcharges, and issuance fees with zero unexpected checkout add-ons.</p></hgroup></li>
+          <li><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Checked Baggage Allowances</h3><p class="heading-group__text">Confirm the baggage allowance for your itinerary, including the number of checked bags and weight limits. These can vary by airline, route, and fare.</p></hgroup></li>
+          <li><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Cabin Class per Segment</h3><p class="heading-group__text">Check connecting flights carefully. Verify that short regional feeder legs are booked in premium cabins and not downgraded to basic economy.</p></hgroup></li>
+          <li><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Airport Lounge Privileges</h3><p class="heading-group__text">Check which premium airport benefits come with your ticket, including lounge access, priority boarding, and fast-track security where available.</p></hgroup></li>
+          <li><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Change &amp; Cancellation Terms</h3><p class="heading-group__text">Review ticket flexibility in advance. Understand carrier change penalties, cancellation fees, and travel credit validity rules before payment.</p></hgroup></li>
+          <li><hgroup class="heading-group heading-group--xs heading-group--inverse"><h3 class="heading-group__title">Frequent Flyer Mileage Accrual</h3><p class="heading-group__text">Check whether your ticket’s booking class qualifies for frequent flyer miles and elite status credits. Earning rates can vary by airline, fare type, and loyalty program.</p></hgroup></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Routes: the Deals section -->
+  <section class="section section--subtle deals" aria-labelledby="deals-title" data-carousel>
+    <div class="deals__inner">
+      <hgroup class="heading-group heading-group--lg"><h2 class="heading-group__title" id="deals-title">Popular Business Class Consolidator Routes</h2><p class="heading-group__text">Consolidator savings are highest on long-haul international flights. Explore our most requested routes and regional hubs below.</p></hgroup>
+      <div class="tabs__list" role="tablist" aria-label="Regions">
+          <button class="tabs__tab" type="button" role="tab" id="deals-tab-europe" aria-selected="true" aria-controls="deals-panel-europe">Europe</button>
+          <button class="tabs__tab" type="button" role="tab" id="deals-tab-oceania" aria-selected="false" aria-controls="deals-panel-oceania" tabindex="-1">Oceania</button>
+          <button class="tabs__tab" type="button" role="tab" id="deals-tab-africa" aria-selected="false" aria-controls="deals-panel-africa" tabindex="-1">Africa</button>
+          <button class="tabs__tab" type="button" role="tab" id="deals-tab-indian-subcontinent" aria-selected="false" aria-controls="deals-panel-indian-subcontinent" tabindex="-1">Indian Subcontinent</button>
+          <button class="tabs__tab" type="button" role="tab" id="deals-tab-middle-east" aria-selected="false" aria-controls="deals-panel-middle-east" tabindex="-1">Middle east</button>
+      </div>
+      <div class="carousel-frame">
+        <div class="carousel-frame__steps">
+          <button class="button button--glass button--blur-default" type="button" aria-label="Previous deals" aria-controls="deals-row-europe" data-carousel-step="-1" data-carousel-end><span class="button__icon icon icon--arrow-left" aria-hidden="true"></span></button>
+          <button class="button button--glass button--blur-default" type="button" aria-label="Next deals" aria-controls="deals-row-europe" data-carousel-step="1"><span class="button__icon icon icon--arrow-right" aria-hidden="true"></span></button>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="deals-panel-europe" aria-labelledby="deals-tab-europe">
+          <ul class="carousel" id="deals-row-europe" aria-label="Deals in Europe">
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-europe-1-title">
+              <div class="card__media"><img class="card__photo" src="images/card-london-westminster.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-europe-1-title">New York (JFK) → London (LHR)</h3></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-europe-1-view deals-europe-1-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-europe-1-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-europe-2-title">
+              <div class="card__media"><img class="card__photo" src="images/card-rome.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-europe-2-title">New York (JFK) → Rome (FCO)</h3></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-europe-2-view deals-europe-2-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-europe-2-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-europe-3-title">
+              <div class="card__media"><img class="card__photo" src="images/card-madrid.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-europe-3-title">Miami (MIA) → Madrid (MAD)</h3></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-europe-3-view deals-europe-3-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-europe-3-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-europe-4-title">
+              <div class="card__media"><img class="card__photo" src="images/card-paris.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-europe-4-title">New York (JFK) → Paris (CDG)</h3></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-europe-4-view deals-europe-4-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-europe-4-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          </ul>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="deals-panel-oceania" aria-labelledby="deals-tab-oceania" hidden>
+          <ul class="carousel" id="deals-row-oceania" aria-label="Deals in Oceania">
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-1-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-1-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-1-view deals-oceania-1-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-1-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-2-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-2-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-2-view deals-oceania-2-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-2-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-3-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-3-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-3-view deals-oceania-3-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-3-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-4-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-4.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-4-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-4-view deals-oceania-4-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-4-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-5-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-5-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-5-view deals-oceania-5-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-5-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-6-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-6-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-6-view deals-oceania-6-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-6-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-oceania-7-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-oceania-7-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-oceania-7-view deals-oceania-7-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-oceania-7-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          </ul>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="deals-panel-africa" aria-labelledby="deals-tab-africa" hidden>
+          <ul class="carousel" id="deals-row-africa" aria-label="Deals in Africa">
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-1-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-1-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-1-view deals-africa-1-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-1-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-2-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-2-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-2-view deals-africa-2-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-2-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-3-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-3-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-3-view deals-africa-3-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-3-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-4-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-4.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-4-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-4-view deals-africa-4-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-4-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-5-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-5-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-5-view deals-africa-5-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-5-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-6-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-6-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-6-view deals-africa-6-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-6-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-africa-7-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-africa-7-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-africa-7-view deals-africa-7-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-africa-7-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          </ul>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="deals-panel-indian-subcontinent" aria-labelledby="deals-tab-indian-subcontinent" hidden>
+          <ul class="carousel" id="deals-row-indian-subcontinent" aria-label="Deals in Indian Subcontinent">
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-1-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-1-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-1-view deals-indian-subcontinent-1-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-1-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-2-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-2-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-2-view deals-indian-subcontinent-2-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-2-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-3-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-3-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-3-view deals-indian-subcontinent-3-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-3-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-4-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-4.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-4-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-4-view deals-indian-subcontinent-4-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-4-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-5-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-5-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-5-view deals-indian-subcontinent-5-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-5-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-6-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-6-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-6-view deals-indian-subcontinent-6-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-6-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-indian-subcontinent-7-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-indian-subcontinent-7-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-indian-subcontinent-7-view deals-indian-subcontinent-7-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-indian-subcontinent-7-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          </ul>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="deals-panel-middle-east" aria-labelledby="deals-tab-middle-east" hidden>
+          <ul class="carousel" id="deals-row-middle-east" aria-label="Deals in Middle east">
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-1-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-1-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-1-view deals-middle-east-1-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-1-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-2-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-2-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-2-view deals-middle-east-2-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-2-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-3-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-3-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-3-view deals-middle-east-3-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-3-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-4-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-4.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-4-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-4-view deals-middle-east-4-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-4-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-5-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-1.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">27% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-5-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-5-view deals-middle-east-5-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-5-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-6-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-2.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">14% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-6-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-6-view deals-middle-east-6-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-6-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          <li class="carousel__item"><article class="card" aria-labelledby="deals-middle-east-7-title">
+              <div class="card__media"><img class="card__photo" src="images/oceania-3.jpg" alt=""><ul class="card__tags" aria-label="Tags"><li class="tag tag--sm">54% OFF</li></ul></div>
+              <div class="card__body">
+                <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="deals-middle-east-7-title">Heading</h3><p class="heading-group__text">Access exclusive private fares not available to the public — save up to 60% on premium flights.</p></hgroup>
+                <hr class="card__divider">
+                <div class="card__footer">
+                  <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span> <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                  <a class="card__link" href="#examples" aria-labelledby="deals-middle-east-7-view deals-middle-east-7-title"><span class="button button--sm button--brand card__action"><span class="button__label" id="deals-middle-east-7-view">View</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                </div>
+              </div>
+            </article></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq" aria-labelledby="faq-title">
+    <div class="faq__inner">
+      <hgroup class="heading-group"><h2 class="heading-group__title" id="faq-title">Frequently Asked Questions About Business Class Consolidator Fares</h2></hgroup>
+      <div class="faq__columns">
+        <div class="faq__column">
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q1" aria-labelledby="faq-q1-text" aria-expanded="false" aria-controls="faq-a1"><span class="accordion__question" id="faq-q1-text">How do business class consolidator fares compare to published airline prices?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-more" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden><p>Consolidator fares are wholesale rates that airlines distribute through consolidators. For the same Business or First Class cabin they can be 15–60% lower than the published price.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q2" aria-labelledby="faq-q2-text" aria-expanded="false" aria-controls="faq-a2"><span class="accordion__question" id="faq-q2-text">Why should I book consolidator tickets through Business-Class.com instead of an airline directly?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-more" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden><p>We find wholesale fares that standard booking searches may miss, and a dedicated travel advisor compares options, explains the fare rules and helps when travel disruptions affect your itinerary.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q3" aria-labelledby="faq-q3-text" aria-expanded="false" aria-controls="faq-a3"><span class="accordion__question" id="faq-q3-text">How do I verify my business class ticket once booked?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-more" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden><p>Your ticket is issued through official airline reservation systems. Use the booking reference to verify it directly with the carrier.</p></div></div>
+        </div>
+        <div class="faq__column">
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q4" aria-labelledby="faq-q4-text" aria-expanded="false" aria-controls="faq-a4"><span class="accordion__question" id="faq-q4-text">Do business class consolidator tickets earn frequent flyer miles?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-more" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden><p>It depends on the booking class of your ticket. Earning rates can vary by airline, fare type, and loyalty program — your travel advisor checks this before you book.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q5" aria-labelledby="faq-q5-text" aria-expanded="false" aria-controls="faq-a5"><span class="accordion__question" id="faq-q5-text">What happens if I need to change or cancel my consolidator flight?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-more" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden><p>Change and cancellation terms depend on the fare. Your travel advisor walks you through them before you pay, and our team helps if your plans change.</p></div></div>
+          <div class="accordion"><h3 class="accordion__heading"><button class="accordion__toggle" type="button" id="faq-q6" aria-labelledby="faq-q6-text" aria-expanded="false" aria-controls="faq-a6"><span class="accordion__question" id="faq-q6-text">How do I compare business class consolidators and avoid unreliable ticket brokers?</span><span class="button button--sm button--ghost accordion__icon"><span class="button__icon icon icon--expand-more" aria-hidden="true"></span></span></button></h3><div class="accordion__answer" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden><p>Choose a consolidator that issues a genuine airline ticket in your name, with a booking reference you can verify with the carrier, and quotes an all-inclusive price. Avoid brokers that trade or resell loyalty miles.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="section section--inverse footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand"><a href="#examples"><img class="footer__logo" src="images/logo-business-class-24.svg" alt="Business Class"></a><p class="footer__legal">© Business Travel Group LLC<br>Florida FST #ST41395</p></div>
+        <nav class="footer__nav" aria-label="Footer">
+            <div class="footer__group"><h2 class="footer__title">Information</h2>
+              <ul class="footer__links">
+              <li><a href="#examples">Frequently Asked Questions</a></li>
+              <li><a href="#examples">Payment Options</a></li>
+              <li><a href="#examples">Contact</a></li>
+              <li><a href="#examples">How it Works</a></li>
+              <li><a href="#examples">Reviews</a></li>
+              <li><a href="#examples">Glossary</a></li>
+              </ul></div>
+            <div class="footer__group"><h2 class="footer__title">Company</h2>
+              <ul class="footer__links">
+              <li><a href="#examples">Best Deals</a></li>
+              <li><a href="#examples">What We Offer</a></li>
+              <li><a href="#examples">About Us</a></li>
+              <li><a href="#examples">Corporate</a></li>
+              <li><a href="#examples">Blog</a></li>
+              </ul></div>
+            <div class="footer__group"><h2 class="footer__title">Policies</h2>
+              <ul class="footer__links">
+              <li><a href="#examples">Privacy Policy</a></li>
+              <li><a href="#examples">Terms and Conditions</a></li>
+              <li><a href="#examples">Cookie Policy</a></li>
+              </ul></div>
+        </nav>
+        <div class="footer__media"><h2 class="footer__title">Social media</h2><p class="footer__note">Stay updated on our latest developments by following us on Social Media</p><ul class="footer__social" aria-label="Social media"><li><a href="#examples" aria-label="Business Class on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li><li><a href="#examples" aria-label="Business Class on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li><li><a href="#examples" aria-label="Business Class on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li></ul></div>
+      </div>
+      <ul class="footer__badges" aria-label="Accreditations"><li><span role="img" aria-label="ASTA, American Society of Travel Advisors"><span class="icon icon--asta" aria-hidden="true"></span></span></li><li><img src="images/badge-iata-40.svg" alt="IATA"></li><li><img src="images/badge-fda.png" alt="Florida Department of Agriculture and Consumer Services"></li></ul>
+    </div>
+  </footer>
+
+<!-- Menus and dialogs of the header and the form: copied from the Examples page. -->
+<div class="menu" id="dropdown-currency" role="listbox" aria-labelledby="dropdown-currency-title" popover>
+          <p class="menu__header" id="dropdown-currency-title">Currency:</p>
+          <button class="menu__option" type="button" role="option" aria-selected="true" tabindex="-1" data-value="USD" aria-label="USD, US dollar"><img class="menu__flag" src="flags/us.svg" alt=""><span class="menu__label">USD</span><span class="menu__note">($)</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+          <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="CAD" aria-label="CAD, Canadian dollar"><img class="menu__flag" src="flags/ca.svg" alt=""><span class="menu__label">CAD</span><span class="menu__note">(C$)</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+          <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="GBP" aria-label="GBP, British pound"><img class="menu__flag" src="flags/gb.svg" alt=""><span class="menu__label">GBP</span><span class="menu__note">(£)</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+          <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="EUR" aria-label="EUR, Euro"><img class="menu__flag" src="flags/eu.svg" alt=""><span class="menu__label">EUR</span><span class="menu__note">(€)</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+        </div>
+<div class="menu menu--caption call-menu" id="dropdown-call" role="menu" aria-label="Call" popover>
+          <a class="menu__option" role="menuitem" href="tel:+18883157838" tabindex="-1" aria-label="Call 24/7 Phone Deals, USA 888-315-7838"><span class="menu__caption">24/7 Phone Deals</span><span class="menu__label">USA 888-315-7838</span></a>
+          <a class="menu__option" role="menuitem" href="tel:+18778529150" tabindex="-1" aria-label="Call Customer Service, USA 877-852-9150"><span class="menu__caption">Customer Service</span><span class="menu__label">USA 877-852-9150</span></a>
+        </div>
+<div class="menu menu--text" id="dropdown-trip" role="listbox" aria-label="Trip type" popover>
+          <button class="menu__option" type="button" role="option" aria-selected="true" tabindex="-1" data-value="RT"><span class="menu__label">Round-trip</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+          <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="OW"><span class="menu__label">One-way</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+          <button class="menu__option" type="button" role="option" aria-selected="false" tabindex="-1" data-value="MC"><span class="menu__label">Multi-city</span><span class="menu__check icon icon--check" aria-hidden="true"></span></button>
+        </div>
+<dialog class="modal travelers" id="travelers" aria-label="Travelers and class">
+        <button class="button button--sm button--secondary travelers__close modal__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
+        <div class="travelers__counts">
+          <div class="travelers__row" role="group" aria-labelledby="travelers-adults travelers-adults-age" data-type="adults">
+            <span class="travelers__icon"><span class="icon icon--perm-identity" aria-hidden="true"></span></span>
+            <span class="travelers__text"><span class="travelers__type" id="travelers-adults">Adults</span><span class="travelers__age" id="travelers-adults-age">11+ years</span></span>
+            <span class="travelers__stepper"><button class="button button--sm button--secondary" type="button" aria-label="Remove adult" data-step="-1" aria-disabled="true" aria-describedby="travelers-reason-adults"><span class="button__icon icon icon--minus" aria-hidden="true"></span></button><span class="travelers__count" aria-live="polite">1</span><button class="button button--sm button--secondary" type="button" aria-label="Add adult" data-step="1" aria-disabled="false"><span class="button__icon icon icon--plus" aria-hidden="true"></span></button></span>
+          </div>
+          <div class="travelers__row" role="group" aria-labelledby="travelers-children travelers-children-age" data-type="children">
+            <span class="travelers__icon"><span class="icon icon--child-care" aria-hidden="true"></span></span>
+            <span class="travelers__text"><span class="travelers__type" id="travelers-children">Children</span><span class="travelers__age" id="travelers-children-age">2 – 11 years</span></span>
+            <span class="travelers__stepper"><button class="button button--sm button--secondary" type="button" aria-label="Remove child" data-step="-1" aria-disabled="true"><span class="button__icon icon icon--minus" aria-hidden="true"></span></button><span class="travelers__count" aria-live="polite">0</span><button class="button button--sm button--secondary" type="button" aria-label="Add child" data-step="1" aria-disabled="false"><span class="button__icon icon icon--plus" aria-hidden="true"></span></button></span>
+          </div>
+          <div class="travelers__row" role="group" aria-labelledby="travelers-infants travelers-infants-age" data-type="infants">
+            <span class="travelers__icon"><span class="icon icon--child-friendly" aria-hidden="true"></span></span>
+            <span class="travelers__text"><span class="travelers__type" id="travelers-infants">Infants on lap</span><span class="travelers__age" id="travelers-infants-age">0 – 2 years</span></span>
+            <span class="travelers__stepper"><button class="button button--sm button--secondary" type="button" aria-label="Remove infant on lap" data-step="-1" aria-disabled="true"><span class="button__icon icon icon--minus" aria-hidden="true"></span></button><span class="travelers__count" aria-live="polite">0</span><button class="button button--sm button--secondary" type="button" aria-label="Add infant on lap" data-step="1" aria-disabled="false"><span class="button__icon icon icon--plus" aria-hidden="true"></span></button></span>
+          </div>
+        </div>
+        <hr class="travelers__divider">
+        <fieldset class="travelers__classes" aria-label="Class">
+          <label class="travelers__class" for="travelers-class-0"><input class="travelers__radio" id="travelers-class-0" type="radio" name="travelers-class" value="Business" checked><span>Business</span><span class="travelers__check icon icon--check" aria-hidden="true"></span></label>
+          <label class="travelers__class" for="travelers-class-1"><input class="travelers__radio" id="travelers-class-1" type="radio" name="travelers-class" value="First"><span>First</span><span class="travelers__check icon icon--check" aria-hidden="true"></span></label>
+          <label class="travelers__class" for="travelers-class-2"><input class="travelers__radio" id="travelers-class-2" type="radio" name="travelers-class" value="Premium Economy"><span>Premium Economy</span><span class="travelers__check icon icon--check" aria-hidden="true"></span></label>
+        </fieldset>
+        <hr class="travelers__divider">
+        <button class="button travelers__apply" type="button"><span class="button__label">Apply</span><span class="button__icon icon icon--check" aria-hidden="true"></span></button>
+        <p id="travelers-reason-adults" data-reason="adults" hidden>At least one adult</p>
+        <p id="travelers-reason-seats" data-reason="seats" hidden>Up to 9 travelers with a seat</p>
+        <p id="travelers-reason-infants" data-reason="infants" hidden>One infant on lap per adult</p>
+</dialog>
+<dialog class="modal airport" id="airport-search" aria-labelledby="airport-title">
+  <div class="airport__header"><h2 class="airport__title" id="airport-title">Flying from</h2></div>
+  <button class="button button--sm button--secondary airport__close modal__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
+  <div class="input input--strong input--lg">
+    <div class="input__field">
+      <input class="input__control airport__query" type="search" id="airport-query" name="airport" autocomplete="off" aria-labelledby="airport-title" aria-controls="airport-results" aria-describedby="airport-status" placeholder="Flying from, airport or city">
+    </div>
+  </div>
+  <div class="airport__body">
+    <p class="airport__status" id="airport-status" aria-live="polite"></p>
+    <div class="airport__results" id="airport-results"></div>
+  </div>
+</dialog>
+<dialog class="modal calendar" id="calendar-single" aria-label="Choose a date" data-mode="single" data-start="2026-11-20">
+        <div class="calendar__header">
+          <button class="button button--sm button--secondary calendar__close modal__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
+          <div class="calendar__weekdays" aria-hidden="true"><span class="calendar__weekday">Su</span><span class="calendar__weekday">Mo</span><span class="calendar__weekday">Tu</span><span class="calendar__weekday">We</span><span class="calendar__weekday">Th</span><span class="calendar__weekday">Fr</span><span class="calendar__weekday">Sa</span></div>
+        </div>
+        <div class="calendar__months">
+          <section class="calendar__month" aria-labelledby="calendar-single-2026-10">
+            <h2 class="calendar__title" id="calendar-single-2026-10">October 2026</h2>
+            <div class="calendar__week"><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-01" tabindex="-1" aria-label="Thursday, October 1, 2026" aria-pressed="false" disabled>1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-02" tabindex="-1" aria-label="Friday, October 2, 2026" aria-pressed="false" disabled>2</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-03" tabindex="-1" aria-label="Saturday, October 3, 2026" aria-pressed="false" disabled>3</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-04" tabindex="-1" aria-label="Sunday, October 4, 2026" aria-pressed="false" disabled>4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-05" tabindex="-1" aria-label="Monday, October 5, 2026" aria-pressed="false" disabled>5</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-06" tabindex="-1" aria-label="Tuesday, October 6, 2026" aria-pressed="false" disabled>6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-07" tabindex="-1" aria-label="Wednesday, October 7, 2026" aria-pressed="false" disabled>7</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-08" tabindex="-1" aria-label="Thursday, October 8, 2026" aria-pressed="false" disabled>8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-09" tabindex="-1" aria-label="Friday, October 9, 2026" aria-pressed="false" disabled>9</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-10" tabindex="-1" aria-label="Saturday, October 10, 2026" aria-pressed="false" disabled>10</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-11" tabindex="-1" aria-label="Sunday, October 11, 2026" aria-pressed="false" disabled>11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-12" tabindex="-1" aria-label="Monday, October 12, 2026" aria-pressed="false" disabled>12</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-13" tabindex="-1" aria-label="Tuesday, October 13, 2026" aria-pressed="false" disabled>13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-14" tabindex="-1" aria-label="Wednesday, October 14, 2026" aria-pressed="false" disabled>14</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-15" tabindex="-1" aria-label="Thursday, October 15, 2026" aria-pressed="false" disabled>15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-16" tabindex="-1" aria-label="Friday, October 16, 2026" aria-pressed="false" disabled>16</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-17" tabindex="-1" aria-label="Saturday, October 17, 2026" aria-pressed="false" disabled>17</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-18" tabindex="-1" aria-label="Sunday, October 18, 2026" aria-pressed="false" disabled>18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-19" tabindex="-1" aria-label="Monday, October 19, 2026" aria-pressed="false" disabled>19</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-20" tabindex="-1" aria-label="Tuesday, October 20, 2026" aria-pressed="false" disabled>20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-21" tabindex="-1" aria-label="Wednesday, October 21, 2026" aria-pressed="false" disabled>21</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-22" tabindex="-1" aria-label="Thursday, October 22, 2026" aria-pressed="false" disabled>22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-23" tabindex="-1" aria-label="Friday, October 23, 2026" aria-pressed="false" disabled>23</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-24" tabindex="-1" aria-label="Saturday, October 24, 2026" aria-pressed="false" disabled>24</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-25" tabindex="-1" aria-label="Sunday, October 25, 2026" aria-pressed="false" disabled>25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-26" tabindex="-1" aria-label="Monday, October 26, 2026" aria-pressed="false" disabled>26</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-27" tabindex="-1" aria-label="Tuesday, October 27, 2026" aria-pressed="false" disabled>27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-28" tabindex="-1" aria-label="Wednesday, October 28, 2026" aria-pressed="false" disabled>28</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-29" tabindex="-1" aria-label="Thursday, October 29, 2026" aria-pressed="false" aria-current="date">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-30" tabindex="-1" aria-label="Friday, October 30, 2026" aria-pressed="false">30</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-31" tabindex="-1" aria-label="Saturday, October 31, 2026" aria-pressed="false">31</button></span></div>
+          </section>
+          <section class="calendar__month" aria-labelledby="calendar-single-2026-11">
+            <h2 class="calendar__title" id="calendar-single-2026-11">November 2026</h2>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-01" tabindex="-1" aria-label="Sunday, November 1, 2026" aria-pressed="false">1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-02" tabindex="-1" aria-label="Monday, November 2, 2026" aria-pressed="false">2</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-03" tabindex="-1" aria-label="Tuesday, November 3, 2026" aria-pressed="false">3</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-04" tabindex="-1" aria-label="Wednesday, November 4, 2026" aria-pressed="false">4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-05" tabindex="-1" aria-label="Thursday, November 5, 2026" aria-pressed="false">5</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-06" tabindex="-1" aria-label="Friday, November 6, 2026" aria-pressed="false">6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-07" tabindex="-1" aria-label="Saturday, November 7, 2026" aria-pressed="false">7</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-08" tabindex="-1" aria-label="Sunday, November 8, 2026" aria-pressed="false">8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-09" tabindex="-1" aria-label="Monday, November 9, 2026" aria-pressed="false">9</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-10" tabindex="-1" aria-label="Tuesday, November 10, 2026" aria-pressed="false">10</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-11" tabindex="-1" aria-label="Wednesday, November 11, 2026" aria-pressed="false">11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-12" tabindex="-1" aria-label="Thursday, November 12, 2026" aria-pressed="false">12</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-13" tabindex="-1" aria-label="Friday, November 13, 2026" aria-pressed="false">13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-14" tabindex="-1" aria-label="Saturday, November 14, 2026" aria-pressed="false">14</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-15" tabindex="-1" aria-label="Sunday, November 15, 2026" aria-pressed="false">15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-16" tabindex="-1" aria-label="Monday, November 16, 2026" aria-pressed="false">16</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-17" tabindex="-1" aria-label="Tuesday, November 17, 2026" aria-pressed="false">17</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-18" tabindex="-1" aria-label="Wednesday, November 18, 2026" aria-pressed="false">18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-19" tabindex="-1" aria-label="Thursday, November 19, 2026" aria-pressed="false">19</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-20" tabindex="0" aria-label="Friday, November 20, 2026, selected" aria-pressed="true">20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-21" tabindex="-1" aria-label="Saturday, November 21, 2026" aria-pressed="false">21</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-22" tabindex="-1" aria-label="Sunday, November 22, 2026" aria-pressed="false">22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-23" tabindex="-1" aria-label="Monday, November 23, 2026" aria-pressed="false">23</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-24" tabindex="-1" aria-label="Tuesday, November 24, 2026" aria-pressed="false">24</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-25" tabindex="-1" aria-label="Wednesday, November 25, 2026" aria-pressed="false">25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-26" tabindex="-1" aria-label="Thursday, November 26, 2026" aria-pressed="false">26</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-27" tabindex="-1" aria-label="Friday, November 27, 2026" aria-pressed="false">27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-28" tabindex="-1" aria-label="Saturday, November 28, 2026" aria-pressed="false">28</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-29" tabindex="-1" aria-label="Sunday, November 29, 2026" aria-pressed="false">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-30" tabindex="-1" aria-label="Monday, November 30, 2026" aria-pressed="false">30</button></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span></div>
+          </section>
+          <section class="calendar__month" aria-labelledby="calendar-single-2026-12">
+            <h2 class="calendar__title" id="calendar-single-2026-12">December 2026</h2>
+            <div class="calendar__week"><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-01" tabindex="-1" aria-label="Tuesday, December 1, 2026" aria-pressed="false">1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-02" tabindex="-1" aria-label="Wednesday, December 2, 2026" aria-pressed="false">2</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-03" tabindex="-1" aria-label="Thursday, December 3, 2026" aria-pressed="false">3</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-04" tabindex="-1" aria-label="Friday, December 4, 2026" aria-pressed="false">4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-05" tabindex="-1" aria-label="Saturday, December 5, 2026" aria-pressed="false">5</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-06" tabindex="-1" aria-label="Sunday, December 6, 2026" aria-pressed="false">6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-07" tabindex="-1" aria-label="Monday, December 7, 2026" aria-pressed="false">7</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-08" tabindex="-1" aria-label="Tuesday, December 8, 2026" aria-pressed="false">8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-09" tabindex="-1" aria-label="Wednesday, December 9, 2026" aria-pressed="false">9</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-10" tabindex="-1" aria-label="Thursday, December 10, 2026" aria-pressed="false">10</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-11" tabindex="-1" aria-label="Friday, December 11, 2026" aria-pressed="false">11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-12" tabindex="-1" aria-label="Saturday, December 12, 2026" aria-pressed="false">12</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-13" tabindex="-1" aria-label="Sunday, December 13, 2026" aria-pressed="false">13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-14" tabindex="-1" aria-label="Monday, December 14, 2026" aria-pressed="false">14</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-15" tabindex="-1" aria-label="Tuesday, December 15, 2026" aria-pressed="false">15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-16" tabindex="-1" aria-label="Wednesday, December 16, 2026" aria-pressed="false">16</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-17" tabindex="-1" aria-label="Thursday, December 17, 2026" aria-pressed="false">17</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-18" tabindex="-1" aria-label="Friday, December 18, 2026" aria-pressed="false">18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-19" tabindex="-1" aria-label="Saturday, December 19, 2026" aria-pressed="false">19</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-20" tabindex="-1" aria-label="Sunday, December 20, 2026" aria-pressed="false">20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-21" tabindex="-1" aria-label="Monday, December 21, 2026" aria-pressed="false">21</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-22" tabindex="-1" aria-label="Tuesday, December 22, 2026" aria-pressed="false">22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-23" tabindex="-1" aria-label="Wednesday, December 23, 2026" aria-pressed="false">23</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-24" tabindex="-1" aria-label="Thursday, December 24, 2026" aria-pressed="false">24</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-25" tabindex="-1" aria-label="Friday, December 25, 2026" aria-pressed="false">25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-26" tabindex="-1" aria-label="Saturday, December 26, 2026" aria-pressed="false">26</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-27" tabindex="-1" aria-label="Sunday, December 27, 2026" aria-pressed="false">27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-28" tabindex="-1" aria-label="Monday, December 28, 2026" aria-pressed="false">28</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-29" tabindex="-1" aria-label="Tuesday, December 29, 2026" aria-pressed="false">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-30" tabindex="-1" aria-label="Wednesday, December 30, 2026" aria-pressed="false">30</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-31" tabindex="-1" aria-label="Thursday, December 31, 2026" aria-pressed="false">31</button></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span></div>
+          </section>
+          <section class="calendar__month" aria-labelledby="calendar-single-2027-01">
+            <h2 class="calendar__title" id="calendar-single-2027-01">January 2027</h2>
+            <div class="calendar__week"><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-01" tabindex="-1" aria-label="Friday, January 1, 2027" aria-pressed="false">1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-02" tabindex="-1" aria-label="Saturday, January 2, 2027" aria-pressed="false">2</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-03" tabindex="-1" aria-label="Sunday, January 3, 2027" aria-pressed="false">3</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-04" tabindex="-1" aria-label="Monday, January 4, 2027" aria-pressed="false">4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-05" tabindex="-1" aria-label="Tuesday, January 5, 2027" aria-pressed="false">5</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-06" tabindex="-1" aria-label="Wednesday, January 6, 2027" aria-pressed="false">6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-07" tabindex="-1" aria-label="Thursday, January 7, 2027" aria-pressed="false">7</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-08" tabindex="-1" aria-label="Friday, January 8, 2027" aria-pressed="false">8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-09" tabindex="-1" aria-label="Saturday, January 9, 2027" aria-pressed="false">9</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-10" tabindex="-1" aria-label="Sunday, January 10, 2027" aria-pressed="false">10</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-11" tabindex="-1" aria-label="Monday, January 11, 2027" aria-pressed="false">11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-12" tabindex="-1" aria-label="Tuesday, January 12, 2027" aria-pressed="false">12</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-13" tabindex="-1" aria-label="Wednesday, January 13, 2027" aria-pressed="false">13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-14" tabindex="-1" aria-label="Thursday, January 14, 2027" aria-pressed="false">14</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-15" tabindex="-1" aria-label="Friday, January 15, 2027" aria-pressed="false">15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-16" tabindex="-1" aria-label="Saturday, January 16, 2027" aria-pressed="false">16</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-17" tabindex="-1" aria-label="Sunday, January 17, 2027" aria-pressed="false">17</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-18" tabindex="-1" aria-label="Monday, January 18, 2027" aria-pressed="false">18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-19" tabindex="-1" aria-label="Tuesday, January 19, 2027" aria-pressed="false">19</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-20" tabindex="-1" aria-label="Wednesday, January 20, 2027" aria-pressed="false">20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-21" tabindex="-1" aria-label="Thursday, January 21, 2027" aria-pressed="false">21</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-22" tabindex="-1" aria-label="Friday, January 22, 2027" aria-pressed="false">22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-23" tabindex="-1" aria-label="Saturday, January 23, 2027" aria-pressed="false">23</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-24" tabindex="-1" aria-label="Sunday, January 24, 2027" aria-pressed="false">24</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-25" tabindex="-1" aria-label="Monday, January 25, 2027" aria-pressed="false">25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-26" tabindex="-1" aria-label="Tuesday, January 26, 2027" aria-pressed="false">26</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-27" tabindex="-1" aria-label="Wednesday, January 27, 2027" aria-pressed="false">27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-28" tabindex="-1" aria-label="Thursday, January 28, 2027" aria-pressed="false">28</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-29" tabindex="-1" aria-label="Friday, January 29, 2027" aria-pressed="false">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-30" tabindex="-1" aria-label="Saturday, January 30, 2027" aria-pressed="false">30</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-31" tabindex="-1" aria-label="Sunday, January 31, 2027" aria-pressed="false">31</button></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span></div>
+          </section>
+        </div>
+        <div class="calendar__footer">
+          <div class="calendar__summary" aria-live="polite"><p class="calendar__summary-item"><span class="calendar__summary-label">Departure</span><span class="calendar__summary-value">Fri, Nov 20</span></p></div>
+          <button class="button calendar__submit" type="button"><span class="button__label">Select this date</span></button>
+        </div>
+      </dialog>
+<dialog class="modal calendar" id="calendar-range" aria-label="Choose dates" data-mode="range" data-start="2026-11-20" data-end="2026-11-25">
+        <div class="calendar__header">
+          <button class="button button--sm button--secondary calendar__close modal__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
+          <div class="calendar__weekdays" aria-hidden="true"><span class="calendar__weekday">Su</span><span class="calendar__weekday">Mo</span><span class="calendar__weekday">Tu</span><span class="calendar__weekday">We</span><span class="calendar__weekday">Th</span><span class="calendar__weekday">Fr</span><span class="calendar__weekday">Sa</span></div>
+        </div>
+        <div class="calendar__months">
+          <section class="calendar__month" aria-labelledby="calendar-range-2026-10">
+            <h2 class="calendar__title" id="calendar-range-2026-10">October 2026</h2>
+            <div class="calendar__week"><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-01" tabindex="-1" aria-label="Thursday, October 1, 2026" aria-pressed="false" disabled>1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-02" tabindex="-1" aria-label="Friday, October 2, 2026" aria-pressed="false" disabled>2</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-03" tabindex="-1" aria-label="Saturday, October 3, 2026" aria-pressed="false" disabled>3</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-04" tabindex="-1" aria-label="Sunday, October 4, 2026" aria-pressed="false" disabled>4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-05" tabindex="-1" aria-label="Monday, October 5, 2026" aria-pressed="false" disabled>5</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-06" tabindex="-1" aria-label="Tuesday, October 6, 2026" aria-pressed="false" disabled>6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-07" tabindex="-1" aria-label="Wednesday, October 7, 2026" aria-pressed="false" disabled>7</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-08" tabindex="-1" aria-label="Thursday, October 8, 2026" aria-pressed="false" disabled>8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-09" tabindex="-1" aria-label="Friday, October 9, 2026" aria-pressed="false" disabled>9</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-10" tabindex="-1" aria-label="Saturday, October 10, 2026" aria-pressed="false" disabled>10</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-11" tabindex="-1" aria-label="Sunday, October 11, 2026" aria-pressed="false" disabled>11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-12" tabindex="-1" aria-label="Monday, October 12, 2026" aria-pressed="false" disabled>12</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-13" tabindex="-1" aria-label="Tuesday, October 13, 2026" aria-pressed="false" disabled>13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-14" tabindex="-1" aria-label="Wednesday, October 14, 2026" aria-pressed="false" disabled>14</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-15" tabindex="-1" aria-label="Thursday, October 15, 2026" aria-pressed="false" disabled>15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-16" tabindex="-1" aria-label="Friday, October 16, 2026" aria-pressed="false" disabled>16</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-17" tabindex="-1" aria-label="Saturday, October 17, 2026" aria-pressed="false" disabled>17</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-18" tabindex="-1" aria-label="Sunday, October 18, 2026" aria-pressed="false" disabled>18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-19" tabindex="-1" aria-label="Monday, October 19, 2026" aria-pressed="false" disabled>19</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-20" tabindex="-1" aria-label="Tuesday, October 20, 2026" aria-pressed="false" disabled>20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-21" tabindex="-1" aria-label="Wednesday, October 21, 2026" aria-pressed="false" disabled>21</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-22" tabindex="-1" aria-label="Thursday, October 22, 2026" aria-pressed="false" disabled>22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-23" tabindex="-1" aria-label="Friday, October 23, 2026" aria-pressed="false" disabled>23</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-24" tabindex="-1" aria-label="Saturday, October 24, 2026" aria-pressed="false" disabled>24</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-25" tabindex="-1" aria-label="Sunday, October 25, 2026" aria-pressed="false" disabled>25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-26" tabindex="-1" aria-label="Monday, October 26, 2026" aria-pressed="false" disabled>26</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-27" tabindex="-1" aria-label="Tuesday, October 27, 2026" aria-pressed="false" disabled>27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-28" tabindex="-1" aria-label="Wednesday, October 28, 2026" aria-pressed="false" disabled>28</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-29" tabindex="-1" aria-label="Thursday, October 29, 2026" aria-pressed="false" aria-current="date">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-30" tabindex="-1" aria-label="Friday, October 30, 2026" aria-pressed="false">30</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-10-31" tabindex="-1" aria-label="Saturday, October 31, 2026" aria-pressed="false">31</button></span></div>
+          </section>
+          <section class="calendar__month" aria-labelledby="calendar-range-2026-11">
+            <h2 class="calendar__title" id="calendar-range-2026-11">November 2026</h2>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-01" tabindex="-1" aria-label="Sunday, November 1, 2026" aria-pressed="false">1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-02" tabindex="-1" aria-label="Monday, November 2, 2026" aria-pressed="false">2</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-03" tabindex="-1" aria-label="Tuesday, November 3, 2026" aria-pressed="false">3</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-04" tabindex="-1" aria-label="Wednesday, November 4, 2026" aria-pressed="false">4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-05" tabindex="-1" aria-label="Thursday, November 5, 2026" aria-pressed="false">5</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-06" tabindex="-1" aria-label="Friday, November 6, 2026" aria-pressed="false">6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-07" tabindex="-1" aria-label="Saturday, November 7, 2026" aria-pressed="false">7</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-08" tabindex="-1" aria-label="Sunday, November 8, 2026" aria-pressed="false">8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-09" tabindex="-1" aria-label="Monday, November 9, 2026" aria-pressed="false">9</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-10" tabindex="-1" aria-label="Tuesday, November 10, 2026" aria-pressed="false">10</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-11" tabindex="-1" aria-label="Wednesday, November 11, 2026" aria-pressed="false">11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-12" tabindex="-1" aria-label="Thursday, November 12, 2026" aria-pressed="false">12</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-13" tabindex="-1" aria-label="Friday, November 13, 2026" aria-pressed="false">13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-14" tabindex="-1" aria-label="Saturday, November 14, 2026" aria-pressed="false">14</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-15" tabindex="-1" aria-label="Sunday, November 15, 2026" aria-pressed="false">15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-16" tabindex="-1" aria-label="Monday, November 16, 2026" aria-pressed="false">16</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-17" tabindex="-1" aria-label="Tuesday, November 17, 2026" aria-pressed="false">17</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-18" tabindex="-1" aria-label="Wednesday, November 18, 2026" aria-pressed="false">18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-19" tabindex="-1" aria-label="Thursday, November 19, 2026" aria-pressed="false">19</button></span><span class="calendar__cell is-range-start"><button class="calendar__day" type="button" data-date="2026-11-20" tabindex="0" aria-label="Friday, November 20, 2026, departure" aria-pressed="true">20</button></span><span class="calendar__cell is-in-range"><button class="calendar__day" type="button" data-date="2026-11-21" tabindex="-1" aria-label="Saturday, November 21, 2026, in the selected range" aria-pressed="false">21</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell is-in-range"><button class="calendar__day" type="button" data-date="2026-11-22" tabindex="-1" aria-label="Sunday, November 22, 2026, in the selected range" aria-pressed="false">22</button></span><span class="calendar__cell is-in-range"><button class="calendar__day" type="button" data-date="2026-11-23" tabindex="-1" aria-label="Monday, November 23, 2026, in the selected range" aria-pressed="false">23</button></span><span class="calendar__cell is-in-range"><button class="calendar__day" type="button" data-date="2026-11-24" tabindex="-1" aria-label="Tuesday, November 24, 2026, in the selected range" aria-pressed="false">24</button></span><span class="calendar__cell is-range-end"><button class="calendar__day" type="button" data-date="2026-11-25" tabindex="-1" aria-label="Wednesday, November 25, 2026, return" aria-pressed="true">25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-26" tabindex="-1" aria-label="Thursday, November 26, 2026" aria-pressed="false">26</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-27" tabindex="-1" aria-label="Friday, November 27, 2026" aria-pressed="false">27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-28" tabindex="-1" aria-label="Saturday, November 28, 2026" aria-pressed="false">28</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-29" tabindex="-1" aria-label="Sunday, November 29, 2026" aria-pressed="false">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-11-30" tabindex="-1" aria-label="Monday, November 30, 2026" aria-pressed="false">30</button></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span></div>
+          </section>
+          <section class="calendar__month" aria-labelledby="calendar-range-2026-12">
+            <h2 class="calendar__title" id="calendar-range-2026-12">December 2026</h2>
+            <div class="calendar__week"><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-01" tabindex="-1" aria-label="Tuesday, December 1, 2026" aria-pressed="false">1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-02" tabindex="-1" aria-label="Wednesday, December 2, 2026" aria-pressed="false">2</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-03" tabindex="-1" aria-label="Thursday, December 3, 2026" aria-pressed="false">3</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-04" tabindex="-1" aria-label="Friday, December 4, 2026" aria-pressed="false">4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-05" tabindex="-1" aria-label="Saturday, December 5, 2026" aria-pressed="false">5</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-06" tabindex="-1" aria-label="Sunday, December 6, 2026" aria-pressed="false">6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-07" tabindex="-1" aria-label="Monday, December 7, 2026" aria-pressed="false">7</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-08" tabindex="-1" aria-label="Tuesday, December 8, 2026" aria-pressed="false">8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-09" tabindex="-1" aria-label="Wednesday, December 9, 2026" aria-pressed="false">9</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-10" tabindex="-1" aria-label="Thursday, December 10, 2026" aria-pressed="false">10</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-11" tabindex="-1" aria-label="Friday, December 11, 2026" aria-pressed="false">11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-12" tabindex="-1" aria-label="Saturday, December 12, 2026" aria-pressed="false">12</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-13" tabindex="-1" aria-label="Sunday, December 13, 2026" aria-pressed="false">13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-14" tabindex="-1" aria-label="Monday, December 14, 2026" aria-pressed="false">14</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-15" tabindex="-1" aria-label="Tuesday, December 15, 2026" aria-pressed="false">15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-16" tabindex="-1" aria-label="Wednesday, December 16, 2026" aria-pressed="false">16</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-17" tabindex="-1" aria-label="Thursday, December 17, 2026" aria-pressed="false">17</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-18" tabindex="-1" aria-label="Friday, December 18, 2026" aria-pressed="false">18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-19" tabindex="-1" aria-label="Saturday, December 19, 2026" aria-pressed="false">19</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-20" tabindex="-1" aria-label="Sunday, December 20, 2026" aria-pressed="false">20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-21" tabindex="-1" aria-label="Monday, December 21, 2026" aria-pressed="false">21</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-22" tabindex="-1" aria-label="Tuesday, December 22, 2026" aria-pressed="false">22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-23" tabindex="-1" aria-label="Wednesday, December 23, 2026" aria-pressed="false">23</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-24" tabindex="-1" aria-label="Thursday, December 24, 2026" aria-pressed="false">24</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-25" tabindex="-1" aria-label="Friday, December 25, 2026" aria-pressed="false">25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-26" tabindex="-1" aria-label="Saturday, December 26, 2026" aria-pressed="false">26</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-27" tabindex="-1" aria-label="Sunday, December 27, 2026" aria-pressed="false">27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-28" tabindex="-1" aria-label="Monday, December 28, 2026" aria-pressed="false">28</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-29" tabindex="-1" aria-label="Tuesday, December 29, 2026" aria-pressed="false">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-30" tabindex="-1" aria-label="Wednesday, December 30, 2026" aria-pressed="false">30</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2026-12-31" tabindex="-1" aria-label="Thursday, December 31, 2026" aria-pressed="false">31</button></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span></div>
+          </section>
+          <section class="calendar__month" aria-labelledby="calendar-range-2027-01">
+            <h2 class="calendar__title" id="calendar-range-2027-01">January 2027</h2>
+            <div class="calendar__week"><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-01" tabindex="-1" aria-label="Friday, January 1, 2027" aria-pressed="false">1</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-02" tabindex="-1" aria-label="Saturday, January 2, 2027" aria-pressed="false">2</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-03" tabindex="-1" aria-label="Sunday, January 3, 2027" aria-pressed="false">3</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-04" tabindex="-1" aria-label="Monday, January 4, 2027" aria-pressed="false">4</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-05" tabindex="-1" aria-label="Tuesday, January 5, 2027" aria-pressed="false">5</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-06" tabindex="-1" aria-label="Wednesday, January 6, 2027" aria-pressed="false">6</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-07" tabindex="-1" aria-label="Thursday, January 7, 2027" aria-pressed="false">7</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-08" tabindex="-1" aria-label="Friday, January 8, 2027" aria-pressed="false">8</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-09" tabindex="-1" aria-label="Saturday, January 9, 2027" aria-pressed="false">9</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-10" tabindex="-1" aria-label="Sunday, January 10, 2027" aria-pressed="false">10</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-11" tabindex="-1" aria-label="Monday, January 11, 2027" aria-pressed="false">11</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-12" tabindex="-1" aria-label="Tuesday, January 12, 2027" aria-pressed="false">12</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-13" tabindex="-1" aria-label="Wednesday, January 13, 2027" aria-pressed="false">13</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-14" tabindex="-1" aria-label="Thursday, January 14, 2027" aria-pressed="false">14</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-15" tabindex="-1" aria-label="Friday, January 15, 2027" aria-pressed="false">15</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-16" tabindex="-1" aria-label="Saturday, January 16, 2027" aria-pressed="false">16</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-17" tabindex="-1" aria-label="Sunday, January 17, 2027" aria-pressed="false">17</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-18" tabindex="-1" aria-label="Monday, January 18, 2027" aria-pressed="false">18</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-19" tabindex="-1" aria-label="Tuesday, January 19, 2027" aria-pressed="false">19</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-20" tabindex="-1" aria-label="Wednesday, January 20, 2027" aria-pressed="false">20</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-21" tabindex="-1" aria-label="Thursday, January 21, 2027" aria-pressed="false">21</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-22" tabindex="-1" aria-label="Friday, January 22, 2027" aria-pressed="false">22</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-23" tabindex="-1" aria-label="Saturday, January 23, 2027" aria-pressed="false">23</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-24" tabindex="-1" aria-label="Sunday, January 24, 2027" aria-pressed="false">24</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-25" tabindex="-1" aria-label="Monday, January 25, 2027" aria-pressed="false">25</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-26" tabindex="-1" aria-label="Tuesday, January 26, 2027" aria-pressed="false">26</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-27" tabindex="-1" aria-label="Wednesday, January 27, 2027" aria-pressed="false">27</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-28" tabindex="-1" aria-label="Thursday, January 28, 2027" aria-pressed="false">28</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-29" tabindex="-1" aria-label="Friday, January 29, 2027" aria-pressed="false">29</button></span><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-30" tabindex="-1" aria-label="Saturday, January 30, 2027" aria-pressed="false">30</button></span></div>
+            <div class="calendar__week"><span class="calendar__cell"><button class="calendar__day" type="button" data-date="2027-01-31" tabindex="-1" aria-label="Sunday, January 31, 2027" aria-pressed="false">31</button></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span><span class="calendar__cell"><span class="calendar__blank"></span></span></div>
+          </section>
+        </div>
+        <div class="calendar__footer">
+          <div class="calendar__summary" aria-live="polite"><p class="calendar__summary-item"><span class="calendar__summary-label">Departure</span><span class="calendar__summary-value">Fri, Nov 20</span></p><span class="calendar__summary-divider"></span><p class="calendar__summary-item"><span class="calendar__summary-label">Return</span><span class="calendar__summary-value">Wed, Nov 25</span></p></div>
+          <button class="button calendar__submit" type="button"><span class="button__label">Select these dates</span></button>
+        </div>
+      </dialog>
+<div class="menu phone-menu" id="phone-countries" role="listbox" aria-label="Country code" popover></div>
+
+  <script type="module" src="page.js"></script>
+  <script type="module" src="components/modality.js"></script>
+  <script type="module" src="components/modal.js"></script>
+  <script type="module" src="components/menu.js"></script>
+  <script type="module" src="components/dropdown.js"></script>
+  <script type="module" src="components/date.js"></script>
+  <script type="module" src="components/route.js"></script>
+  <script type="module" src="components/airport.js"></script>
+  <script type="module" src="components/phone.js"></script>
+  <script type="module" src="components/travelers.js"></script>
+  <script type="module" src="components/search-form.js"></script>
+  <script type="module" src="components/contact-form.js"></script>
+  <script type="module" src="components/tabs.js"></script>
+  <script type="module" src="components/carousel.js"></script>
+  <script type="module" src="components/accordion.js"></script>
+</body>
+</html>

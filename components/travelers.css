@@ -1,0 +1,164 @@
+/* Travelers and class — the dialog of the Class/Travelers dropdown (Figma: BCDS – Token Studio, Settings, node 512:3245;
+   #115). On the shared modal (modal.css, modal.js), width size.container.width.400, height from the content.
+   Close button (icon-secondary), three counters (adults, children, infants on lap), a divider, the classes, a divider,
+   Apply. Apply writes the choice to the dropdown ("Business / 1 Traveler"); the close button, Escape and a click
+   outside drop it, the next opening starts from the dropdown again. Behavior and limits — travelers.js.
+   Markup: <button class="dropdown dropdown--small travelers-dropdown" type="button" aria-haspopup="dialog"
+             aria-controls="travelers" aria-label="Travelers and class: Business / 1 Traveler" data-adults="1"
+             data-children="0" data-infants="0" data-class="Business"> … </button>
+           <dialog class="modal travelers" id="travelers" aria-label="Travelers and class">
+             <button class="button button--sm button--secondary travelers__close modal__close" …>
+             <div class="travelers__counts">
+               <div class="travelers__row" role="group" aria-labelledby="type id, age id" data-type="adults">
+                 <span class="travelers__icon"><span class="icon icon--perm-identity" aria-hidden="true"></span></span>
+                 <span class="travelers__text"><span class="travelers__type" id="…">Adults</span>
+                   <span class="travelers__age" id="…">11+ years</span></span>
+                 <span class="travelers__stepper">
+                   <button class="button button--sm button--secondary" type="button" aria-label="Remove adult" data-step="-1">
+                   <span class="travelers__count" aria-live="polite">1</span>
+                   <button … aria-label="Add adult" data-step="1">
+                 </span>
+               </div> …
+             </div>
+             <hr class="travelers__divider">
+             <fieldset class="travelers__classes" aria-label="Class">
+               <label class="travelers__class"><input class="travelers__radio" type="radio" name="…" value="Business">
+                 <span>Business</span><span class="travelers__check icon icon--check" aria-hidden="true"></span></label> …
+             </fieldset>
+             <hr class="travelers__divider">
+             <button class="button travelers__apply" type="button"><span class="button__label">Apply</span>
+               <span class="button__icon icon icon--check" aria-hidden="true"></span></button>
+           </dialog>
+   Semantic tokens only (#82). */
+
+/* The dropdown: the small type, but as wide as its text (120 would cut "Business / 1 Traveler"). */
+.dropdown.travelers-dropdown { width: auto; }
+
+.travelers { width: var(--size-container-width-400); }
+.travelers[open], .travelers--preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-2xl) var(--space-component-px-md) var(--space-component-py-md);
+}
+.travelers__close {
+  position: absolute;
+  top: var(--space-component-py-sm);
+  right: var(--space-component-px-sm);
+}
+
+/* Counters: 60 tall rows — 8 + the 44 icon container + 8. */
+.travelers__counts {
+  display: grid;
+  padding-top: var(--space-container-py-md); /* clear of the close button, as in Figma */
+}
+.travelers__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-xs) var(--space-component-px-md) var(--space-component-py-xs) 0;
+}
+.travelers__icon {
+  display: flex;
+  flex: none;
+  padding: var(--space-component-py-sm);
+  border-radius: var(--shape-icon-container-sm);
+  background: var(--color-bg-surface-subtle);
+}
+.travelers__icon .icon { background-color: var(--color-icon-secondary); }
+.travelers__text { display: grid; width: 100%; min-width: 0; }
+.travelers__type {
+  color: var(--color-text-primary);
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+}
+.travelers__age {
+  color: var(--color-text-secondary);
+  font-family: var(--typography-body-md-font-family);
+  font-size: var(--typography-body-md-font-size);
+  font-weight: var(--typography-body-md-font-weight);
+  line-height: var(--typography-body-md-line-height);
+  letter-spacing: var(--typography-body-md-letter-spacing);
+}
+
+/* − count +: Figma gives the count a 40 column; there is no token, so the gaps of 16 around a digit make it about 40,
+   and tabular digits keep the buttons in place when the number changes. */
+.travelers__stepper {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-component-gap-lg);
+}
+.travelers__count {
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.travelers__divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+}
+
+/* Classes: native radios (one Tab stop, arrows choose), drawn as the text rows of the trip type menu (.menu--text). */
+.travelers__classes {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.travelers__class {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-md) var(--space-component-px-md);
+  border-radius: var(--shape-menu-item); /* Figma 8; menu rows are 4 (#111) */
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+/* The radio stays in the accessibility tree and takes the focus; the row shows it. */
+.travelers__radio {
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.travelers__class:has(:checked), .travelers__class:hover, .travelers__class.is-hover { color: var(--color-text-primary); }
+.travelers__class:hover, .travelers__class.is-hover { background: var(--color-bg-surface-subtle); }
+.travelers__class:active, .travelers__class.is-pressed { background: var(--color-bg-surface-strong); }
+.travelers__class:has(:focus-visible), .travelers__class.is-focus {
+  box-shadow: inset 0 0 0 var(--size-focus-ring-width) var(--color-border-focus);
+}
+.travelers__check {
+  width: var(--size-icon-xs);
+  height: var(--size-icon-xs);
+  background-color: var(--color-icon-positive);
+}
+.travelers__class:not(:has(:checked)) .travelers__check { visibility: hidden; }
+
+.travelers__apply { width: 100%; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .travelers__class { transition: none; } }
+@media (forced-colors: active) {
+  .travelers__icon .icon, .travelers__check { forced-color-adjust: none; background-color: CanvasText; }
+  .travelers__class:has(:focus-visible) { outline: var(--size-focus-ring-width) solid Highlight; }
+}

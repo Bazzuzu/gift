@@ -4,7 +4,10 @@
    group xs (#132), space.component.gap.2xl from the box.
    Surface — default (a dark box, color.bg.surface.inverse.subtle, as in the icon card) | .point--inverse (on a dark
    section: color.bg.surface.light.subtle; the heading group gets --inverse too).
-   Markup: <li class="point [point--inverse]">   or <article aria-labelledby>
+   Centered — .point--center (Figma: Consolidator page, Minor components, node 42:10983; #168): the icon over the
+   text, both centered, space.component.gap.xl apart; a light box — color.bg.surface.subtle inside a
+   size.border.default line color.border.subtlest, the icon color.icon.secondary; the heading group gets --center.
+   Markup: <li class="point [point--inverse | point--center]">   or <article aria-labelledby>
              <span class="point__icon"><span class="icon icon--counter-1" aria-hidden="true"></span></span>
              <hgroup class="heading-group heading-group--xs [heading-group--inverse]">
                <h3 class="heading-group__title">Heading</h3><p class="heading-group__text">…</p></hgroup>
@@ -30,6 +33,15 @@
 .point--inverse .point__icon { background: var(--color-bg-surface-light-subtle); }
 
 .point .heading-group { flex: auto; min-width: 0; }
+
+/* Centered: the icon over the text. The line of the box is drawn inside it, as Figma strokes are. */
+.point--center { flex-direction: column; align-items: center; gap: var(--space-component-gap-xl); }
+.point--center .point__icon {
+  background: var(--color-bg-surface-subtle);
+  box-shadow: inset 0 0 0 var(--size-border-default) var(--color-border-subtlest);
+  color: var(--color-icon-secondary);
+}
+.point--center .heading-group { align-self: stretch; }
 
 /* Accessibility: forced colors drop the background — the icon box gets a border, the mask a system color. */
 @media (forced-colors: active) {

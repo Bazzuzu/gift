@@ -1,0 +1,30 @@
+/* Deals section — heading, region tabs, a carousel of deal cards with back and next on its edges, and More Deals (Figma:
+   BCDS – Token Studio, Type=Savings, node 257:9971; arrows — node 1851:39008; #133, #134). A section made of collection
+   parts: the heading group lg (#132), tabs and the carousel (#133), the deal cards (#125), icon-glass and primary
+   buttons (#95).
+   Markup: <section class="section deals" aria-labelledby="title" data-carousel>
+             <div class="deals__inner">
+               heading group lg, tab list,
+               <div class="carousel-frame"> <div class="carousel-frame__steps"> back, next </div>
+                 one tab panel per region with its .carousel of cards </div>
+               <a class="button deals__more" href> More Deals </a>
+             </div>
+           </section>
+   The background — .section (#155). Semantic tokens only (#82). */
+
+.deals {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-section-py-md) var(--space-section-px-md);
+}
+.deals__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-section-gap-sm);
+  width: 100%;
+  min-width: 0;
+  max-width: var(--size-content-max-width);
+}
+.deals__inner > * { width: 100%; }
+.deals__inner > .deals__more { width: var(--size-container-width-240); }

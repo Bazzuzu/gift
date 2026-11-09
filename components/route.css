@@ -1,0 +1,87 @@
+/* Route — departure and destination (Figma: BCDS – Token Studio, RouteInput, node 141:2668; #101).
+   Two button fields in an .input-pair with the strong border; each opens the airport search (dialog — after the design).
+   Side by side: md fields with the label on the line (From, To), the swap button in the middle of the divider.
+   Stacked (.input-pair--stacked): lg rows without labels; a chosen place reads "From: New York (NYC)", the swap button
+   sits on the divider at the right.
+   Markup: <div class="input-pair [input-pair--stacked] route" role="group" aria-label="Route">
+             <div class="input input--strong [input--lg]"> [label] <button class="input__field route__field" type="button"
+               aria-haspopup="dialog" data-value="…" data-placeholder="…" [data-prefix="From:"]>
+               <span class="input__value [is-placeholder]">…</span></button> </div>
+             <button class="route__swap" type="button" aria-label="Swap departure and destination">
+               <span class="icon icon--swap-horiz|swap-vert" aria-hidden="true"></span></button>
+             <div class="input …"> the destination </div>
+           </div>
+   The swap button shows when at least one place is chosen. Behavior — route.js. Semantic tokens only (#82). */
+
+.route__prefix {
+  margin-inline-end: var(--space-component-gap-xs); /* + the space after the colon ≈ Figma gap sm */
+  color: var(--color-text-tertiary);
+}
+
+/* Swap: a white circle over the divider; visible size = icon + padding, hit area at least the touch target. */
+.route__swap {
+  --route-swap-padding: var(--space-component-px-2xs);
+  --route-swap-icon: var(--size-icon-sm);
+  position: absolute;
+  z-index: var(--layer-raised); /* above the divider */
+  top: 50%;
+  left: 50%;
+  display: flex;
+  margin: 0;
+  padding: var(--route-swap-padding);
+  border: 0;
+  border-radius: var(--shape-button);
+  background: var(--color-bg-surface-default);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: background var(--motion-duration-fast) var(--motion-easing-move);
+}
+.route__swap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size-touch-target-min);
+  height: var(--size-touch-target-min);
+  transform: translate(-50%, -50%);
+}
+.route__swap .icon {
+  width: var(--route-swap-icon);
+  height: var(--route-swap-icon);
+  background-color: var(--color-icon-secondary); /* Figma: 64% */
+}
+/* Hover and press tint the white circle, so the divider stays hidden behind it. */
+.route__swap:hover, .route__swap.is-hover {
+  background: linear-gradient(var(--color-bg-action-ghost-hover), var(--color-bg-action-ghost-hover)), var(--color-bg-surface-default);
+}
+.route__swap:active, .route__swap.is-pressed {
+  background: linear-gradient(var(--color-bg-action-ghost-pressed), var(--color-bg-action-ghost-pressed)), var(--color-bg-surface-default);
+}
+.route__swap:focus-visible, .route__swap.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+/* Stacked: the swap button on the divider at the right; the rows leave room for it. */
+.input-pair--stacked .route__swap {
+  --route-swap-padding: var(--space-component-px-xs);
+  --route-swap-icon: var(--size-icon-md);
+  left: auto;
+  right: var(--space-component-px-md);
+  transform: translateY(-50%);
+}
+.input-pair--stacked.route .input__field {
+  padding-right: calc(var(--space-component-px-md) + var(--size-icon-md) + var(--space-component-px-xs) + var(--space-component-px-xs));
+}
+
+/* Nothing to swap while both places are empty (#101). */
+.route:not(:has(.input__value:not(.is-placeholder))) .route__swap { display: none; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .route__swap { transition: none; } }
+
+/* Forced colors: the circle gets a border, the mask icon a system color. */
+@media (forced-colors: active) {
+  .route__swap { border: var(--size-border-default) solid ButtonText; }
+  .route__swap .icon { forced-color-adjust: none; background-color: ButtonText; }
+}

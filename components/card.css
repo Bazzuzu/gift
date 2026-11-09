@@ -1,0 +1,182 @@
+/* Card — a deal: photo with tags, heading, text, price and the View link (Figma: BCDS – Token Studio, Deal,
+   Property 1=Extended Card, node 200:300; #125). The whole card is one link (.card__link): its ::before covers the
+   card, so a click anywhere opens the deal; the View button inside is a <span class="button"> drawn above that layer,
+   so it gets its hover only under the pointer (#130). Hovering the card turns its border color.border.default (#134).
+   As wide as its container (Figma: size.container.width.320).
+   .card--compact — for narrow cards: icon-brand instead of View. .card--mini — a row: square photo, heading and price,
+   icon-brand (Figma: Deal, Property 1=small, node 1084:57465; #128); no tags, no text, the old price without a label.
+   Markup: <article class="card [card--compact]" aria-labelledby="title">
+             <div class="card__media"><img class="card__photo" src="…" alt="">
+               <ul class="card__tags" aria-label="Tags"><li class="tag tag--sm tag--positive">…</li> …</ul></div>
+             <div class="card__body">
+               <hgroup class="heading-group heading-group--xs"><h3 class="heading-group__title" id="title">Heading</h3>
+                 <p class="heading-group__text">…</p></hgroup>   heading and text — the heading group xs (#132)
+               <hr class="card__divider">
+               <div class="card__footer">
+                 <p class="card__price"><span class="card__was">Regular price: <s>$4,321</s></span>
+                   <span class="card__amount">$1,234<span class="card__mark" aria-hidden="true">*</span></span></p>
+                 <a class="card__link" href="…" aria-labelledby="view title">
+                   <span class="button button--sm button--brand card__action"><span class="button__label" id="view">View</span>
+                   <span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+                 compact: <a class="card__link" href="…" aria-label="View Heading">
+                   <span class="button button--sm button--brand card__action">
+                   <span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></span></a>
+               </div>
+             </div>
+           </article>
+   Mini: <article class="card card--mini" aria-labelledby="title"> media (photo only), <div class="card__body"> the heading group xs and
+         <p class="card__price"><span class="card__was"><s>$4,321</s></span> … </p></div>, the icon-brand link </article>
+   .card--post — a blog post (Figma: Blog, Post, node 100:13292; #144): the photo, the heading — it is the link, no button —
+         and the tags under it (a large subtle tag with a composite label, #143); on mobile the photo is lower.
+   Post: <article class="card card--post" aria-labelledby="title"> media (photo only), <div class="card__body">
+           <hgroup class="heading-group heading-group--sm"><h3 class="heading-group__title" id="title">
+             <a class="card__link" href="…">Heading</a></h3></hgroup>
+           <ul class="card__tags" aria-label="Tags"><li class="tag tag--lg tag--subtle"><span>Destination Guides</span>
+             <span class="tag__divider" aria-hidden="true"></span><span>3 min read</span></li></ul></div></article>
+   The heading level follows the page. Semantic tokens only (#82). */
+
+.card {
+  position: relative; /* the View link's hit area covers the card */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border: var(--size-border-default) solid var(--color-border-subtle);
+  border-radius: var(--shape-card);
+  background: var(--color-bg-surface-default);
+  transition: border-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+.card:hover, .card.is-hover { border-color: var(--color-border-default); }
+
+/* Photo: 4 inside the card edge (Figma: a 4 px white border); nested corners — the card radius minus the inset (#65). */
+.card__media {
+  position: relative;
+  height: var(--size-container-height-240);
+  padding: var(--space-component-px-2xs);
+}
+.card__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--shape-card) - var(--space-component-px-2xs));
+  object-fit: cover;
+}
+.card__tags {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-component-gap-sm);
+  margin: 0;
+  padding: var(--space-component-py-sm) var(--space-component-px-sm); /* 12 from the media edge (Figma: 8; #129) */
+  list-style: none;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-md) var(--space-component-px-md);
+}
+.card__divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+}
+
+/* Price and View share the row in halves; compact — the price takes the rest next to the icon button. */
+.card__footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: var(--space-component-gap-md);
+}
+.card--compact .card__footer { grid-template-columns: 1fr auto; }
+.card__price { display: grid; gap: var(--space-component-gap-2xs); min-width: 0; margin: 0; }
+.card__was {
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+.card__amount {
+  display: flex;
+  align-items: flex-start;
+  color: var(--color-text-primary);
+  font-family: var(--typography-headline-sm-font-family);
+  font-size: var(--typography-headline-sm-font-size);
+  font-weight: var(--typography-headline-sm-font-weight);
+  line-height: var(--typography-headline-sm-line-height);
+  letter-spacing: var(--typography-headline-sm-letter-spacing);
+}
+.card__mark {
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+
+/* The link: its ::before covers the card (the card is the positioned box); the button span comes later in the
+   markup, so it paints above that layer and gets :hover and :active only under the pointer. */
+.card__link { display: flex; color: inherit; text-decoration: none; }
+.card__link::before { content: ""; position: absolute; inset: 0; }
+.card__action { width: 100%; }
+/* On hover the button turns its text and icon white — the owner's choice (#130): 2.74:1 on the brand hover, below AA. */
+.card__action:hover, .card__action.is-hover { --button-fg: var(--color-text-on-action); --button-icon: var(--color-icon-on-action); }
+.card--compact .card__action { width: auto; }
+
+/* Mini: in a row — the square photo, heading over price, the icon button; as tall as the photo. */
+.card--mini {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-component-gap-md);
+  padding-right: var(--space-component-px-md);
+}
+.card--mini .card__media {
+  flex: none;
+  width: var(--size-container-width-120);
+  height: auto;
+  aspect-ratio: var(--size-media-1x1);
+}
+.card--mini .card__body {
+  flex: auto;
+  align-self: stretch;
+  justify-content: space-between;
+  min-width: 0;
+  padding: var(--space-component-py-sm) 0;
+}
+.card--mini .card__link { flex: none; }
+.card--mini .card__action { width: auto; }
+
+/* Post: the heading is the link; the tags stand under it, not on the photo. */
+[data-breakpoint="mobile"] .card--post .card__media { height: var(--size-container-height-200); }
+/* MISSING: the photo zooms in on hover (Figma: Post, Hover, about 1.33 from the centre) — no scale token (BACKLOG.md); not drawn. */
+.card--post .card__body {
+  gap: var(--space-component-gap-lg);
+  padding: var(--space-component-py-sm) var(--space-component-px-md) var(--space-component-py-md);
+}
+.card--post .card__link { display: inline; }
+.card--post:hover .card__link, .card--post.is-hover .card__link { text-decoration: underline; }
+.card--post .card__tags {
+  position: static;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* The focus ring goes around the whole card: the link covers it. */
+.card__link:focus-visible { outline: none; }
+.card:has(.card__link:focus-visible), .card.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }

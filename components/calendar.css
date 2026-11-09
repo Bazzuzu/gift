@@ -1,0 +1,193 @@
+/* Calendar — modal date picker for the date field (Figma: BCDS – Token Studio, date range modal, node 512:3133; #94).
+   On the shared modal (modal.css, modal.js: overlay, max height, bottom panel on mobile, closing, focus return, #102);
+   at least 640 high (size.container.height.640, #96). Header with the close button and week days, scrolling months,
+   footer with the chosen dates and the confirm button. Behavior — date.js.
+   Markup: <dialog class="modal calendar" id="…" aria-label="Choose dates" data-mode="single|range">
+             <div class="calendar__header"> close button (icon-secondary + .modal__close), .calendar__weekdays (aria-hidden) </div>
+             <div class="calendar__months"> .calendar__month: <h2 class="calendar__title">, .calendar__week rows of
+               .calendar__cell > <button class="calendar__day" type="button" data-date="2026-11-20"
+                                          aria-label="Friday, November 20, 2026"> </div>
+             <div class="calendar__footer"> .calendar__summary, confirm button (primary) </div>
+           </dialog>
+   Accessibility (AGENTS.md «Доступность»): every day is a button with its full date as the name; the chosen days have
+   aria-pressed="true", today aria-current="date", past days are disabled; one day is in the Tab order, the arrows move
+   between days. Semantic tokens only (#82). */
+
+.calendar { min-height: min(var(--size-container-height-640), var(--modal-space)); }
+.calendar[open], .calendar--preview { display: grid; grid-template-rows: auto 1fr auto; }
+
+/* Header: the close button, then the week days over the columns. */
+.calendar__header {
+  display: grid;
+  gap: var(--space-component-gap-md);
+  padding-top: var(--space-component-py-sm);
+  border-bottom: var(--size-border-default) solid var(--color-border-subtle);
+}
+.calendar__close { justify-self: end; margin-right: var(--space-component-px-sm); }
+.calendar__weekdays {
+  display: flex;
+  padding: 0 var(--space-component-px-xs) var(--space-component-py-sm);
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-weight: var(--typography-label-md-font-weight);
+  line-height: var(--typography-label-md-line-height);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+  text-align: center;
+}
+
+/* A column is a day (content 24 + padding 8 on each side = 40) plus 8 on each side of the cell: 7 × 56. */
+.calendar__weekday {
+  box-sizing: content-box;
+  width: var(--size-icon-md);
+  margin: 0 var(--space-component-px-xs);
+  padding: 0 var(--space-component-px-xs);
+}
+
+.calendar__months {
+  display: grid;
+  gap: var(--space-container-gap-md);
+  min-height: 0;
+  padding: var(--space-component-py-md) var(--space-component-px-xs);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.calendar__month { display: grid; gap: var(--space-component-gap-md); }
+.calendar__title {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+  text-align: center;
+}
+.calendar__week { display: flex; }
+.calendar__cell { padding: 0 var(--space-component-px-xs); }
+
+.calendar__day, .calendar__blank {
+  display: block;
+  box-sizing: content-box;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  padding: var(--space-component-py-xs) var(--space-component-px-xs);
+}
+.calendar__day {
+  margin: 0;
+  border: 0;
+  border-radius: var(--shape-button);
+  background: var(--color-bg-action-ghost-default);
+  color: var(--color-text-secondary);
+  font-family: var(--typography-body-lg-font-family);
+  font-size: var(--typography-body-lg-font-size);
+  font-weight: var(--typography-body-lg-font-weight);
+  line-height: var(--typography-body-lg-line-height);
+  letter-spacing: var(--typography-body-lg-letter-spacing);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--motion-duration-fast) var(--motion-easing-move);
+}
+.calendar__day:hover:not(:disabled, [aria-pressed="true"]), .calendar__day.is-hover { background: var(--color-bg-action-ghost-hover); }
+.calendar__day:focus-visible, .calendar__day.is-focus {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+.calendar__day:disabled { color: var(--color-text-disabled); cursor: default; }
+.calendar__day[aria-current="date"] {
+  background: var(--color-bg-surface-subtle);
+  color: var(--color-text-primary); /* MISSING: Figma's 2 px white ring — no token for a 2 px border (BACKLOG.md) */
+}
+
+/* The chosen range: a band behind the days, from the middle of the first day to the middle of the last. */
+.calendar__cell.is-in-range { background: var(--color-bg-section-subtle); }
+.calendar__cell.is-range-start { background: linear-gradient(to right, transparent 50%, var(--color-bg-section-subtle) 50%); }
+.calendar__cell.is-range-end { background: linear-gradient(to left, transparent 50%, var(--color-bg-section-subtle) 50%); }
+.calendar__cell.is-in-range:first-child { border-radius: var(--shape-button) 0 0 var(--shape-button); }
+.calendar__cell.is-in-range:last-child { border-radius: 0 var(--shape-button) var(--shape-button) 0; }
+.calendar__cell.is-in-range .calendar__day { color: var(--color-text-primary); }
+.calendar__day[aria-pressed="true"] {
+  background: var(--color-bg-surface-inverse-default);
+  color: var(--color-text-inverse-primary);
+}
+
+/* Footer: the chosen dates and the confirm button. */
+.calendar__footer {
+  display: grid;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-md) var(--space-component-px-md);
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+}
+.calendar__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-md);
+  padding: var(--space-component-py-2xs) 0;
+}
+.calendar__summary-item {
+  display: grid;
+  gap: var(--space-component-gap-xs);
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+.calendar__summary-label {
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-label-md-font-family);
+  font-size: var(--typography-label-md-font-size);
+  font-weight: var(--typography-label-md-font-weight);
+  line-height: var(--typography-label-md-line-height);
+  letter-spacing: var(--typography-label-md-letter-spacing);
+}
+.calendar__summary-value {
+  color: var(--color-text-primary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+.calendar__summary-divider {
+  flex: none;
+  width: var(--size-border-default);
+  height: var(--size-icon-md);
+  background: var(--color-border-subtle);
+}
+/* Confirm without the return date (#99): red with a light double bounce up (#100). Offsets are spacing tokens, the
+   element is moved with bottom, so no negative values are needed. */
+.calendar__summary-value.is-invalid {
+  position: relative;
+  color: var(--color-text-critical);
+  animation: calendar-bounce var(--motion-duration-slower) var(--motion-easing-move);
+}
+@keyframes calendar-bounce {
+  0%, 50%, 100% { bottom: 0; }
+  25% { bottom: var(--space-component-gap-xs); }
+  75% { bottom: var(--space-component-gap-2xs); }
+}
+.calendar__submit { width: 100%; }
+
+/* Mobile (the bottom panel — modal.css): the columns share the width, the day stays 40 in the middle of its column. */
+[data-breakpoint="mobile"] .calendar__weekday,
+[data-breakpoint="mobile"] .calendar__cell {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* The footer clears the iPhone home indicator. */
+[data-breakpoint="mobile"] .calendar__footer { padding-bottom: max(var(--space-component-py-md), env(safe-area-inset-bottom)); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .calendar__day { transition: none; }
+  .calendar__summary-value.is-invalid { animation: none; } /* the red color stays */
+}
+
+/* Forced colors: backgrounds are dropped, so the chosen days and today get system colors and a border. */
+@media (forced-colors: active) {
+  .calendar__day[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .calendar__day[aria-current="date"] { border: var(--size-border-default) solid CanvasText; }
+  .calendar__cell.is-in-range .calendar__day { color: Highlight; }
+}

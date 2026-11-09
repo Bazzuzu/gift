@@ -84,6 +84,12 @@
 /* Material check_circle, 24 px (Figma: Gift Card, Custom amount, node 39:9044; #160). */
 .icon--check-circle { -webkit-mask-image: url(check-circle.svg); mask-image: url(check-circle.svg); }
 
+/* Material Symbols travel_explore, gpp_good, support_agent, 32 px (Figma: Consolidator page, Minor components,
+   node 42:10983). */
+.icon--travel-explore { -webkit-mask-image: url(travel-explore.svg); mask-image: url(travel-explore.svg); }
+.icon--gpp-good { -webkit-mask-image: url(gpp-good.svg); mask-image: url(gpp-good.svg); }
+.icon--support-agent { -webkit-mask-image: url(support-agent.svg); mask-image: url(support-agent.svg); }
+
 /* Forced colors (Windows high contrast) drop backgrounds: a mask icon keeps a system text color. */
 @media (forced-colors: active) {
   .icon { forced-color-adjust: none; background-color: CanvasText; }

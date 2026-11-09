@@ -1,0 +1,54 @@
+/* Advantages section — a heading with a paragraph, three photos and three advantages in four equal columns (Figma:
+   Consolidator page, Dinamic Content, node 13:8690; #169). Made of collection parts: the heading group lg and sm
+   (#132). The heading stands at the top of its column, the paragraph at the bottom; two photos one over the other and
+   one tall photo fill the height of the row, which the text sets (at least size.container.height.400); the advantages
+   go down the last column.
+   Markup: <section class="section section--sunken advantages" aria-labelledby="title">
+             <div class="advantages__inner">
+               <hgroup class="heading-group heading-group--lg advantages__intro"> heading, paragraph with a link </hgroup>
+               <div class="advantages__photos"> <span class="advantages__photo"><img alt=""></span> × 2 </div>
+               <div class="advantages__photos"> <span class="advantages__photo"><img alt=""></span> </div>
+               <ul class="advantages__list"> <li><hgroup class="heading-group heading-group--sm"> … </hgroup></li> × 3 </ul>
+             </div>
+           </section>
+   The photos are decorative (alt=""). Desktop only; tablet and mobile — after the design (BACKLOG.md). The background —
+   .section (#155, #165). Semantic tokens only (#82). */
+
+.advantages {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-section-py-md) var(--space-section-px-md);
+}
+.advantages__inner {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: var(--space-section-gap-md);
+  width: 100%;
+  min-height: var(--size-container-height-400);
+  max-width: var(--size-content-max-width);
+}
+
+/* The heading at the top, the paragraph at the bottom of the column. */
+.advantages__intro { justify-content: space-between; }
+
+/* The photos take no height of their own: the text of the row sets it, the photos cover their place. */
+.advantages__photos { display: flex; flex-direction: column; gap: var(--space-container-gap-lg); }
+.advantages__photo { position: relative; flex: auto; }
+.advantages__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--shape-image-sm);
+  object-fit: cover;
+}
+
+.advantages__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-container-gap-lg);
+  margin: 0;
+  padding: 0 0 0 var(--space-component-px-md);
+  list-style: none;
+}

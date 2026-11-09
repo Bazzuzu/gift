@@ -4,8 +4,10 @@
    size.content.max-width inside space.section.px.md, the side padding of every section. Neighbours are siblings, or
    the last section of <main> and the one right after it (the footer). A section on a photo (the hero) has no .section,
    so the section after it has no line.
-   Background: .section (color.bg.section.default) | .section--subtle | .section--accent | .section--inverse.
-   Markup: <section class="section [section--subtle | section--accent | section--inverse] logos" aria-labelledby="title"> … </section>
+   Background: .section (color.bg.section.default) | .section--sunken (#165) | .section--subtle | .section--accent |
+   .section--inverse.
+   Markup: <section class="section [section--sunken | section--subtle | section--accent | section--inverse] logos"
+             aria-labelledby="title"> … </section>
            <footer class="section section--inverse footer"> … </footer>
    Semantic tokens only (#82). */
 
@@ -14,17 +16,20 @@
   position: relative;
   background: var(--color-bg-section-default);
 }
+.section--sunken { background: var(--color-bg-section-sunken); }
 .section--subtle { background: var(--color-bg-section-subtle); }
 .section--accent { background: var(--color-bg-section-accent); }
 .section--inverse { --section-divider: var(--color-border-inverse-default); background: var(--color-bg-section-inverse-default); }
 
 /* The same background: default after default (no modifier), subtle after subtle, and so on. */
 :is(
-  .section:not(.section--subtle, .section--accent, .section--inverse) + .section:not(.section--subtle, .section--accent, .section--inverse),
+  .section:not(.section--sunken, .section--subtle, .section--accent, .section--inverse) + .section:not(.section--sunken, .section--subtle, .section--accent, .section--inverse),
+  .section--sunken + .section--sunken,
   .section--subtle + .section--subtle,
   .section--accent + .section--accent,
   .section--inverse + .section--inverse,
-  main:has(> .section:not(.section--subtle, .section--accent, .section--inverse):last-child) + .section:not(.section--subtle, .section--accent, .section--inverse),
+  main:has(> .section:not(.section--sunken, .section--subtle, .section--accent, .section--inverse):last-child) + .section:not(.section--sunken, .section--subtle, .section--accent, .section--inverse),
+  main:has(> .section--sunken:last-child) + .section--sunken,
   main:has(> .section--subtle:last-child) + .section--subtle,
   main:has(> .section--accent:last-child) + .section--accent,
   main:has(> .section--inverse:last-child) + .section--inverse

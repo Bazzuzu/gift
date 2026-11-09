@@ -1,0 +1,16 @@
+/* Date field — a button field that opens the calendar (Figma: BCDS – Token Studio, date input, node 141:2652; #94).
+   Built on .input: label on the border line, sizes (md | .input--lg), button field (.input__value), focus. Dates use
+   the strong border.
+   One date: <div class="input input--strong [input--lg] date">
+               <span class="input__label" id="id-label">Departure</span>
+               <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-id"
+                       aria-labelledby="id-label id-value">
+                 <span class="input__value" id="id-value">Fri, Nov 20</span>
+                 <span class="input__icon icon icon--calendar" aria-hidden="true"></span>
+               </button>
+             </div>
+   Range:    <div class="input-pair" role="group" aria-label="Travel dates"> two .input.date without icon </div>
+   Accessibility (AGENTS.md «Доступность»): the name is the label and the value ("Departure Fri, Nov 20"); the field
+   opens the calendar dialog (calendar.css, date.js). Semantic tokens only (#82). */
+
+.date .input__icon { background-color: var(--color-icon-secondary); } /* Figma: 64% */
