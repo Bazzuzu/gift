@@ -10,7 +10,10 @@
                <a class="button deals__more" href> More Deals </a>
              </div>
            </section>
-   The background — .section (#155). Semantic tokens only (#82). */
+   The background — .section (#155).
+   Mobile (#183; Figma: Consolidator page, mobile, Deals Cards Section – Mobile, node 133:8984): no back and next — the
+   row is swiped, the next card shows at the edge; the tabs scroll sideways; the parts space.section.gap.md apart.
+   Tablet — the desktop layout (BACKLOG.md). Semantic tokens only (#82). */
 
 .deals {
   display: flex;
@@ -28,3 +31,7 @@
 }
 .deals__inner > * { width: 100%; }
 .deals__inner > .deals__more { width: var(--size-container-width-240); }
+
+/* Mobile (#183): the row is swiped — the buttons on its edges would also stick out of the screen. */
+[data-breakpoint="mobile"] .deals__inner { gap: var(--space-section-gap-md); }
+[data-breakpoint="mobile"] .deals .carousel-frame__steps { display: none; }
