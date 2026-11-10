@@ -15,8 +15,12 @@
                <ul class="footer__badges" aria-label="Accreditations"> <li> badge </li> … </ul>
              </div>
            </footer>
-   The group titles are written in normal case, CSS shows them in capitals. Desktop only; tablet and mobile — after the
-   design (BACKLOG.md). Semantic tokens only (#82). */
+   The group titles are written in normal case, CSS shows them in capitals.
+   Mobile (#184; Figma: Consolidator page, mobile, Mobile/Footer, node 137:9193) — one column, centered: the logo and the
+   legal name over a line, the link groups one under another, social media; the terms on the left, the badges in the
+   middle. The parts space.container.gap.xl apart, the rows space.section.gap.lg (both 32, as in Figma); the links
+   space.container.gap.sm; padding space.section.py.md at the top, .py.lg at the bottom. Tablet — the desktop layout
+   (BACKLOG.md). Semantic tokens only (#82). */
 
 .footer {
   display: flex;
@@ -137,3 +141,27 @@
 .footer__badges li { display: flex; }
 .footer__badges img { display: block; width: auto; height: var(--size-icon-xl); }
 .footer__badges .icon { display: block; width: var(--size-icon-xl); height: var(--size-icon-xl); color: var(--color-icon-inverse-primary); }
+
+/* Mobile (#184): one column, centered. */
+[data-breakpoint="mobile"] .footer { padding-top: var(--space-section-py-md); padding-bottom: var(--space-section-py-lg); }
+[data-breakpoint="mobile"] .footer__inner { gap: var(--space-section-gap-lg); }
+[data-breakpoint="mobile"] .footer__top {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: var(--space-container-gap-xl);
+  text-align: center;
+}
+/* The logo and the legal name over a line, as wide as the content. */
+[data-breakpoint="mobile"] .footer__brand {
+  justify-self: stretch;
+  align-items: center;
+  gap: var(--space-container-gap-xs);
+  padding-bottom: var(--space-container-gap-xl);
+  border-bottom: var(--size-border-default) solid var(--color-border-inverse-default);
+}
+[data-breakpoint="mobile"] .footer__nav { flex-direction: column; align-items: center; gap: var(--space-container-gap-xl); }
+[data-breakpoint="mobile"] .footer__group { align-items: center; }
+[data-breakpoint="mobile"] .footer__links { align-items: center; gap: var(--space-container-gap-sm); }
+[data-breakpoint="mobile"] .footer__media { align-items: center; text-align: center; }
+[data-breakpoint="mobile"] .footer__social { justify-content: center; gap: var(--space-container-gap-xl); }
+[data-breakpoint="mobile"] .footer__badges { flex-wrap: wrap; }

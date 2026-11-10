@@ -7,7 +7,9 @@
                <div class="faq__columns"> <div class="faq__column"> .accordion × 4 </div> <div class="faq__column"> … </div> </div>
              </div>
            </section>
-   Desktop only; tablet and mobile — after the design (BACKLOG.md). The background — .section (#155). Semantic tokens only (#82). */
+   Mobile (#184; Figma: Consolidator page, mobile, node 135:9406) — one column: the first column, then the second, as
+   in the markup, with a divider between them too. Tablet — the desktop layout (BACKLOG.md). The background — .section
+   (#155). Semantic tokens only (#82). */
 
 .faq {
   display: flex;
@@ -26,4 +28,12 @@
   grid-template-columns: 1fr 1fr;
   align-items: start;
   gap: var(--space-container-gap-xl);
+}
+
+/* Mobile (#184): one column; the first question of the second column gets the divider of the list (accordion.css). */
+[data-breakpoint="mobile"] .faq__columns { grid-template-columns: 1fr; gap: 0; }
+[data-breakpoint="mobile"] .faq__column + .faq__column > .accordion:first-child {
+  margin-top: var(--space-component-gap-2xl);
+  padding-top: var(--space-container-gap-md);
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
 }
