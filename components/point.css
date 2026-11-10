@@ -7,6 +7,8 @@
    Centered — .point--center (Figma: Consolidator page, Minor components, node 42:10983; #168): the icon over the
    text, both centered, space.component.gap.xl apart; a light box — color.bg.surface.subtle inside a
    size.border.default line color.border.subtlest, the icon color.icon.secondary; the heading group gets --center.
+   Mobile: the box beside the text — space.component.px.sm around the icon (#182); centered — the icon over the text,
+   on the left (#180).
    Markup: <li class="point [point--inverse | point--center]">   or <article aria-labelledby>
              <span class="point__icon"><span class="icon icon--counter-1" aria-hidden="true"></span></span>
              <hgroup class="heading-group heading-group--xs [heading-group--inverse]">
@@ -45,6 +47,9 @@
 /* Mobile (#180): the icon still over the text, both on the left — the section sets its heading groups to the left too
    (points.css). */
 [data-breakpoint="mobile"] .point--center { align-items: flex-start; }
+/* Mobile (#182; Figma: Consolidator page, mobile, How to Book): the box beside the text is smaller —
+   space.component.px.sm around the icon. */
+[data-breakpoint="mobile"] .point:not(.point--center) .point__icon { padding: var(--space-component-px-sm); }
 
 /* Accessibility: forced colors drop the background — the icon box gets a border, the mask a system color. */
 @media (forced-colors: active) {

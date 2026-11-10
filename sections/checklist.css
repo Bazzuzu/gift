@@ -7,7 +7,11 @@
    corners and the cut around the large one (from Figma, stored upright).
    Markup: <section class="section section--inverse checklist" aria-labelledby="title">
              <div class="checklist__inner">
-               <div class="checklist__collage"> <img class="checklist__small" alt=""> <img class="checklist__large" alt=""> </div>
+               <div class="checklist__collage">
+                 <img class="checklist__small" alt="" loading="lazy">
+                 <img class="checklist__small checklist__small--mobile" alt="" loading="lazy">
+                 <img class="checklist__large" alt="">
+               </div>
                <div class="checklist__text">
                  <hgroup class="heading-group heading-group--lg heading-group--inverse"> heading, text </hgroup>
                  <ul class="checklist__list"> <li><hgroup class="heading-group heading-group--xs heading-group--inverse"> … </hgroup></li> × 6 </ul>
@@ -15,8 +19,13 @@
              </div>
            </section>
    The items go row by row: two in a row, space.container.gap.lg apart. On a light section — the heading groups
-   without --inverse. Desktop only; tablet and mobile — after the design (BACKLOG.md). The background — .section
-   (#155). Semantic tokens only (#82). */
+   without --inverse. The background — .section (#155).
+   Mobile (#182; Figma: Consolidator page, mobile, Inverse, What to check, node 130:25736) — one column,
+   space.section.gap.md apart: the collage, the heading group, the list (still two columns). The collage is the whole
+   width: the small photo size.container.height.200 — its own picture (.checklist__small--mobile: the cut fits the
+   large photo, which starts at size.container.width.120 here); the large one — a square to the bottom right corner.
+   The picture of the other screen is display: none and lazy, so it is not downloaded. Tablet — the desktop layout
+   (BACKLOG.md). Semantic tokens only (#82). */
 
 .checklist {
   display: flex;
@@ -57,4 +66,21 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* Mobile (#182): one column; the small photo — its own picture, the large one — a square to the bottom right. */
+.checklist__small--mobile { display: none; }
+[data-breakpoint="mobile"] .checklist__inner { grid-auto-flow: row; gap: var(--space-section-gap-md); }
+[data-breakpoint="mobile"] .checklist__small:not(.checklist__small--mobile) { display: none; }
+[data-breakpoint="mobile"] .checklist__small--mobile {
+  display: block;
+  width: auto;
+  height: var(--size-container-height-200);
+  aspect-ratio: var(--size-media-1x1); /* holds its place before the lazy picture loads */
+}
+[data-breakpoint="mobile"] .checklist__large {
+  inset: auto 0 0 auto;
+  width: calc(100% - var(--size-container-width-120));
+  height: auto;
+  aspect-ratio: var(--size-media-1x1);
 }

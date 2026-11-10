@@ -8,11 +8,12 @@
              </div>
            </section>
    On a light section — the point and the heading group without --inverse. The background — .section (#155).
-   Mobile — centered points (.point--center, Why Book; Figma: Consolidator page, mobile, Minor components, node
-   129:14341; #180): one column in a shared frame, as the directory (#157): the list itself is the frame — the line
+   Mobile (#182; Figma: Consolidator page, mobile, Inverse, How to Book, node 130:25522) — the points in one column,
+   space.container.gap.lg apart, the heading group on the left. Centered points (.point--center, Why Book; node
+   129:14341; #180) — in a shared frame, as the directory (#157): the list itself is the frame — the line
    size.border.default color.border.subtle, corners shape.card, padding space.container.py.md / px.md; between the
-   points a line color.border.subtle with space.container.gap.md above and below it; the heading groups on the left.
-   Other points sections and tablet — after the design (BACKLOG.md). Semantic tokens only (#82). */
+   points a line color.border.subtle with space.container.gap.md above and below it. Tablet — the desktop layout
+   (BACKLOG.md). Semantic tokens only (#82). */
 
 .points {
   display: flex;
@@ -36,9 +37,12 @@
   list-style: none;
 }
 
-/* Mobile, centered points (#180): one column in a frame with lines between the points; everything on the left. */
+/* Mobile (#182): the points in one column, the heading group on the left. */
+[data-breakpoint="mobile"] .points__list { grid-auto-flow: row; }
+[data-breakpoint="mobile"] .points .heading-group--center { align-items: flex-start; text-align: start; }
+
+/* Mobile, centered points (#180): a frame with lines between the points. */
 [data-breakpoint="mobile"] .points__list:has(> .point--center) {
-  grid-auto-flow: row;
   gap: var(--space-container-gap-md);
   padding: var(--space-container-py-md) var(--space-container-px-md);
   border: var(--size-border-default) solid var(--color-border-subtle);
@@ -48,4 +52,3 @@
   padding-top: var(--space-container-gap-md);
   border-top: var(--size-border-default) solid var(--color-border-subtle);
 }
-[data-breakpoint="mobile"] .points:has(.point--center) .heading-group--center { align-items: flex-start; text-align: start; }
