@@ -3,7 +3,9 @@
      vh   — as now: 100vh, section.py.xl twice under the badges;
      svh  — the hero 100lvh (the photo goes under the panel), the badges 24 above the largest panel (100svh);
      dvh  — the hero 100lvh, the badges 24 above the panel as it is now (100dvh).
-   Lines: where the browser ends the screen for each unit. Raw values on purpose: this is a measuring tool. */
+   Lines: where the browser ends the screen for each unit. Raw values on purpose: this is a measuring tool.
+   No position: fixed here — Safari 26 draws its toolbar solid when a fixed element reaches the bottom edge, so the probes,
+   the lines and the readout are absolute at the top of the page: right while the page is not scrolled. */
 
 html[data-mode="svh"][data-breakpoint="mobile"] .hero--light {
   min-height: 100lvh;
@@ -14,18 +16,26 @@ html[data-mode="dvh"][data-breakpoint="mobile"] .hero--light {
   padding-bottom: calc(24px + 100lvh - 100dvh);
 }
 html:is([data-mode="svh"], [data-mode="dvh"])[data-breakpoint="mobile"] .hero--light .hero__body { padding-bottom: 0; }
+/* viewport-fit=cover: under the badges also the part the browser reports as covered (the larger of the two). */
+html[data-fit="cover"][data-mode="svh"][data-breakpoint="mobile"] .hero--light {
+  padding-bottom: calc(24px + max(100lvh - 100svh, env(safe-area-inset-bottom, 0px)));
+}
+html[data-fit="cover"][data-mode="dvh"][data-breakpoint="mobile"] .hero--light {
+  padding-bottom: calc(24px + max(100lvh - 100dvh, env(safe-area-inset-bottom, 0px)));
+}
 
 /* Probes: their heights are read by the script. */
-.vt-probe { position: fixed; top: 0; left: 0; width: 1px; visibility: hidden; pointer-events: none; }
+.vt-probe { position: absolute; top: 0; left: 0; width: 1px; visibility: hidden; pointer-events: none; }
 .vt-probe--lvh { height: 100lvh; }
 .vt-probe--svh { height: 100svh; }
 .vt-probe--dvh { height: 100dvh; }
 .vt-probe--vh { height: 100vh; }
 .vt-probe--safe { height: env(safe-area-inset-bottom, 0px); }
 
-/* Lines at the bottom of each unit; a line hidden under the panel means the unit does not count the panel. */
+/* Lines at the bottom of each unit (at the top of the page); a line hidden under the panel means the unit does not
+   count the panel. */
 .vt-line {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;
@@ -51,9 +61,9 @@ html:is([data-mode="svh"], [data-mode="dvh"])[data-breakpoint="mobile"] .hero--l
 .vt-line--lvh span { right: 92px; }
 html[data-lines="off"] .vt-line { display: none; }
 
-/* The readout: in the empty sky of the hero, stays on the screen while scrolling. */
+/* The readout: in the empty sky of the hero; scrolls with the page, the numbers keep updating. */
 .vt-panel {
-  position: fixed;
+  position: absolute;
   top: 96px;
   right: 8px;
   left: 8px;
@@ -80,6 +90,16 @@ html[data-lines="off"] .vt-line { display: none; }
   font: inherit;
 }
 .vt-row button[aria-pressed="true"] { border-color: #111; background: #111; color: #fff; }
+.vt-fit {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #1e6fd9;
+  border-radius: 16px;
+  color: #1e6fd9;
+  text-decoration: none;
+}
 html[data-panel="min"] .vt-data { display: none; }
 
 /* Room to scroll: the panel of the browser collapses and comes back. */

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-fit="auto">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,7 +146,8 @@
   <section class="section vt-filler" aria-label="Room to scroll">
     <p><b>Viewport test.</b> Scroll down and back up: the browser panel collapses and comes back. The badges should stay 24 px above the panel; the readout shows what the browser reports.</p>
     <p><b>vh</b> — as now on the Consolidator page: 100vh and 96 px under the badges. <b>svh</b> — the hero goes under the panel, the badges 24 px above the largest panel. <b>dvh</b> — the badges 24 px above the panel as it is now.</p>
-    <p>Lines: <b>red</b> — the bottom of 100dvh, <b>blue dashed</b> — 100svh, <b>green dotted</b> — 100lvh. A line hidden under the browser panel means that unit does not count the panel.</p>
+    <p><b>fit</b> — the viewport of the page: <b>auto</b> as the site now, <b>cover</b> with viewport-fit=cover: the page goes under the browser panel, the covered part comes as env(safe-area-inset-bottom) and is added under the badges.</p>
+    <p>Lines: <b>red</b> — the bottom of 100dvh, <b>blue dashed</b> — 100svh, <b>green dotted</b> — 100lvh. A line hidden under the browser panel means that unit does not count the panel. The lines and the readout stand at the top of the page (nothing is fixed to the screen, so the browser draws its panel as on any page): read them with the page scrolled to the top.</p>
   </section>
 </main>
 
@@ -162,6 +163,7 @@
     <button type="button" data-set-mode="dvh" aria-pressed="true">dvh</button>
     <button type="button" data-toggle="lines" aria-pressed="true">Lines</button>
     <button type="button" data-toggle="panel" aria-pressed="true">Numbers</button>
+    <a class="vt-fit" href="viewport-cover">fit: auto → cover</a>
   </div>
   <div class="vt-data" aria-live="off"></div>
 </div>

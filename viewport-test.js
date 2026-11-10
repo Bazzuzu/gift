@@ -16,7 +16,8 @@ function update() {
     `<p><b>panel now</b> (lvh − dvh) ${r(lvh - dvh)} · <b>panel max</b> (lvh − svh) ${r(lvh - svh)}</p>`,
     `<p><b>innerHeight</b> ${r(innerHeight)} · <b>visualViewport</b> ${vv ? r(vv.height) : '—'} · <b>safe-area</b> ${r(safe)}</p>`,
     `<p><b>badges above</b> dvh ${r(dvh - bottom)} · svh ${r(svh - bottom)} · lvh ${r(lvh - bottom)}</p>`,
-    `<p><b>scrollY</b> ${r(scrollY)} · ${html.dataset.breakpoint} · ${innerWidth} wide</p>`,
+    `<p><b>hero bottom</b> ${r(document.querySelector('.hero').getBoundingClientRect().bottom)} · <b>screen</b> ${screen.height} · <b>clientHeight</b> ${html.clientHeight}</p>`,
+    `<p><b>fit</b> ${html.dataset.fit} · <b>scrollY</b> ${r(scrollY)} · ${html.dataset.breakpoint} · ${innerWidth} wide</p>`,
   ].join('');
 }
 
@@ -26,6 +27,8 @@ function setMode(mode) {
   const url = new URL(location.href);
   url.searchParams.set('mode', html.dataset.mode);
   history.replaceState(null, '', url);
+  const fit = document.querySelector('.vt-fit');
+  if (fit) fit.href = `${fit.getAttribute('href').split('?')[0]}?mode=${html.dataset.mode}`;
   requestAnimationFrame(update);
 }
 
