@@ -14,9 +14,10 @@
    With contacts — .search-form--contact (Figma: Consolidator page, Hero, Full, node 2:8440; #167): a request for a
    price, not a search — <form class="search-form search-form--contact" aria-label="Get a price quote" novalidate>
    without role="search". The route side by side (md, swap-horiz), the dates md; then Name*, Email* and Phone number*
-   md, as in the contact form (#118), every field with the strong border; the cta "Get My Quote" with chevron-right.
-   The required fields are checked on send as in the contact form (contact-form.js).
-   Not built yet: the "or" divider with the Call Us block, the Edit search request variant (BACKLOG.md).
+   md, as in the contact form (#118), every field with the strong border; the cta "Get My Quote" with chevron-right — md
+   (#185); under it "or" and the call link (.call-deals, call-deals.css; #185). The required fields are checked on send
+   as in the contact form (contact-form.js). In the mobile panel the fields are lg (#185).
+   Not built yet: the Edit search request variant (BACKLOG.md).
    Semantic tokens only (#82). */
 
 .search-form {
@@ -43,28 +44,18 @@
 
 /* In a dialog (#174): the form of the mobile Consolidator hero opens in a bottom panel — the shared modal (#102), on
    mobile full width at the bottom (#96). The dialog is the card: the form keeps its padding and drops its shadow;
-   above it — the title (typography.title.lg) and the close button (icon-secondary sm) in a row, the form's padding
-   from the edges. Elsewhere the dialog is size.container.width.480 wide.
-   Markup: <dialog class="modal search-dialog" id="quote-dialog" aria-labelledby="quote-dialog-title">
-             <div class="search-dialog__header"><h2 class="search-dialog__title" id="quote-dialog-title">Check Your Price</h2>
+   above it — the close button (icon-secondary sm) on the right, the form's padding from the edges; no visible title
+   (#185): the dialog is named by aria-label. Elsewhere the dialog is size.container.width.480 wide.
+   Markup: <dialog class="modal search-dialog" id="quote-dialog" aria-label="Check Your Price">
+             <div class="search-dialog__header">
                <button class="button button--sm button--secondary modal__close" type="button" aria-label="Close"> close icon </button></div>
              <form class="search-form search-form--contact" aria-label="Get a price quote" novalidate> … </form>
            </dialog> */
 .search-dialog { width: var(--size-container-width-480); overflow-y: auto; } /* a low screen scrolls the panel */
 .search-dialog__header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-component-gap-md);
+  justify-content: flex-end;
   padding: var(--space-component-py-xl) var(--space-component-px-xl) 0;
-}
-.search-dialog__title {
-  margin: 0;
-  font-family: var(--typography-title-lg-font-family);
-  font-size: var(--typography-title-lg-font-size);
-  font-weight: var(--typography-title-lg-font-weight);
-  line-height: var(--typography-title-lg-line-height);
-  letter-spacing: var(--typography-title-lg-letter-spacing);
 }
 .search-dialog .search-form { max-width: none; box-shadow: none; }
 

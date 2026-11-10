@@ -1,0 +1,101 @@
+/* Call deals — "or" and a call link under a form: a phone number with a reason to call (Figma: Consolidator page, Hero,
+   Full, Divider OR and Call deals button, node 2:8440; #185). The form's other way to a price: instead of filling the
+   fields, call an agent.
+   "or" — label.lg color.text.secondary between two dashed lines color.border.default, space.component.gap.lg apart.
+   The link — a pill (shape.button) color.bg.surface.positive in a size.border.default line color.border.positive,
+   padding space.component.py.xs / px.xs, the parts space.component.gap.lg apart: the agent's photo (round,
+   size.avatar.md), the text — the number typography.title.md and the reason body.md, color.text.primary; a line
+   color.border.positive size.icon.lg tall; the phone icon call size.icon.md color.icon.positive with
+   space.component.px.xs around it. As wide as its content, centered.
+   Markup: <div class="call-deals">
+             <p class="call-deals__or">or</p>
+             <a class="call-deals__link" href="tel:+18883157838">
+               <img class="call-deals__photo" src="images/agent-call.jpg" alt="">
+               <span class="call-deals__text"><span class="call-deals__title">Call Us 888-315-7838</span>
+                 <span class="call-deals__note">for an exclusive discount</span></span>
+               <span class="call-deals__divider" aria-hidden="true"></span>
+               <span class="call-deals__call"><span class="icon icon--call" aria-hidden="true"></span></span>
+             </a>
+           </div>
+   The link's name is its text: "Call Us 888-315-7838 for an exclusive discount". The photo is decorative. Hover and
+   pressed — not in the design yet (BACKLOG.md). Semantic tokens only (#82). */
+
+.call-deals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-component-gap-xl);
+}
+
+/* "or" between two dashed lines. */
+.call-deals__or {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  gap: var(--space-component-gap-lg);
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-label-lg-font-family);
+  font-size: var(--typography-label-lg-font-size);
+  font-weight: var(--typography-label-lg-font-weight);
+  line-height: var(--typography-label-lg-line-height);
+  letter-spacing: var(--typography-label-lg-letter-spacing);
+}
+.call-deals__or::before, .call-deals__or::after {
+  content: "";
+  flex: auto;
+  border-top: var(--size-border-default) dashed var(--color-border-default);
+}
+
+.call-deals__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-lg);
+  padding: var(--space-component-py-xs) var(--space-component-px-xs);
+  border: var(--size-border-default) solid var(--color-border-positive);
+  border-radius: var(--shape-button);
+  background: var(--color-bg-surface-positive);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.call-deals__link:focus-visible {
+  outline: var(--size-focus-ring-width) solid var(--color-border-focus);
+  outline-offset: var(--size-focus-ring-offset);
+}
+
+.call-deals__photo {
+  flex: none;
+  width: var(--size-avatar-md); /* MISSING: Figma 40 — the avatar scale has 32 and 48 (BACKLOG.md) */
+  height: var(--size-avatar-md);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.call-deals__text { display: flex; flex-direction: column; }
+.call-deals__title {
+  font-family: var(--typography-title-md-font-family);
+  font-size: var(--typography-title-md-font-size);
+  font-weight: var(--typography-title-md-font-weight);
+  line-height: var(--typography-title-md-line-height);
+  letter-spacing: var(--typography-title-md-letter-spacing);
+}
+.call-deals__note {
+  font-family: var(--typography-body-md-font-family);
+  font-size: var(--typography-body-md-font-size);
+  font-weight: var(--typography-body-md-font-weight);
+  line-height: var(--typography-body-md-line-height);
+  letter-spacing: var(--typography-body-md-letter-spacing);
+}
+
+.call-deals__divider {
+  flex: none;
+  height: var(--size-icon-lg);
+  border-left: var(--size-border-default) solid var(--color-border-positive);
+}
+.call-deals__call { display: flex; padding: var(--space-component-px-xs); color: var(--color-icon-positive); }
+.call-deals__call .icon { width: var(--size-icon-md); height: var(--size-icon-md); }
+
+/* Accessibility: forced colors drop the background — the line stays; the icon mask gets a system color. */
+@media (forced-colors: active) {
+  .call-deals__call .icon { forced-color-adjust: none; background-color: LinkText; }
+}
