@@ -1,0 +1,91 @@
+/* Viewport test (not a part of the design system): how the browser panels of a phone change the screen height.
+   The hero of the Consolidator page in three modes — html[data-mode]:
+     vh   — as now: 100vh, section.py.xl twice under the badges;
+     svh  — the hero 100lvh (the photo goes under the panel), the badges 24 above the largest panel (100svh);
+     dvh  — the hero 100lvh, the badges 24 above the panel as it is now (100dvh).
+   Lines: where the browser ends the screen for each unit. Raw values on purpose: this is a measuring tool. */
+
+html[data-mode="svh"][data-breakpoint="mobile"] .hero--light {
+  min-height: 100lvh;
+  padding-bottom: calc(24px + 100lvh - 100svh);
+}
+html[data-mode="dvh"][data-breakpoint="mobile"] .hero--light {
+  min-height: 100lvh;
+  padding-bottom: calc(24px + 100lvh - 100dvh);
+}
+html:is([data-mode="svh"], [data-mode="dvh"])[data-breakpoint="mobile"] .hero--light .hero__body { padding-bottom: 0; }
+
+/* Probes: their heights are read by the script. */
+.vt-probe { position: fixed; top: 0; left: 0; width: 1px; visibility: hidden; pointer-events: none; }
+.vt-probe--lvh { height: 100lvh; }
+.vt-probe--svh { height: 100svh; }
+.vt-probe--dvh { height: 100dvh; }
+.vt-probe--vh { height: 100vh; }
+.vt-probe--safe { height: env(safe-area-inset-bottom, 0px); }
+
+/* Lines at the bottom of each unit; a line hidden under the panel means the unit does not count the panel. */
+.vt-line {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 2px solid;
+  pointer-events: none;
+}
+.vt-line span {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: currentColor;
+  font: 600 11px/16px ui-monospace, Menlo, monospace;
+}
+.vt-line span::before { content: attr(data-label); color: #fff; }
+.vt-line--dvh { height: 100dvh; color: #e5383b; }
+.vt-line--svh { height: 100svh; color: #1e6fd9; border-bottom-style: dashed; }
+.vt-line--lvh { height: 100lvh; color: #1a9c48; border-bottom-style: dotted; }
+.vt-line--dvh span { right: 4px; }
+.vt-line--svh span { right: 48px; }
+.vt-line--lvh span { right: 92px; }
+html[data-lines="off"] .vt-line { display: none; }
+
+/* The readout: in the empty sky of the hero, stays on the screen while scrolling. */
+.vt-panel {
+  position: fixed;
+  top: 96px;
+  right: 8px;
+  left: 8px;
+  z-index: 11;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+  color: #111;
+  font: 12px/18px ui-monospace, Menlo, monospace;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.vt-panel p { margin: 0; }
+.vt-panel b { font-weight: 700; }
+.vt-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.vt-row button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 16px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+}
+.vt-row button[aria-pressed="true"] { border-color: #111; background: #111; color: #fff; }
+html[data-panel="min"] .vt-data { display: none; }
+
+/* Room to scroll: the panel of the browser collapses and comes back. */
+.vt-filler {
+  min-height: 160vh;
+  padding: 24px 16px;
+  font: 16px/24px system-ui, sans-serif;
+}
+.vt-filler p { max-width: 36em; margin: 0 0 12px; }

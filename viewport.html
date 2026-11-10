@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Viewport test — Business Class</title>
+  <!-- Viewport test: the Consolidator hero and how the browser panels of a phone change 100lvh / 100svh / 100dvh. Not a part of the design system. -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="icons/icons.css">
+  <link rel="stylesheet" href="components/button.css">
+  <link rel="stylesheet" href="components/dropdown.css">
+  <link rel="stylesheet" href="components/input.css">
+  <link rel="stylesheet" href="components/modal.css">
+  <link rel="stylesheet" href="components/menu.css">
+  <link rel="stylesheet" href="components/date.css">
+  <link rel="stylesheet" href="components/calendar.css">
+  <link rel="stylesheet" href="components/route.css">
+  <link rel="stylesheet" href="components/airport.css">
+  <link rel="stylesheet" href="components/phone.css">
+  <link rel="stylesheet" href="components/travelers.css">
+  <link rel="stylesheet" href="components/search-form.css">
+  <link rel="stylesheet" href="components/heading-group.css">
+  <link rel="stylesheet" href="components/tag.css">
+  <link rel="stylesheet" href="components/card.css">
+  <link rel="stylesheet" href="components/accordion.css">
+  <link rel="stylesheet" href="components/point.css">
+  <link rel="stylesheet" href="components/tabs.css">
+  <link rel="stylesheet" href="components/carousel.css">
+  <link rel="stylesheet" href="sections/section.css">
+  <link rel="stylesheet" href="sections/hero.css">
+  <link rel="stylesheet" href="sections/points.css">
+  <link rel="stylesheet" href="sections/advantages.css">
+  <link rel="stylesheet" href="sections/checklist.css">
+  <link rel="stylesheet" href="sections/deals.css">
+  <link rel="stylesheet" href="sections/faq.css">
+  <link rel="stylesheet" href="sections/footer.css">
+  <link rel="stylesheet" href="viewport-test.css">
+</head>
+<body>
+
+<main>
+  <!-- Consolidator Hero -->
+  <section class="hero hero--light" aria-labelledby="consolidator-hero-title">
+    <div class="hero__media"><img class="hero__photo" src="images/consolidator-hero.jpg" alt="" loading="lazy"><img class="hero__photo hero__photo--mobile" src="images/consolidator-hero-mobile.jpg" alt="" loading="lazy"></div>
+    <div class="hero__inner">
+      <header class="hero__header">
+        <a class="hero__logo" href="#examples"><img class="hero__logo-full" src="images/logo-business-class-color.svg" alt="Business Class"><span class="hero__logo-compact"><img src="images/logo-business-class-sign-dark.svg" alt="Business Class"><img src="images/logo-business-class-text-dark.svg" alt=""></span></a>
+        <div class="hero__actions">
+          <button class="dropdown dropdown--currency" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency: USD" popovertarget="dropdown-currency" data-value="USD" data-name="Currency"><span class="dropdown__label">USD</span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+          <button class="dropdown dropdown--phone" type="button" aria-haspopup="menu" aria-expanded="false" popovertarget="dropdown-call"><span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span> <span class="dropdown__value">+1 888-315-7838</span></span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+          <a class="dropdown dropdown--call hero__call" href="tel:+18883157838" aria-label="24/7 Phone Deals: call +1 888-315-7838"><span class="dropdown__label">24/7 Phone Deals</span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--call" aria-hidden="true"></span></a>
+          <button class="button" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
+          <button class="button button--sm button--glass button--blur-default hero__menu-compact" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
+        </div>
+      </header>
+      <div class="hero__body">
+        <div class="hero__text">
+          <h1 class="hero__title" id="consolidator-hero-title">Business Class Consolidator Fares</h1>
+          <hr class="hero__divider">
+          <p class="hero__lead">The same premium cabin, a better price. Business class consolidator fares offer wholesale rates with 15–60% savings on select Business and First Class flights.</p>
+          <button class="button button--lg button--shadow-md hero__cta" type="button" aria-haspopup="dialog" aria-controls="quote-dialog"><span class="button__label">Check Your Price</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+          <hr class="hero__divider">
+          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> <span>12,044 reviews</span> <span>on</span> <img class="hero__trustpilot" src="images/trustpilot-logo-on-light.svg" alt="Trustpilot"></p>
+          <ul class="hero__badges" aria-label="Accreditations">
+            <li><img src="images/badge-iata-on-light.svg" alt="IATA"></li>
+            <li><img src="images/badge-iatan-on-light.svg" alt="IATAN"></li>
+            <li><img src="images/badge-arc-on-light.svg" alt="ARC"></li>
+            <li><img src="images/badge-bbb-on-light.svg" alt="BBB A+ Accredited Business"></li>
+          </ul>
+        </div>
+        <div class="hero__form">
+          <form class="search-form search-form--contact" aria-label="Get a price quote" novalidate>
+            <div class="search-form__settings">
+              <button class="dropdown dropdown--small" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Trip type: Round-trip" popovertarget="dropdown-trip" data-value="RT" data-name="Trip type"><span class="dropdown__label">Round-trip</span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+              <button class="dropdown dropdown--small travelers-dropdown" type="button" aria-haspopup="dialog" aria-controls="travelers" aria-label="Travelers and class: Business / 1 Traveler" data-adults="1" data-children="0" data-infants="0" data-class="Business"><span class="dropdown__label">Business / 1 Traveler</span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="input-pair route" role="group" aria-label="Route">
+              <div class="input input--strong">
+                <span class="input__label" id="quote-from-label">From</span>
+                <button class="input__field route__field" type="button" aria-haspopup="dialog" aria-controls="airport-search" aria-labelledby="quote-from-label quote-from-value" data-kind="from" data-value="New York (NYC)" data-placeholder="Airport or city">
+                  <span class="input__value" id="quote-from-value">New York (NYC)</span>
+                </button>
+              </div>
+              <button class="route__swap" type="button" aria-label="Swap departure and destination"><span class="icon icon--swap-horiz" aria-hidden="true"></span></button>
+              <div class="input input--strong">
+                <span class="input__label" id="quote-to-label">To</span>
+                <button class="input__field route__field" type="button" aria-haspopup="dialog" aria-controls="airport-search" aria-labelledby="quote-to-label quote-to-value" data-kind="to" data-value="London (LHR)" data-placeholder="Airport or city">
+                  <span class="input__value" id="quote-to-value">London (LHR)</span>
+                </button>
+              </div>
+            </div>
+            <div class="input-pair search-form__dates" role="group" aria-label="Travel dates">
+              <div class="input input--strong date">
+                <span class="input__label" id="quote-departure-label">Departure</span>
+                <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-range" aria-labelledby="quote-departure-label quote-departure-value">
+                  <span class="input__value" id="quote-departure-value">Fri, Nov 20</span>
+                </button>
+              </div>
+              <div class="input input--strong date">
+                <span class="input__label" id="quote-return-label">Return</span>
+                <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-range" aria-labelledby="quote-return-label quote-return-value">
+                  <span class="input__value" id="quote-return-value">Wed, Nov 25</span>
+                </button>
+              </div>
+            </div>
+            <div class="input input--strong date search-form__date" hidden>
+              <span class="input__label" id="quote-date-label">Departure</span>
+              <button class="input__field" type="button" aria-haspopup="dialog" aria-controls="calendar-single" aria-labelledby="quote-date-label quote-date-value">
+                <span class="input__value" id="quote-date-value">Fri, Nov 20</span>
+                <span class="input__icon icon icon--calendar" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="input input--strong">
+              <label class="input__label" for="quote-name">Name<span aria-hidden="true">*</span></label>
+              <div class="input__field">
+                <input class="input__control" type="text" id="quote-name" name="name" autocomplete="name" placeholder="Your name" required>
+              </div>
+            </div>
+            <div class="input input--strong">
+              <label class="input__label" for="quote-email">Email<span aria-hidden="true">*</span></label>
+              <div class="input__field">
+                <input class="input__control" type="email" id="quote-email" name="email" autocomplete="email" placeholder="Contact email" required>
+              </div>
+            </div>
+            <div class="input input--strong phone" data-country="US">
+              <label class="input__label" for="quote-phone">Phone number<span aria-hidden="true">*</span></label>
+              <div class="input__field">
+                <button class="phone__country" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code: United States, +1" popovertarget="phone-countries" data-value="US">
+                  <img class="phone__flag" src="flags/us.svg" alt="">
+                  <span class="phone__code">+1</span>
+                  <span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span>
+                </button>
+                <span class="phone__divider" aria-hidden="true"></span>
+                <input class="input__control phone__number" type="tel" id="quote-phone" name="phone" autocomplete="tel-national" placeholder="XXX XXX XXXX" required>
+              </div>
+            </div>
+            <button class="button button--lg button--shadow-md search-form__submit" type="submit"><span class="button__label">Get My Quote</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section vt-filler" aria-label="Room to scroll">
+    <p><b>Viewport test.</b> Scroll down and back up: the browser panel collapses and comes back. The badges should stay 24 px above the panel; the readout shows what the browser reports.</p>
+    <p><b>vh</b> — as now on the Consolidator page: 100vh and 96 px under the badges. <b>svh</b> — the hero goes under the panel, the badges 24 px above the largest panel. <b>dvh</b> — the badges 24 px above the panel as it is now.</p>
+    <p>Lines: <b>red</b> — the bottom of 100dvh, <b>blue dashed</b> — 100svh, <b>green dotted</b> — 100lvh. A line hidden under the browser panel means that unit does not count the panel.</p>
+  </section>
+</main>
+
+<div class="vt-probe vt-probe--lvh"></div><div class="vt-probe vt-probe--svh"></div><div class="vt-probe vt-probe--dvh"></div><div class="vt-probe vt-probe--vh"></div><div class="vt-probe vt-probe--safe"></div>
+<div class="vt-line vt-line--lvh" aria-hidden="true"><span data-label="lvh"></span></div>
+<div class="vt-line vt-line--svh" aria-hidden="true"><span data-label="svh"></span></div>
+<div class="vt-line vt-line--dvh" aria-hidden="true"><span data-label="dvh"></span></div>
+
+<div class="vt-panel" role="region" aria-label="Viewport readout">
+  <div class="vt-row">
+    <button type="button" data-set-mode="vh" aria-pressed="false">vh</button>
+    <button type="button" data-set-mode="svh" aria-pressed="false">svh</button>
+    <button type="button" data-set-mode="dvh" aria-pressed="true">dvh</button>
+    <button type="button" data-toggle="lines" aria-pressed="true">Lines</button>
+    <button type="button" data-toggle="panel" aria-pressed="true">Numbers</button>
+  </div>
+  <div class="vt-data" aria-live="off"></div>
+</div>
+
+  <script type="module" src="page.js"></script>
+  <script type="module" src="viewport-test.js"></script>
+</body>
+</html>
