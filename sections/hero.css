@@ -157,9 +157,16 @@
 
 /* No form on the screen: the header — the compact logo, the call link and the menu, space.container.gap.md apart; the
    text at the bottom of the screen — the title, the lead, the cta, a line (color.border.default), the rating and the
-   badges across the width, space.section.gap.md apart. Below the badges section.py.xl twice, as in Figma: the browser
-   toolbar of a phone covers the bottom of the screen. */
-[data-breakpoint="mobile"] .hero--light { padding-bottom: var(--space-section-py-xl); }
+   badges across the width, space.section.gap.md apart.
+   The height (#179): the badges stand space.section.gap.md above the browser panel at its largest (100svh — the panel
+   unfolded), and the hero goes space.section.bleed below the screen (100vh): its photo also fills the strip under the
+   glass panel of Safari 26 that no viewport unit reaches (58 px). Where there is no such strip (an opaque panel), the
+   photo just goes on below the screen. 100vh − 100svh is the height of the panel; svh, not dvh — the content does not
+   move when the panel folds. */
+[data-breakpoint="mobile"] .hero--light {
+  min-height: calc(100vh + var(--space-section-bleed));
+  padding-bottom: calc(var(--space-section-gap-md) + 100vh - 100svh + var(--space-section-bleed));
+}
 [data-breakpoint="mobile"] .hero--light .hero__photo:not(.hero__photo--mobile),
 [data-breakpoint="mobile"] .hero--light .hero__logo-full,
 [data-breakpoint="mobile"] .hero--light .hero__actions .dropdown:not(.hero__call),
@@ -179,7 +186,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: var(--space-section-py-xl) 0;
+  padding: var(--space-section-py-xl) 0 0;
 }
 [data-breakpoint="mobile"] .hero--light .hero__text { gap: 0; padding-left: 0; }
 [data-breakpoint="mobile"] .hero--light :is(.hero__title, .hero__lead, .hero__divider) { max-width: none; }

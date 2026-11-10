@@ -520,6 +520,7 @@
   --space-section-gap-lg: var(--spacing-32);
   --space-section-gap-xl: var(--spacing-40);
   --space-section-gap-2xl: var(--spacing-64);
+  --space-section-bleed: var(--spacing-64);
   --space-container-px-xs: var(--spacing-8);
   --space-container-px-sm: var(--spacing-12);
   --space-container-px-md: var(--spacing-16);
@@ -596,6 +597,7 @@
     --space-section-gap-lg: var(--spacing-32);
     --space-section-gap-xl: var(--spacing-40);
     --space-section-gap-2xl: var(--spacing-64);
+    --space-section-bleed: var(--spacing-64);
     --space-container-px-xs: var(--spacing-8);
     --space-container-px-sm: var(--spacing-12);
     --space-container-px-md: var(--spacing-16);
@@ -673,6 +675,7 @@
     --space-section-gap-lg: var(--spacing-64);
     --space-section-gap-xl: var(--spacing-80);
     --space-section-gap-2xl: var(--spacing-120);
+    --space-section-bleed: var(--spacing-64);
     --space-container-px-xs: var(--spacing-8);
     --space-container-px-sm: var(--spacing-16);
     --space-container-px-md: var(--spacing-24);
