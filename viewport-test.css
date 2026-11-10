@@ -7,21 +7,26 @@
    No position: fixed here — Safari 26 draws its toolbar solid when a fixed element reaches the bottom edge, so the probes,
    the lines and the readout are absolute at the top of the page: right while the page is not scrolled. */
 
+/* Bleed (?bleed=0|64|80): the hero goes this much below 100lvh, so its photo also fills the strip under the browser
+   panel that no unit reaches (Safari 26: 58 px); the same amount is added under the badges, so they stay in place. */
+html { --vt-bleed: 64px; }
+html[data-bleed="0"] { --vt-bleed: 0px; }
+html[data-bleed="80"] { --vt-bleed: 80px; }
 html[data-mode="svh"][data-breakpoint="mobile"] .hero--light {
-  min-height: 100lvh;
-  padding-bottom: calc(24px + 100lvh - 100svh);
+  min-height: calc(100lvh + var(--vt-bleed));
+  padding-bottom: calc(24px + 100lvh - 100svh + var(--vt-bleed));
 }
 html[data-mode="dvh"][data-breakpoint="mobile"] .hero--light {
-  min-height: 100lvh;
-  padding-bottom: calc(24px + 100lvh - 100dvh);
+  min-height: calc(100lvh + var(--vt-bleed));
+  padding-bottom: calc(24px + 100lvh - 100dvh + var(--vt-bleed));
 }
 html:is([data-mode="svh"], [data-mode="dvh"])[data-breakpoint="mobile"] .hero--light .hero__body { padding-bottom: 0; }
 /* viewport-fit=cover: under the badges also the part the browser reports as covered (the larger of the two). */
 html[data-fit="cover"][data-mode="svh"][data-breakpoint="mobile"] .hero--light {
-  padding-bottom: calc(24px + max(100lvh - 100svh, env(safe-area-inset-bottom, 0px)));
+  padding-bottom: calc(24px + max(100lvh - 100svh, env(safe-area-inset-bottom, 0px)) + var(--vt-bleed));
 }
 html[data-fit="cover"][data-mode="dvh"][data-breakpoint="mobile"] .hero--light {
-  padding-bottom: calc(24px + max(100lvh - 100dvh, env(safe-area-inset-bottom, 0px)));
+  padding-bottom: calc(24px + max(100lvh - 100dvh, env(safe-area-inset-bottom, 0px)) + var(--vt-bleed));
 }
 
 /* Probes: their heights are read by the script. */
