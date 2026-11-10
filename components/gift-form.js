@@ -167,3 +167,16 @@ document.addEventListener('input', (event) => {
   if (templateOf(control.name, digitsOf(control.value))) reformat(control, event);
   if (control.getAttribute('aria-invalid') === 'true' && !problem(control)) showError(control, '');
 });
+
+// The bottom panel (#186): the dialog is a transparent frame, the form is the card at its bottom. A click in the room
+// above the card reaches the dialog itself, inside its box — modal.js closes only outside the box, so the room closes
+// it here, as the overlay does. Only a press that also started in the room counts: a text selection may end there.
+let pressedRoom = false;
+document.addEventListener('pointerdown', (event) => {
+  pressedRoom = Boolean(event.target.matches?.('dialog.gift-dialog'));
+});
+document.addEventListener('click', (event) => {
+  if (pressedRoom && event.target.matches?.('dialog.gift-dialog')) event.target.close();
+  pressedRoom = false;
+});
+

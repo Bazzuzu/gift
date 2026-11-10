@@ -14,7 +14,8 @@
            </section>
    The text comes first in the markup (heading, then the form for screen readers); the grid shows the form on the left.
    The text column has no controls, so the Tab order still follows what a person sees.
-   Variants — .hero--gift-card (#157): the text on the left, the gift voucher form on the right, a darker scrim;
+   Variants — .hero--gift-card (#157): the text on the left, the gift voucher form on the right, a darker scrim; on
+   mobile (#186) — no form on the screen: the cta "Buy a Gift Card" opens it in a bottom panel (below);
    .hero--light (#166): a light photo with no scrim and dark text, the text on the left, the form on the right; on
    mobile (#174) — no form on the screen: the cta "Check Your Price" opens it in a bottom panel (below).
    Semantic tokens only (#82). */
@@ -145,70 +146,83 @@
 .hero--light .hero__divider { border-top-color: var(--color-border-subtle); }
 .hero--light .hero__logo:focus-visible { outline-color: var(--color-border-focus); }
 
-/* Light on mobile (Figma: Consolidator page, ATF, node 127:14168; #174, #178). The parts of the mobile screen are in
-   the markup and hidden elsewhere: the photo for a phone (.hero__photo--mobile — the wing at 50% over
-   color.bg.section.accent, one picture), the compact logo (sign and two-line text, dark, .hero__logo-compact), the call
-   link (dropdown--call, #175), the menu button icon-glass sm (.hero__menu-compact) and the cta "Check Your Price"
-   (.hero__cta) — it opens the form in a bottom panel (.modal.search-dialog, search-form.css). Tablet keeps the desktop
-   layout for now. Both photos are loading="lazy": the hidden one (display: none) is not downloaded (#177). */
+/* On mobile — the light hero (Figma: Consolidator page, ATF, node 127:14168; #174, #178) and the Gift Card hero
+   (Figma: Gift Card, ATF, node 57:9101; #186). The parts of the mobile screen are in the markup and hidden elsewhere: a
+   photo for a phone, if the hero has one (.hero__photo--mobile — Consolidator: the wing at 50% over
+   color.bg.section.accent, one picture; Gift Card keeps its photo, cropped to the screen), the compact logo (sign and
+   two-line text, .hero__logo-compact: dark on the light hero, white on Gift Card), the call link (dropdown--call,
+   #175), the menu button icon-glass sm (.hero__menu-compact) and the cta (.hero__cta) — it opens the form in a bottom
+   panel (Consolidator: .modal.search-dialog, search-form.css; Gift Card: .modal.gift-dialog, gift-form.css). Tablet
+   keeps the desktop layout for now. Both photos of the light hero are loading="lazy": the hidden one (display: none) is
+   not downloaded (#177). */
 .hero__photo--mobile, .hero__logo-compact, .hero__call, .hero__menu-compact, .hero__cta { display: none; }
 /* On a light photo the ring of the glass button is dark, as on every light surface. */
 .hero--light .button--glass { --button-focus: var(--color-border-focus); }
 
 /* No form on the screen: the header — the compact logo, the call link and the menu, space.container.gap.md apart; the
-   text at the bottom of the screen — the title, the lead, the cta, a line (color.border.default), the rating and the
-   badges across the width, space.section.gap.md apart.
+   text at the bottom of the screen; the rating and the badges across the width.
    The height (#179): the badges stand space.section.gap.md above the browser panel at its largest (100svh — the panel
    unfolded), and the hero goes space.section.bleed below the screen (100vh): its photo also fills the strip under the
    glass panel of Safari 26 that no viewport unit reaches (58 px). Where there is no such strip (an opaque panel), the
    photo just goes on below the screen. 100vh − 100svh is the height of the panel; svh, not dvh — the content does not
    move when the panel folds. */
-[data-breakpoint="mobile"] .hero--light {
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) {
   min-height: calc(100vh + var(--space-section-bleed));
   padding-bottom: calc(var(--space-section-gap-md) + 100vh - 100svh + var(--space-section-bleed));
 }
-[data-breakpoint="mobile"] .hero--light .hero__photo:not(.hero__photo--mobile),
-[data-breakpoint="mobile"] .hero--light .hero__logo-full,
-[data-breakpoint="mobile"] .hero--light .hero__actions .dropdown:not(.hero__call),
-[data-breakpoint="mobile"] .hero--light .hero__actions .button:not(.hero__menu-compact),
-[data-breakpoint="mobile"] .hero--light .hero__form,
-[data-breakpoint="mobile"] .hero--light .hero__title + .hero__divider { display: none; }
-[data-breakpoint="mobile"] .hero--light .hero__photo--mobile { display: block; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__media:has(.hero__photo--mobile) .hero__photo:not(.hero__photo--mobile),
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__logo-full,
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__actions .dropdown:not(.hero__call),
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__actions .button:not(.hero__menu-compact),
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__form,
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__title + .hero__divider,
+[data-breakpoint="mobile"] .hero--gift-card .hero__title br { display: none; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__photo--mobile { display: block; }
 /* Narrower than the Figma frame (402) the logo scales down — both pictures by the same share, keeping their shape;
    the call link and the menu keep their size. */
-[data-breakpoint="mobile"] .hero--light .hero__header { gap: var(--space-component-gap-sm); }
-[data-breakpoint="mobile"] .hero--light :is(.hero__logo, .hero__logo-compact, .hero__logo-compact img) { min-width: 0; }
-[data-breakpoint="mobile"] .hero--light .hero__logo-compact { display: flex; align-items: center; }
-[data-breakpoint="mobile"] .hero--light .hero__logo-compact img { height: auto; }
-[data-breakpoint="mobile"] .hero--light :is(.hero__call, .hero__menu-compact) { display: inline-flex; }
-[data-breakpoint="mobile"] .hero--light .hero__actions { flex: none; gap: var(--space-container-gap-md); }
-[data-breakpoint="mobile"] .hero--light .hero__body {
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__header { gap: var(--space-component-gap-sm); }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) :is(.hero__logo, .hero__logo-compact, .hero__logo-compact img) { min-width: 0; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__logo-compact { display: flex; align-items: center; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__logo-compact img { height: auto; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) :is(.hero__call, .hero__menu-compact) { display: inline-flex; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__actions { flex: none; gap: var(--space-container-gap-md); }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: var(--space-section-py-xl) 0 0;
 }
-[data-breakpoint="mobile"] .hero--light .hero__text { gap: 0; padding-left: 0; }
-[data-breakpoint="mobile"] .hero--light :is(.hero__title, .hero__lead, .hero__divider) { max-width: none; }
-[data-breakpoint="mobile"] .hero--light .hero__title { margin-bottom: var(--space-container-gap-md); }
-[data-breakpoint="mobile"] .hero--light .hero__cta {
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__text { gap: 0; padding-left: 0; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) :is(.hero__title, .hero__lead, .hero__divider) { max-width: none; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__title { margin-bottom: var(--space-container-gap-md); }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__cta {
   display: flex;
   width: 100%;
   margin: var(--space-section-gap-md) 0;
 }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__rating { justify-content: space-between; }
+[data-breakpoint="mobile"] :is(.hero--light, .hero--gift-card) .hero__badges { flex-wrap: wrap; justify-content: space-between; }
+
+/* Light (Consolidator): the lead, the cta, a line (color.border.default), the rating and the badges, space.section.gap.md
+   apart; the rating and the badges space.component.px.md from the edges. */
 [data-breakpoint="mobile"] .hero--light .hero__divider {
   margin-bottom: var(--space-section-gap-md);
   border-top-color: var(--color-border-default); /* Figma: black 16% on the photo; desktop keeps .subtle */
 }
 [data-breakpoint="mobile"] .hero--light .hero__rating {
-  justify-content: space-between;
   margin-bottom: var(--space-section-gap-md);
   padding: 0 var(--space-component-px-md);
 }
-[data-breakpoint="mobile"] .hero--light .hero__badges {
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 var(--space-component-px-md);
+[data-breakpoint="mobile"] .hero--light .hero__badges { padding: 0 var(--space-component-px-md); }
+
+/* Gift Card (#186): the lead, space.container.gap.md, the line, the cta (space.section.gap.md above and below), the
+   rating (space.component.px.xs from the edges), space.container.gap.md, the badges (px.sm). The title's line break is
+   for desktop. */
+[data-breakpoint="mobile"] .hero--gift-card .hero__lead { margin-bottom: var(--space-container-gap-md); }
+[data-breakpoint="mobile"] .hero--gift-card .hero__rating {
+  margin-bottom: var(--space-container-gap-md);
+  padding: 0 var(--space-component-px-xs);
 }
+[data-breakpoint="mobile"] .hero--gift-card .hero__badges { padding: 0 var(--space-component-px-sm); }
 
 /* Accessibility: forced colors drop the scrim but keep the photo; the browser puts a backplate behind the text. */

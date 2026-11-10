@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Business Class — Gift Card (test)</title>
-  <!-- A test page made of the Examples sections (#154, #157): its own address, http://127.0.0.1:8000/gift-card. Desktop only for now. -->
+  <!-- A test page made of the Examples sections (#154, #157): its own address, http://127.0.0.1:8000/gift-card. Desktop; the hero also on mobile (#186). -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="icons/icons.css">
   <link rel="stylesheet" href="components/button.css">
   <link rel="stylesheet" href="components/dropdown.css">
   <link rel="stylesheet" href="components/input.css">
+  <link rel="stylesheet" href="components/modal.css">
   <link rel="stylesheet" href="components/menu.css">
   <link rel="stylesheet" href="components/heading-group.css">
   <link rel="stylesheet" href="components/accordion.css">
@@ -34,18 +35,21 @@
     <div class="hero__media"><img class="hero__photo" src="images/gift-card-hero.jpg" alt=""></div>
     <div class="hero__inner">
       <header class="hero__header">
-        <a class="hero__logo" href="#examples"><img src="images/logo-business-class.svg" alt="Business Class"></a>
+        <a class="hero__logo" href="#examples"><img class="hero__logo-full" src="images/logo-business-class.svg" alt="Business Class"><span class="hero__logo-compact"><img src="images/logo-business-class-sign-light.svg" alt="Business Class"><img src="images/logo-business-class-text-light.svg" alt=""></span></a>
         <div class="hero__actions">
           <button class="dropdown dropdown--phone dropdown--inverse" type="button" aria-haspopup="menu" aria-expanded="false" popovertarget="dropdown-call"><span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span> <span class="dropdown__value">+1 888-315-7838</span></span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
           <button class="button button--glass button--blur-default" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
+          <a class="dropdown dropdown--call hero__call" href="tel:+18883157838" aria-label="24/7 Phone Deals: call +1 888-315-7838"><span class="dropdown__label">24/7 Phone Deals</span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--call" aria-hidden="true"></span></a>
+          <button class="button button--sm button--glass button--blur-default hero__menu-compact" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
         </div>
       </header>
       <div class="hero__body">
         <div class="hero__text">
-          <h1 class="hero__title" id="gift-hero-title">Gift<br>the Business Class Experience</h1>
+          <h1 class="hero__title" id="gift-hero-title">Gift <br>the Business Class Experience</h1>
           <p class="hero__lead">One voucher, any business or first class fare. Issued instantly by email and redeemable with our advisors on any route we sell.</p>
           <hr class="hero__divider">
-          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> 10,044 reviews on <img class="hero__trustpilot" src="images/trustpilot-logo.svg" alt="Trustpilot"></p>
+          <button class="button button--lg button--brand button--shadow-md hero__cta" type="button" aria-haspopup="dialog" aria-controls="gift-dialog"><span class="button__label">Buy a Gift Card</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> <span>10,044 reviews</span> <span>on</span> <img class="hero__trustpilot" src="images/trustpilot-logo.svg" alt="Trustpilot"></p>
           <ul class="hero__badges" aria-label="Accreditations">
             <li><img src="images/badge-iata.svg" alt="IATA"></li>
             <li><img src="images/badge-iatan.svg" alt="IATAN"></li>
@@ -129,8 +133,8 @@
               <div class="gift-form__head">
                 <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
                 <div class="gift-form__side">
-                  <span class="gift-form__done-icon icon icon--check" aria-hidden="true"></span>
-                  <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-done-title" tabindex="-1">Thank You for Your Purchase.</h2><p class="heading-group__text">Your gift voucher card is on the way.<br>Delivering to the recipient by email — no further action needed.</p></hgroup>
+                  <div class="gift-form__thanks"><span class="gift-form__done-icon icon icon--check" aria-hidden="true"></span>
+                  <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-done-title" tabindex="-1">Thank You for Your Purchase.</h2><p class="heading-group__text">Your gift voucher card is on the way.<br>Delivering to the recipient by email — no further action needed.</p></hgroup></div>
                 </div>
               </div>
               <div class="gift-form__body">
@@ -247,8 +251,108 @@
           <a class="menu__option" role="menuitem" href="tel:+18778529150" tabindex="-1" aria-label="Call Customer Service, USA 877-852-9150"><span class="menu__caption">Customer Service</span><span class="menu__label">USA 877-852-9150</span></a>
         </div>
 
+<!-- The gift voucher form of the Gift Card hero on mobile: the bottom panel of its cta "Buy a Gift Card" (#186). -->
+<dialog class="modal gift-dialog" id="gift-dialog" aria-label="Buy a Gift Card">
+  <div class="gift-form">
+    <button class="button button--sm button--secondary modal__close gift-dialog__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
+    <form class="gift-form__step" data-step="value" aria-labelledby="gift-sheet-value-title" novalidate>
+      <div class="gift-form__head">
+        <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+        <div class="gift-form__side">
+          <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-sheet-value-title" tabindex="-1">Select voucher value</h2><p class="heading-group__text" id="gift-sheet-value-text">The voucher is issued and redeemed in USD.</p></hgroup>
+          <fieldset class="choice" aria-labelledby="gift-sheet-value-title" aria-describedby="gift-sheet-value-text">
+            <label class="button button--secondary choice__option" for="gift-sheet-value-200"><input class="choice__radio" id="gift-sheet-value-200" type="radio" name="gift-sheet-value" value="200" data-image="images/200.png"><span class="button__label">$200</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-500"><input class="choice__radio" id="gift-sheet-value-500" type="radio" name="gift-sheet-value" value="500" data-image="images/500.png" checked><span class="button__label">$500</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-1000"><input class="choice__radio" id="gift-sheet-value-1000" type="radio" name="gift-sheet-value" value="1000" data-image="images/1000.png"><span class="button__label">$1000</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-custom"><input class="choice__radio" id="gift-sheet-value-custom" type="radio" name="gift-sheet-value" value="custom" data-image="images/custom.png"><span class="button__label">Custom</span></label>
+            <div class="input input--strong choice__other"><div class="input__field"><span class="choice__currency" aria-hidden="true">$</span><input class="input__control choice__input" id="gift-sheet-value-amount" type="text" name="custom-value" inputmode="numeric" autocomplete="off" placeholder="Your amount" aria-label="Your amount, US dollars"><button class="input__action choice__apply" type="button" aria-label="Apply amount" aria-disabled="true" aria-describedby="gift-sheet-value-reason"><span class="input__icon icon icon--check-circle" aria-hidden="true"></span></button></div></div>
+            <p id="gift-sheet-value-reason" data-reason hidden>Type an amount first</p>
+          </fieldset>
+        </div>
+      </div>
+      <div class="gift-form__body">
+      <hgroup class="heading-group heading-group--xs"><h2 class="heading-group__title" id="gift-sheet-recipient-title">Who it’s for</h2><p class="heading-group__text" id="gift-sheet-recipient-text">Linked to the recipient’s email and account.<br>Please check for typos.</p></hgroup>
+      <fieldset class="gift-form__fields" aria-labelledby="gift-sheet-recipient-title" aria-describedby="gift-sheet-recipient-text">
+        <div class="input"><label class="input__label" for="gift-sheet-recipient-name">Recipient name<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-recipient-name" type="text" name="recipient-name" autocomplete="off" placeholder="Jane Doe" required></div></div>
+        <div class="input"><label class="input__label" for="gift-sheet-recipient-email">Recipient email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-recipient-email" type="email" name="recipient-email" autocomplete="off" placeholder="jane@example.com" required></div></div>
+        <div class="input"><label class="input__label" for="gift-sheet-message">Personal message &amp; your name</label><div class="input__field"><textarea class="input__control" id="gift-sheet-message" name="message" rows="3" placeholder="Write a wish and don’t forget to sign your name!"></textarea></div></div>
+      </fieldset>
+      <button class="button gift-form__next" type="submit"><span class="button__label">Next</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+      </div>
+    </form>
+    <form class="gift-form__step" data-step="payment" aria-labelledby="gift-sheet-payment-title" novalidate hidden>
+      <div class="gift-form__head">
+        <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+        <div class="gift-form__side">
+          <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-sheet-payment-title" tabindex="-1">Payment details</h2><p class="heading-group__text">All transactions are secure and encrypted.</p></hgroup>
+          <hr class="gift-form__divider">
+          <div class="gift-form__order">
+            <h3 class="gift-form__order-title" id="gift-sheet-payment-order">Order</h3>
+            <dl>
+              <div class="gift-form__row"><dt>Voucher value:</dt><dd data-order="value">$500</dd></div>
+              <div class="gift-form__row"><dt>Recipient:</dt><dd data-order="recipient"></dd></div>
+              <div class="gift-form__row"><dt>Delivery:</dt><dd>Instant (Email)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="gift-form__body">
+      <div class="input"><label class="input__label" for="gift-sheet-email">Your email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required></div></div>
+      <div class="input"><label class="input__label" for="gift-sheet-card-number">Card number<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-number" type="text" name="card-number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required><span class="input__images" role="img" aria-label="Mastercard, Visa, American Express, Discover"><img src="images/payment-mastercard.svg" alt=""><img src="images/payment-visa.svg" alt=""><img src="images/payment-amex.svg" alt=""><img src="images/payment-discover.svg" alt=""></span></div></div>
+      <div class="gift-form__pair">
+        <div class="input"><label class="input__label" for="gift-sheet-card-expiry">Expiration date<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-expiry" type="text" name="card-expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required></div></div>
+        <div class="input"><label class="input__label" for="gift-sheet-card-csc">Security code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-csc" type="text" name="card-csc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" required><span class="input__icon icon icon--cvc" aria-hidden="true"></span></div></div>
+      </div>
+      <div class="gift-form__pair">
+        <div class="input"><label class="input__label" for="gift-sheet-country">Country<span aria-hidden="true">*</span></label><div class="input__field"><select class="input__control" id="gift-sheet-country" name="country" autocomplete="country" required>
+          <option value="US" selected>United States</option>
+          <option value="CA">Canada</option>
+          <option value="GB">United Kingdom</option>
+          <option value="IE">Ireland</option>
+          <option value="FR">France</option>
+          <option value="DE">Germany</option>
+          <option value="IT">Italy</option>
+          <option value="ES">Spain</option>
+          <option value="AU">Australia</option>
+          <option value="AE">United Arab Emirates</option>
+        </select><span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span></div></div>
+        <div class="input"><label class="input__label" for="gift-sheet-postal-code">ZIP code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-postal-code" type="text" name="postal-code" autocomplete="postal-code" placeholder="12345" required></div></div>
+      </div>
+      <p class="gift-form__terms">By continuing, you agree to our <a href="#examples">Terms and Conditions</a>.</p>
+      <div class="gift-form__actions">
+        <button class="button button--secondary gift-form__back" type="button"><span class="button__icon icon icon--chevron-left" aria-hidden="true"></span><span class="button__label">Back</span></button>
+        <button class="button gift-form__pay" type="submit"><span class="button__label">Pay $500</span><span class="button__icon icon icon--verified-user" aria-hidden="true"></span></button>
+      </div>
+      </div>
+    </form>
+    <div class="gift-form__step" data-step="done" role="region" aria-labelledby="gift-sheet-done-title" hidden>
+      <div class="gift-form__head">
+        <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+        <div class="gift-form__side">
+          <div class="gift-form__thanks"><span class="gift-form__done-icon icon icon--check" aria-hidden="true"></span>
+          <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-sheet-done-title" tabindex="-1">Thank You for Your Purchase.</h2><p class="heading-group__text">Your gift voucher card is on the way.<br>Delivering to the recipient by email — no further action needed.</p></hgroup></div>
+        </div>
+      </div>
+      <div class="gift-form__body">
+      <hr class="gift-form__divider">
+          <div class="gift-form__order">
+            <h3 class="gift-form__order-title" id="gift-sheet-done-order">Order</h3>
+            <dl>
+              <div class="gift-form__row"><dt>Voucher value:</dt><dd data-order="value">$500</dd></div>
+              <div class="gift-form__row"><dt>Recipient:</dt><dd data-order="recipient"></dd></div>
+              <div class="gift-form__row"><dt>Delivery:</dt><dd>Instant (Email)</dd></div>
+            </dl>
+          </div>
+      <hr class="gift-form__divider">
+      <a class="button gift-form__home" href="home-page"><span class="button__label">Go to Home Page</span></a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
   <script type="module" src="page.js"></script>
   <script type="module" src="components/modality.js"></script>
+  <script type="module" src="components/modal.js"></script>
   <script type="module" src="components/menu.js"></script>
   <script type="module" src="components/dropdown.js"></script>
   <script type="module" src="components/contact-form.js"></script>

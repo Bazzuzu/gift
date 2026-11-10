@@ -96,3 +96,8 @@
   .choice__option:has(:checked) { forced-color-adjust: none; background: Highlight; color: HighlightText; }
   .choice__option:has(:focus-visible) { outline-color: Highlight; }
 }
+
+/* Mobile (#186; Figma: Gift Card, ATF, node 58:9391): with an own value, the amounts three in a row and Custom across
+   the last row — the field of an own value opens over it, as before. */
+[data-breakpoint="mobile"] .choice:has(.choice__other) { grid-template-columns: [across-start] 1fr 1fr 1fr [across-end]; }
+[data-breakpoint="mobile"] .choice__option:has(> .choice__radio[value="custom"]) { grid-column: across-start / across-end; }

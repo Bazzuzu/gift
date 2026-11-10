@@ -24,7 +24,9 @@
    body — the picture and the buttons stand at the same place on every step; a hidden step keeps its place but is not
    seen, not read and not in the Tab order (visibility: hidden). The picture of the card stands at
    the bottom of its column and goes up over the top of the card, as in Figma. The heading level follows the page.
-   Steps, checking and formats — gift-form.js. Not built yet: the custom value (BACKLOG.md). Semantic tokens only (#82). */
+   Steps, checking and formats — gift-form.js.
+   In a dialog (#186; Figma: Gift Card, ATF, node 58:9391): the form of the mobile Gift Card hero opens in a bottom
+   panel — .modal.gift-dialog (below). Semantic tokens only (#82). */
 
 /* Two rows shared by all steps (#162): the head (picture and details) and the body. Each step takes both rows as a
    subgrid, so the head is as tall as the tallest head of any step — the picture does not jump — and the body as tall
@@ -142,10 +144,55 @@
 .gift-form__actions { display: flex; gap: var(--space-container-gap-sm); }
 .gift-form__actions .gift-form__pay { flex: auto; }
 
-/* Thank you: a large check over the heading. */
+/* Thank you: a large check over the heading, one block (beside the picture in the panel, #186). */
+.gift-form__thanks { display: flex; flex-direction: column; gap: var(--space-container-gap-xs); }
 .gift-form__done-icon { width: var(--size-icon-2xl); height: var(--size-icon-2xl); background-color: var(--color-icon-positive); }
+
+/* In a dialog (#186; Figma: Gift Card, ATF, node 58:9391): the form of the mobile Gift Card hero opens in a bottom
+   panel — the shared modal (#102), on mobile full width at the bottom (#96). The dialog is a transparent frame that
+   scrolls: the form is the card at its bottom (top corners shape.modal.default, no shadow); above it — room 120 tall
+   (the width token stands in for the height), so the picture of the card goes up over the top of the form, as in
+   Figma (104 over the card); a click in
+   the room closes the dialog, as a click on the overlay (gift-form.js). The close button (icon-secondary sm) stands in
+   the top right corner of the card, space.component.py.sm / px.sm from its edges.
+   Markup: <dialog class="modal gift-dialog" id="gift-dialog" aria-label="Buy a Gift Card">
+             <div class="gift-form"> <button class="button button--sm button--secondary modal__close gift-dialog__close"
+               type="button" aria-label="Close"> close icon </button> steps </div>
+           </dialog>
+   The head of a step: the picture (size.container.width.160) and the first part of the side — the heading, on thank you
+   the check with the heading — side by side; the first row at least 120 tall, the picture's bottom 120 below its top
+   on every step (the heading stands at the bottom of the row); the rest of the side (the choice, the line and the
+   order) under them across the width, space.container.gap.lg apart. */
+.modal.gift-dialog {
+  overflow-y: auto; /* a low screen scrolls the panel */
+  padding-top: var(--size-container-width-120); /* MISSING: size.container.height.120 (BACKLOG.md) */
+  background: none;
+  box-shadow: none;
+}
+.gift-dialog .gift-form {
+  position: relative;
+  max-width: none;
+  border-radius: var(--shape-modal-default) var(--shape-modal-default) 0 0;
+  box-shadow: none;
+}
+.gift-dialog__close { position: absolute; top: var(--space-component-py-sm); right: var(--space-component-px-sm); }
+.gift-dialog .gift-form__head {
+  display: grid;
+  grid-template-columns: [across-start] var(--size-container-width-160) 1fr [across-end];
+  /* The first row at least 120 (Figma), so the picture stands at the same place on every step: its bottom 120 below the
+     top of the row (MISSING: size.container.height.120 — the width token stands in, BACKLOG.md). */
+  grid-template-rows: minmax(var(--size-container-width-120), auto);
+  align-content: start; /* the head is as tall as the tallest one (#162): the room left goes under it */
+  align-items: end;
+  gap: var(--space-container-gap-lg) var(--space-container-gap-md);
+}
+.gift-dialog .gift-form__media { align-self: stretch; }
+.gift-dialog .gift-form__image { bottom: calc(100% - var(--size-container-width-120)); }
+.gift-dialog .gift-form__side { display: contents; }
+.gift-dialog .gift-form__side > * + * { grid-column: across-start / across-end; }
 
 /* Accessibility: forced colors drop the background and the shadow — the form keeps a border. */
 @media (forced-colors: active) {
   .gift-form { border: var(--size-border-default) solid CanvasText; }
+  .modal.gift-dialog { border: 0; } /* the frame is transparent: the card has the border */
 }
