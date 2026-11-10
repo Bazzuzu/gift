@@ -42,6 +42,9 @@
   color: var(--color-icon-secondary);
 }
 .point--center .heading-group { align-self: stretch; }
+/* Mobile (#180): the icon still over the text, both on the left — the section sets its heading groups to the left too
+   (points.css). */
+[data-breakpoint="mobile"] .point--center { align-items: flex-start; }
 
 /* Accessibility: forced colors drop the background — the icon box gets a border, the mask a system color. */
 @media (forced-colors: active) {

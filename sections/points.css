@@ -7,8 +7,12 @@
                <ol class="points__list"> <li class="point point--inverse"> … </li> × 3 </ol>
              </div>
            </section>
-   On a light section — the point and the heading group without --inverse. Desktop only; tablet and mobile — after the
-   design (BACKLOG.md). The background — .section (#155). Semantic tokens only (#82). */
+   On a light section — the point and the heading group without --inverse. The background — .section (#155).
+   Mobile — centered points (.point--center, Why Book; Figma: Consolidator page, mobile, Minor components, node
+   129:14341; #180): one column in a shared frame, as the directory (#157): the list itself is the frame — the line
+   size.border.default color.border.subtle, corners shape.card, padding space.container.py.md / px.md; between the
+   points a line color.border.subtle with space.container.gap.md above and below it; the heading groups on the left.
+   Other points sections and tablet — after the design (BACKLOG.md). Semantic tokens only (#82). */
 
 .points {
   display: flex;
@@ -31,3 +35,17 @@
   padding: 0;
   list-style: none;
 }
+
+/* Mobile, centered points (#180): one column in a frame with lines between the points; everything on the left. */
+[data-breakpoint="mobile"] .points__list:has(> .point--center) {
+  grid-auto-flow: row;
+  gap: var(--space-container-gap-md);
+  padding: var(--space-container-py-md) var(--space-container-px-md);
+  border: var(--size-border-default) solid var(--color-border-subtle);
+  border-radius: var(--shape-card);
+}
+[data-breakpoint="mobile"] .points__list > .point--center + .point--center {
+  padding-top: var(--space-container-gap-md);
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+}
+[data-breakpoint="mobile"] .points:has(.point--center) .heading-group--center { align-items: flex-start; text-align: start; }
