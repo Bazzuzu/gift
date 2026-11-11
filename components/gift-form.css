@@ -148,48 +148,63 @@
 .gift-form__thanks { display: flex; flex-direction: column; gap: var(--space-container-gap-xs); }
 .gift-form__done-icon { width: var(--size-icon-2xl); height: var(--size-icon-2xl); background-color: var(--color-icon-positive); }
 
-/* In a dialog (#186; Figma: Gift Card, ATF, node 58:9391): the form of the mobile Gift Card hero opens in a bottom
-   panel — the shared modal (#102), on mobile full width at the bottom (#96). The dialog is a transparent frame that
-   scrolls: the form is the card at its bottom (top corners shape.modal.default, no shadow); above it — room 120 tall
-   (the width token stands in for the height), so the picture of the card goes up over the top of the form, as in
-   Figma (104 over the card); a click in
-   the room closes the dialog, as a click on the overlay (gift-form.js). The close button (icon-secondary sm) stands in
-   the top right corner of the card, space.component.py.sm / px.sm from its edges.
-   Markup: <dialog class="modal gift-dialog" id="gift-dialog" aria-label="Buy a Gift Card">
+/* In a dialog (#186, #189; Figma: Gift Card, ATF 2 - Step 1, 2, 3, nodes 70:9906, 70:10218, 71:10819): the form of the
+   mobile Gift Card hero opens in a bottom panel — the shared modal (#102), on mobile full width at the bottom (#96).
+   The dialog is a transparent frame that scrolls: the form is the card at its bottom (top corners shape.modal.default,
+   no shadow); above it — room space.section.py.md tall, where the picture of the card goes up over the top of the
+   form, as in Figma; a click in the room closes the dialog, as a click on the overlay (gift-form.js). The close button
+   (icon-secondary sm) stands in the top right corner of the card, space.component.py.sm / px.sm from its edges.
+   Markup: <dialog class="modal gift-dialog" id="gift-dialog" aria-label="Get Your Gift">
              <div class="gift-form"> <button class="button button--sm button--secondary modal__close gift-dialog__close"
                type="button" aria-label="Close"> close icon </button> steps </div>
            </dialog>
-   The head of a step: the picture (size.container.width.160) and the first part of the side — the heading, on thank you
-   the check with the heading — side by side; the first row at least 120 tall, the picture's bottom 120 below its top
-   on every step (the heading stands at the bottom of the row); the rest of the side (the choice, the line and the
-   order) under them across the width, space.container.gap.lg apart. */
+   The panel copy has its own markup (scripts/pages/build-gift-card.py): the pictures are the top of the card, 4:5
+   (images/<value>-panel.png); the fields lg; the step headings — the heading group md; on payment the order goes
+   before the line; thank you is centered.
+   In the panel the steps share one cell: the panel is as tall as the tallest step and keeps its height, every step
+   starts at the top (a hidden one keeps its place but is not seen, read or tabbed to, as on desktop); no shared rows
+   inside — the parts of a step space.component.gap.xl apart, the buttons right after the content. The head of a step: the picture (size.container.width.120, size.media.4x5) and the
+   heading side by side at the bottom; the picture's cell is as tall as the picture minus the pull (the padding of the
+   card and the room), so the picture goes up into the room by exactly the room; the rest of the side (the choice, the
+   order and the line) under them across the width. Thank you: no picture — the check and the heading centered across
+   the width, space.component.gap.xl apart. */
 .modal.gift-dialog {
   overflow-y: auto; /* a low screen scrolls the panel */
-  padding-top: var(--size-container-width-120); /* MISSING: size.container.height.120 (BACKLOG.md) */
+  padding-top: var(--space-section-py-md);
   background: none;
   box-shadow: none;
 }
 .gift-dialog .gift-form {
+  --gift-dialog-pull: calc(var(--space-component-py-xl) + var(--space-section-py-md)); /* how far the picture goes up */
   position: relative;
+  grid-template-areas: "step";
+  grid-template-rows: auto;
   max-width: none;
   border-radius: var(--shape-modal-default) var(--shape-modal-default) 0 0;
   box-shadow: none;
 }
 .gift-dialog__close { position: absolute; top: var(--space-component-py-sm); right: var(--space-component-px-sm); }
+.gift-dialog .gift-form__step {
+  display: flex;
+  flex-direction: column;
+  grid-area: step;
+  align-self: start;
+  gap: var(--space-component-gap-xl);
+}
 .gift-dialog .gift-form__head {
   display: grid;
-  grid-template-columns: [across-start] var(--size-container-width-160) 1fr [across-end];
-  /* The first row at least 120 (Figma), so the picture stands at the same place on every step: its bottom 120 below the
-     top of the row (MISSING: size.container.height.120 — the width token stands in, BACKLOG.md). */
-  grid-template-rows: minmax(var(--size-container-width-120), auto);
-  align-content: start; /* the head is as tall as the tallest one (#162): the room left goes under it */
+  grid-template-columns: [across-start] var(--size-container-width-120) 1fr [across-end];
   align-items: end;
-  gap: var(--space-container-gap-lg) var(--space-container-gap-md);
+  gap: var(--space-component-gap-xl) var(--space-container-gap-md);
 }
-.gift-dialog .gift-form__media { align-self: stretch; }
-.gift-dialog .gift-form__image { bottom: calc(100% - var(--size-container-width-120)); }
+/* The ratio token is "4 / 5": in parentheses, so the width is divided by the whole ratio. */
+.gift-dialog .gift-form__media { height: calc(var(--size-container-width-120) / (var(--size-media-4x5)) - var(--gift-dialog-pull)); }
+.gift-dialog .gift-form__image { aspect-ratio: var(--size-media-4x5); }
 .gift-dialog .gift-form__side { display: contents; }
 .gift-dialog .gift-form__side > * + * { grid-column: across-start / across-end; }
+.gift-dialog .gift-form__step[data-step="done"] .gift-form__media { display: none; }
+.gift-dialog .gift-form__thanks { grid-column: across-start / across-end; align-items: center; gap: var(--space-component-gap-xl); }
+.gift-dialog .gift-form__step[data-step="done"] .gift-form__order { gap: var(--space-component-gap-xs); }
 
 /* Accessibility: forced colors drop the background and the shadow — the form keeps a border. */
 @media (forced-colors: active) {

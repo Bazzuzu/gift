@@ -264,14 +264,14 @@
     <button class="button button--sm button--secondary modal__close gift-dialog__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
     <form class="gift-form__step" data-step="value" aria-labelledby="gift-sheet-value-title" novalidate>
       <div class="gift-form__head">
-        <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+        <div class="gift-form__media"><img class="gift-form__image" src="images/500-panel.png" alt=""></div>
         <div class="gift-form__side">
-          <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-sheet-value-title" tabindex="-1">Select voucher value</h2><p class="heading-group__text" id="gift-sheet-value-text">The voucher is issued and redeemed in USD.</p></hgroup>
+          <hgroup class="heading-group"><h2 class="heading-group__title" id="gift-sheet-value-title" tabindex="-1">Select voucher value</h2><p class="heading-group__text" id="gift-sheet-value-text">The voucher is issued and redeemed in USD.</p></hgroup>
           <fieldset class="choice" aria-labelledby="gift-sheet-value-title" aria-describedby="gift-sheet-value-text">
-            <label class="button button--secondary choice__option" for="gift-sheet-value-200"><input class="choice__radio" id="gift-sheet-value-200" type="radio" name="gift-sheet-value" value="200" data-image="images/200.png"><span class="button__label">$200</span></label>
-            <label class="button button--secondary choice__option" for="gift-sheet-value-500"><input class="choice__radio" id="gift-sheet-value-500" type="radio" name="gift-sheet-value" value="500" data-image="images/500.png" checked><span class="button__label">$500</span></label>
-            <label class="button button--secondary choice__option" for="gift-sheet-value-1000"><input class="choice__radio" id="gift-sheet-value-1000" type="radio" name="gift-sheet-value" value="1000" data-image="images/1000.png"><span class="button__label">$1000</span></label>
-            <label class="button button--secondary choice__option" for="gift-sheet-value-custom"><input class="choice__radio" id="gift-sheet-value-custom" type="radio" name="gift-sheet-value" value="custom" data-image="images/custom.png"><span class="button__label">Custom</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-200"><input class="choice__radio" id="gift-sheet-value-200" type="radio" name="gift-sheet-value" value="200" data-image="images/200-panel.png"><span class="button__label">$200</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-500"><input class="choice__radio" id="gift-sheet-value-500" type="radio" name="gift-sheet-value" value="500" data-image="images/500-panel.png" checked><span class="button__label">$500</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-1000"><input class="choice__radio" id="gift-sheet-value-1000" type="radio" name="gift-sheet-value" value="1000" data-image="images/1000-panel.png"><span class="button__label">$1000</span></label>
+            <label class="button button--secondary choice__option" for="gift-sheet-value-custom"><input class="choice__radio" id="gift-sheet-value-custom" type="radio" name="gift-sheet-value" value="custom" data-image="images/custom-panel.png"><span class="button__label">Custom</span></label>
             <div class="input input--strong choice__other"><div class="input__field"><span class="choice__currency" aria-hidden="true">$</span><input class="input__control choice__input" id="gift-sheet-value-amount" type="text" name="custom-value" inputmode="numeric" autocomplete="off" placeholder="Your amount" aria-label="Your amount, US dollars"><button class="input__action choice__apply" type="button" aria-label="Apply amount" aria-disabled="true" aria-describedby="gift-sheet-value-reason"><span class="input__icon icon icon--check-circle" aria-hidden="true"></span></button></div></div>
             <p id="gift-sheet-value-reason" data-reason hidden>Type an amount first</p>
           </fieldset>
@@ -280,19 +280,18 @@
       <div class="gift-form__body">
       <hgroup class="heading-group heading-group--xs"><h2 class="heading-group__title" id="gift-sheet-recipient-title">Who it’s for</h2><p class="heading-group__text" id="gift-sheet-recipient-text">Linked to the recipient’s email and account.<br>Please check for typos.</p></hgroup>
       <fieldset class="gift-form__fields" aria-labelledby="gift-sheet-recipient-title" aria-describedby="gift-sheet-recipient-text">
-        <div class="input"><label class="input__label" for="gift-sheet-recipient-name">Recipient name<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-recipient-name" type="text" name="recipient-name" autocomplete="off" placeholder="Jane Doe" required></div></div>
-        <div class="input"><label class="input__label" for="gift-sheet-recipient-email">Recipient email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-recipient-email" type="email" name="recipient-email" autocomplete="off" placeholder="jane@example.com" required></div></div>
-        <div class="input"><label class="input__label" for="gift-sheet-message">Personal message &amp; your name</label><div class="input__field"><textarea class="input__control" id="gift-sheet-message" name="message" rows="3" placeholder="Write a wish and don’t forget to sign your name!"></textarea></div></div>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-recipient-name">Recipient name<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-recipient-name" type="text" name="recipient-name" autocomplete="off" placeholder="Jane Doe" required></div></div>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-recipient-email">Recipient email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-recipient-email" type="email" name="recipient-email" autocomplete="off" placeholder="jane@example.com" required></div></div>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-message">Personal message &amp; your name</label><div class="input__field"><textarea class="input__control" id="gift-sheet-message" name="message" rows="3" placeholder="Write a wish and don’t forget to sign your name!"></textarea></div></div>
       </fieldset>
       <button class="button gift-form__next" type="submit"><span class="button__label">Next</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
       </div>
     </form>
     <form class="gift-form__step" data-step="payment" aria-labelledby="gift-sheet-payment-title" novalidate hidden>
       <div class="gift-form__head">
-        <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+        <div class="gift-form__media"><img class="gift-form__image" src="images/500-panel.png" alt=""></div>
         <div class="gift-form__side">
-          <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-sheet-payment-title" tabindex="-1">Payment details</h2><p class="heading-group__text">All transactions are secure and encrypted.</p></hgroup>
-          <hr class="gift-form__divider">
+          <hgroup class="heading-group"><h2 class="heading-group__title" id="gift-sheet-payment-title" tabindex="-1">Payment details</h2><p class="heading-group__text">All transactions are secure and encrypted.</p></hgroup>
           <div class="gift-form__order">
             <h3 class="gift-form__order-title" id="gift-sheet-payment-order">Order</h3>
             <dl>
@@ -301,17 +300,18 @@
               <div class="gift-form__row"><dt>Delivery:</dt><dd>Instant (Email)</dd></div>
             </dl>
           </div>
+          <hr class="gift-form__divider">
         </div>
       </div>
       <div class="gift-form__body">
-      <div class="input"><label class="input__label" for="gift-sheet-email">Your email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required></div></div>
-      <div class="input"><label class="input__label" for="gift-sheet-card-number">Card number<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-number" type="text" name="card-number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required><span class="input__images" role="img" aria-label="Mastercard, Visa, American Express, Discover"><img src="images/payment-mastercard.svg" alt=""><img src="images/payment-visa.svg" alt=""><img src="images/payment-amex.svg" alt=""><img src="images/payment-discover.svg" alt=""></span></div></div>
+      <div class="input input--lg"><label class="input__label" for="gift-sheet-email">Your email<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required></div></div>
+      <div class="input input--lg"><label class="input__label" for="gift-sheet-card-number">Card number<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-number" type="text" name="card-number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required><span class="input__images" role="img" aria-label="Mastercard, Visa, American Express, Discover"><img src="images/payment-mastercard.svg" alt=""><img src="images/payment-visa.svg" alt=""><img src="images/payment-amex.svg" alt=""><img src="images/payment-discover.svg" alt=""></span></div></div>
       <div class="gift-form__pair">
-        <div class="input"><label class="input__label" for="gift-sheet-card-expiry">Expiration date<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-expiry" type="text" name="card-expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required></div></div>
-        <div class="input"><label class="input__label" for="gift-sheet-card-csc">Security code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-csc" type="text" name="card-csc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" required><span class="input__icon icon icon--cvc" aria-hidden="true"></span></div></div>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-card-expiry">Expiration date<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-expiry" type="text" name="card-expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required></div></div>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-card-csc">Security code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-card-csc" type="text" name="card-csc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" required><span class="input__icon icon icon--cvc" aria-hidden="true"></span></div></div>
       </div>
       <div class="gift-form__pair">
-        <div class="input"><label class="input__label" for="gift-sheet-country">Country<span aria-hidden="true">*</span></label><div class="input__field"><select class="input__control" id="gift-sheet-country" name="country" autocomplete="country" required>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-country">Country<span aria-hidden="true">*</span></label><div class="input__field"><select class="input__control" id="gift-sheet-country" name="country" autocomplete="country" required>
           <option value="US" selected>United States</option>
           <option value="CA">Canada</option>
           <option value="GB">United Kingdom</option>
@@ -323,7 +323,7 @@
           <option value="AU">Australia</option>
           <option value="AE">United Arab Emirates</option>
         </select><span class="input__icon icon icon--arrow-drop-down" aria-hidden="true"></span></div></div>
-        <div class="input"><label class="input__label" for="gift-sheet-postal-code">ZIP code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-postal-code" type="text" name="postal-code" autocomplete="postal-code" placeholder="12345" required></div></div>
+        <div class="input input--lg"><label class="input__label" for="gift-sheet-postal-code">ZIP code<span aria-hidden="true">*</span></label><div class="input__field"><input class="input__control" id="gift-sheet-postal-code" type="text" name="postal-code" autocomplete="postal-code" placeholder="12345" required></div></div>
       </div>
       <p class="gift-form__terms">By continuing, you agree to our <a href="#examples">Terms and Conditions</a>.</p>
       <div class="gift-form__actions">
@@ -334,10 +334,10 @@
     </form>
     <div class="gift-form__step" data-step="done" role="region" aria-labelledby="gift-sheet-done-title" hidden>
       <div class="gift-form__head">
-        <div class="gift-form__media"><img class="gift-form__image" src="images/500.png" alt=""></div>
+        <div class="gift-form__media"><img class="gift-form__image" src="images/500-panel.png" alt=""></div>
         <div class="gift-form__side">
           <div class="gift-form__thanks"><span class="gift-form__done-icon icon icon--check" aria-hidden="true"></span>
-          <hgroup class="heading-group heading-group--sm"><h2 class="heading-group__title" id="gift-sheet-done-title" tabindex="-1">Thank You for Your Purchase.</h2><p class="heading-group__text">Your gift voucher card is on the way.<br>Delivering to the recipient by email — no further action needed.</p></hgroup></div>
+          <hgroup class="heading-group heading-group--center"><h2 class="heading-group__title" id="gift-sheet-done-title" tabindex="-1">Thank You for Your Purchase.</h2><p class="heading-group__text">Your gift voucher card is on the way.<br>Delivering to the recipient by email — no further action needed.</p></hgroup></div>
         </div>
       </div>
       <div class="gift-form__body">
