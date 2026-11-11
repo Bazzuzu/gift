@@ -150,12 +150,13 @@
    (Figma: Gift Card, ATF, node 57:9101; #186). The parts of the mobile screen are in the markup and hidden elsewhere: a
    photo for a phone, if the hero has one (.hero__photo--mobile — Consolidator: the wing at 50% over
    color.bg.section.accent, one picture; Gift Card keeps its photo, cropped to the screen), the compact logo (sign and
-   two-line text, .hero__logo-compact: dark on the light hero, white on Gift Card), the call link (dropdown--call,
+   two-line text, .hero__logo-compact: dark on the light hero, bronze on Gift Card), the call link (dropdown--call,
    #175), the menu button icon-glass sm (.hero__menu-compact) and the cta (.hero__cta) — it opens the form in a bottom
    panel (Consolidator: .modal.search-dialog, search-form.css; Gift Card: .modal.gift-dialog, gift-form.css). Tablet
    keeps the desktop layout for now. Both photos of the light hero are loading="lazy": the hidden one (display: none) is
    not downloaded (#177). */
-.hero__photo--mobile, .hero__logo-compact, .hero__call, .hero__menu-compact, .hero__cta { display: none; }
+.hero__photo--mobile, .hero__logo-compact, .hero__call, .hero__menu-compact, .hero__cta, .hero__picture,
+.hero__badges--on-light, .hero__trustpilot--on-light { display: none; }
 /* On a light photo the ring of the glass button is dark, as on every light surface. */
 .hero--light .button--glass { --button-focus: var(--color-border-focus); }
 
@@ -217,7 +218,34 @@
 
 /* Gift Card (#186): the lead, space.container.gap.md, the line, the cta (space.section.gap.md above and below), the
    rating (space.component.px.xs from the edges), space.container.gap.md, the badges (px.sm). The title's line break is
-   for desktop. */
+   for desktop.
+   Light on mobile (#187; Figma: Gift Card, ATF 2, node 70:9755): color.bg.section.accent instead of the photo (the
+   photo is loading="lazy" — not downloaded), color.text.primary; over the title the picture of three vouchers
+   (.hero__picture, size.media.3x2, space.section.gap.md under it, multiplied over the section as in Figma — its white
+   background takes the section's color); the title and the lead centered; the line
+   color.border.subtle; the bronze compact logo, the dark Trustpilot logo and badges (--on-light); the actions
+   space.container.gap.sm apart; dark focus rings, as on every light surface. */
+[data-breakpoint="mobile"] .hero--gift-card {
+  background: var(--color-bg-section-accent);
+  color: var(--color-text-primary);
+}
+[data-breakpoint="mobile"] .hero--gift-card :is(.hero__media, .hero__badges:not(.hero__badges--on-light), .hero__trustpilot:not(.hero__trustpilot--on-light)) { display: none; }
+[data-breakpoint="mobile"] .hero--gift-card .hero__badges--on-light { display: flex; }
+[data-breakpoint="mobile"] .hero--gift-card .hero__trustpilot--on-light { display: block; }
+[data-breakpoint="mobile"] .hero--gift-card .hero__picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: var(--space-section-gap-md);
+  aspect-ratio: var(--size-media-3x2);
+  object-fit: cover;
+  mix-blend-mode: multiply; /* as in Figma: the white of the picture takes the color of the section */
+}
+[data-breakpoint="mobile"] .hero--gift-card :is(.hero__title, .hero__lead) { text-align: center; }
+[data-breakpoint="mobile"] .hero--gift-card .hero__divider { border-top-color: var(--color-border-subtle); }
+[data-breakpoint="mobile"] .hero--gift-card .hero__actions { gap: var(--space-container-gap-sm); }
+[data-breakpoint="mobile"] .hero--gift-card .hero__logo:focus-visible { outline-color: var(--color-border-focus); }
+[data-breakpoint="mobile"] .hero--gift-card .button--glass { --button-focus: var(--color-border-focus); }
 [data-breakpoint="mobile"] .hero--gift-card .hero__lead { margin-bottom: var(--space-container-gap-md); }
 [data-breakpoint="mobile"] .hero--gift-card .hero__rating {
   margin-bottom: var(--space-container-gap-md);

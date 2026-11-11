@@ -32,10 +32,10 @@
 <main>
   <!-- Gift Card Hero -->
   <section class="hero hero--gift-card" aria-labelledby="gift-hero-title">
-    <div class="hero__media"><img class="hero__photo" src="images/gift-card-hero.jpg" alt=""></div>
+    <div class="hero__media"><img class="hero__photo" src="images/gift-card-hero.jpg" alt="" loading="lazy"></div>
     <div class="hero__inner">
       <header class="hero__header">
-        <a class="hero__logo" href="#examples"><img class="hero__logo-full" src="images/logo-business-class.svg" alt="Business Class"><span class="hero__logo-compact"><img src="images/logo-business-class-sign-light.svg" alt="Business Class"><img src="images/logo-business-class-text-light.svg" alt=""></span></a>
+        <a class="hero__logo" href="#examples"><img class="hero__logo-full" src="images/logo-business-class.svg" alt="Business Class"><span class="hero__logo-compact"><img src="images/logo-business-class-sign-color.svg" alt="Business Class"><img src="images/logo-business-class-text-color.svg" alt=""></span></a>
         <div class="hero__actions">
           <button class="dropdown dropdown--phone dropdown--inverse" type="button" aria-haspopup="menu" aria-expanded="false" popovertarget="dropdown-call"><span class="dropdown__label"><span class="dropdown__caption">24/7 Phone Deals</span> <span class="dropdown__value">+1 888-315-7838</span></span><span class="dropdown__divider" aria-hidden="true"></span><span class="dropdown__icon icon icon--arrow-drop-down" aria-hidden="true"></span></button>
           <button class="button button--glass button--blur-default" type="button" aria-label="Open menu"><span class="button__icon icon icon--menu" aria-hidden="true"></span></button>
@@ -45,16 +45,23 @@
       </header>
       <div class="hero__body">
         <div class="hero__text">
+          <img class="hero__picture" src="images/gift-cards.jpg" alt="" loading="lazy">
           <h1 class="hero__title" id="gift-hero-title">Gift <br>the Business Class Experience</h1>
           <p class="hero__lead">One voucher, any business or first class fare. Issued instantly by email and redeemable with our advisors on any route we sell.</p>
           <hr class="hero__divider">
-          <button class="button button--lg button--brand button--shadow-md hero__cta" type="button" aria-haspopup="dialog" aria-controls="gift-dialog"><span class="button__label">Buy a Gift Card</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
-          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> <span>10,044 reviews</span> <span>on</span> <img class="hero__trustpilot" src="images/trustpilot-logo.svg" alt="Trustpilot"></p>
+          <button class="button button--lg button--shadow-md hero__cta" type="button" aria-haspopup="dialog" aria-controls="gift-dialog"><span class="button__label">Get Your Gift</span><span class="button__icon icon icon--chevron-right" aria-hidden="true"></span></button>
+          <p class="hero__rating"><span class="hero__stars" role="img" aria-label="Rated 5 out of 5"><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""><img src="images/trustpilot-star.svg" alt=""></span> <span>10,044 reviews</span> <span>on</span> <img class="hero__trustpilot" src="images/trustpilot-logo.svg" alt="Trustpilot"><img class="hero__trustpilot hero__trustpilot--on-light" src="images/trustpilot-logo-on-light.svg" alt="Trustpilot"></p>
           <ul class="hero__badges" aria-label="Accreditations">
             <li><img src="images/badge-iata.svg" alt="IATA"></li>
             <li><img src="images/badge-iatan.svg" alt="IATAN"></li>
             <li><img src="images/badge-arc.svg" alt="ARC"></li>
             <li><img src="images/badge-bbb.svg" alt="BBB A+ Accredited Business"></li>
+          </ul>
+          <ul class="hero__badges hero__badges--on-light" aria-label="Accreditations">
+            <li><img src="images/badge-iata-on-light.svg" alt="IATA"></li>
+            <li><img src="images/badge-iatan-on-light.svg" alt="IATAN"></li>
+            <li><img src="images/badge-arc-on-light.svg" alt="ARC"></li>
+            <li><img src="images/badge-bbb-on-light.svg" alt="BBB A+ Accredited Business"></li>
           </ul>
         </div>
         <div class="hero__form">
@@ -251,8 +258,8 @@
           <a class="menu__option" role="menuitem" href="tel:+18778529150" tabindex="-1" aria-label="Call Customer Service, USA 877-852-9150"><span class="menu__caption">Customer Service</span><span class="menu__label">USA 877-852-9150</span></a>
         </div>
 
-<!-- The gift voucher form of the Gift Card hero on mobile: the bottom panel of its cta "Buy a Gift Card" (#186). -->
-<dialog class="modal gift-dialog" id="gift-dialog" aria-label="Buy a Gift Card">
+<!-- The gift voucher form of the Gift Card hero on mobile: the bottom panel of its cta "Get Your Gift" (#186, #187). -->
+<dialog class="modal gift-dialog" id="gift-dialog" aria-label="Get Your Gift">
   <div class="gift-form">
     <button class="button button--sm button--secondary modal__close gift-dialog__close" type="button" aria-label="Close"><span class="button__icon icon icon--close" aria-hidden="true"></span></button>
     <form class="gift-form__step" data-step="value" aria-labelledby="gift-sheet-value-title" novalidate>
