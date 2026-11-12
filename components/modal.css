@@ -21,6 +21,17 @@
 }
 .modal::backdrop { background: var(--color-bg-overlay-default); }
 
+/* Scroll lock (#194): while a modal is open, the page under it stays put. showModal() makes the page inert, not still:
+   a swipe or the wheel over the overlay scrolled the page, and so did the end of the dialog's own scroll (scroll
+   chaining). The root does not scroll while a .modal is :modal — the scroll position is kept, and closing gives the
+   scroll back; scrollbar-gutter keeps the place of a classic scrollbar (Windows), so nothing jumps sideways. The
+   dialog keeps its scroll to itself (overscroll-behavior: contain; its lists and panels do the same). */
+:root:has(.modal:modal) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+.modal { overscroll-behavior: contain; }
+
 /* Mobile: a bottom panel. In the sandbox the breakpoint comes from data-breakpoint (size.breakpoint.*, #82); in the
    product — @media with the same tokens. */
 [data-breakpoint="mobile"] .modal {
