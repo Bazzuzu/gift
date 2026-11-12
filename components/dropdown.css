@@ -8,8 +8,8 @@
      .dropdown--edit      32 tall: typography.label.lg, divider 16, arrow 16
      .dropdown--small.travelers-dropdown  Class/Travelers: small as wide as its text, opens the travelers dialog
                           (travelers.css, #115)
-     .dropdown--call      32 tall, green: a link that calls, not a menu (#175) — typography.label.md, divider and the
-                          call icon 16, color.bg.action.positive.*; the phone of the mobile header
+     .dropdown--call      36 tall, green: a link that calls, not a menu (#175, #192) — typography.label.md, divider 16,
+                          the call icon 20, color.bg.action.positive.*; the phone of the mobile header
    Surface: default (color.bg.action.secondary.*) | .dropdown--inverse — dark glass over photos (currency, phone only).
    Markup: <button class="dropdown dropdown--currency [dropdown--inverse]" type="button" aria-haspopup="listbox|menu"
              aria-expanded="false" [aria-label="Currency: USD"]>
@@ -157,15 +157,16 @@
   --dropdown-letter-spacing: var(--typography-label-lg-letter-spacing);
 }
 
-/* Call (Figma: Consolidator page, ATF mobile, Call action; #175): a tel: link in the pill of the type — label.md, the
-   divider and the call icon 16; 8 + 16 + 8 = 32 tall, the hit area 44 (::before). Its own green surface: white text on
+/* Call (Figma: Gift Card, ATF 2, Call action, node 90:9866; #175, #192): a tel: link in the pill of the type —
+   label.md, the divider 16 and the call icon 20; 8 + 20 + 8 = 36 tall, as the icon-only sm buttons next to it (#190),
+   the hit area 44 (::before). Its own green surface: white text on
    color.bg.action.positive.default is 4.6:1 (AA). */
 .dropdown--call {
   --dropdown-pl: var(--space-component-px-sm);
   --dropdown-pr: var(--space-component-px-xs);
   --dropdown-gap: var(--space-component-gap-sm);
-  --dropdown-icon-size: var(--size-icon-xs);
-  --dropdown-divider-size: var(--size-icon-xs); /* Figma 12: no size token of 12 — the line is as tall as the icon */
+  --dropdown-icon-size: var(--size-icon-sm);
+  --dropdown-divider-size: var(--size-icon-xs);
   --dropdown-font-family: var(--typography-label-md-font-family);
   --dropdown-font-size: var(--typography-label-md-font-size);
   --dropdown-font-weight: var(--typography-label-md-font-weight);
@@ -176,12 +177,11 @@
   --dropdown-bg-pressed: var(--color-bg-action-positive-pressed);
   --dropdown-fg: var(--color-text-on-action);
   --dropdown-icon: var(--color-icon-on-action);
-  --dropdown-divider: var(--color-border-inverse-default); /* Figma: white 48% — no such inverse border */
+  --dropdown-divider: var(--color-border-inverse-default);
   text-decoration: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  /* MISSING: the 4 px ring of black 12% around the pill and the light gradient over the green (Figma: Call action) —
-     no semantic border width of 4, no gradient token (BACKLOG.md); not drawn. */
+  /* MISSING: the light gradient over the green (Figma: Call action) — no gradient token (BACKLOG.md); not drawn. */
 }
 
 /* Surface: dark glass over photos, like the glass-inverse button (#86): the border is drawn inside. */
