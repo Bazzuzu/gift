@@ -7,19 +7,21 @@
                <span class="button__label">$200</span></label>
              …
            </fieldset>
-   Own value (#160) — the last option is Custom (value="custom"); after the options, in the same fieldset:
-             <div class="input input--strong choice__other">
-               <div class="input__field">
-                 <span class="choice__currency" aria-hidden="true">$</span>
-                 <input class="input__control choice__input" type="text" name="…" inputmode="numeric" autocomplete="off"
-                   placeholder="Your amount" aria-label="Your amount, US dollars">
-                 <button class="input__action choice__apply" type="button" aria-label="Apply amount" aria-disabled="true">
-                   <span class="input__icon icon icon--check-circle" aria-hidden="true"></span></button>
-               </div>
+   Own value (#160, #193) — the last option is Custom (value="custom"); after the options, in the same fieldset:
+             <div class="choice__other">
+               <div class="input choice__field"><div class="input__field">
+                 <input class="input__control choice__input" id="…" type="text" name="…" inputmode="numeric"
+                   autocomplete="off" aria-label="Your amount, US dollars" data-min="100" data-max="5000">
+               </div></div>
+               <button class="button button--secondary choice__apply" type="button" aria-label="Apply amount">
+                 check icon </button>
+               <button class="button button--sm button--ghost choice__cancel" type="button" aria-label="Cancel your
+                 amount"> close icon </button>
              </div>
-             <p id="…" data-reason hidden>Type an amount first</p>
-   Choosing Custom opens the field; the apply icon (or Enter) makes the amount the label of Custom and keeps Custom
-   chosen; a click elsewhere, Escape or the focus leaving the choice closes it with nothing changed.
+             <p class="choice__error" id="…" aria-live="polite"></p>
+   Choosing Custom opens the field; the check (or Enter) applies an amount from data-min to data-max — it becomes the
+   label of Custom and Custom stays chosen; otherwise the error says what to type. The cross, a click elsewhere,
+   Escape or the focus leaving the choice close it with nothing changed.
    The radio stays in the accessibility tree and takes the focus (one Tab stop, the arrows choose); the label shows it.
    The chosen one is filled — a change of fill, not of hue (WCAG 1.4.1); its state is the radio's checked.
    Semantic tokens only (#82). */
@@ -60,33 +62,68 @@
   outline: var(--size-focus-ring-width) solid var(--button-focus);
   outline-offset: var(--size-focus-ring-offset);
 }
-/* Own value (#160; Figma: Gift Card, Custom amount, node 39:9044): the last option, Custom, opens a field over the
-   last row — as wide as the choice, as tall as a button, so nothing moves. The field is the text field of the
-   collection, strong (#89), in the shape of a button: "$" typography.label.lg, the value, the apply icon (a functional
-   icon, check-circle). It grows from the place of Custom to the whole row (motion.duration.fast, motion.easing.enter;
-   without movement under prefers-reduced-motion). Behaviour — choice.js. */
+/* Own value (#160, #193; Figma: Gift Card, Custom Button, node 94:10028 — Default, Pressed, Active, Filled, Error): the
+   last option, Custom, opens a row over the last row of the choice — as wide as the choice, as tall as a button, so
+   nothing moves: the field, the apply button (icon-secondary md, check) and the cancel button (icon-ghost sm, close),
+   space.component.gap.md apart. The field is the text field of the collection md (#89) in the shape of a button: the
+   border color.border.active (the field is in use; hover and focus as in every field), the amount
+   typography.body.lg centered, no placeholder (the name is aria-label). The row grows from the place of Custom
+   (motion.duration.fast, motion.easing.enter; without movement under prefers-reduced-motion).
+   The error (Figma: Error) — typography.body.sm color.text.critical, centered under the row, space.component.gap.sm
+   below it; the choice makes room for one line of it (margin), so the parts under the choice move down while it
+   shows, as under any field with an error. Behaviour — choice.js. */
 .choice { position: relative; }
-.choice__other { position: absolute; right: 0; bottom: 0; left: 0; }
-.choice:not([data-open]) .choice__other { visibility: hidden; }
-.choice__other .input__field { border-radius: var(--shape-button); background: var(--color-bg-surface-default); }
-.choice__currency {
-  flex: none;
-  color: var(--color-text-primary);
-  font-family: var(--typography-label-lg-font-family);
-  font-size: var(--typography-label-lg-font-size);
-  font-weight: var(--typography-label-lg-font-weight);
-  line-height: var(--typography-label-lg-line-height);
-  letter-spacing: var(--typography-label-lg-letter-spacing);
+.choice__other {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-component-gap-md);
+  background: var(--color-bg-surface-default); /* covers the last row: the buttons are see-through (Figma: over white) */
 }
-/* Nothing to apply yet: the icon looks disabled, the button stays focusable and says why (aria-describedby). */
-.choice__apply[aria-disabled="true"] { cursor: not-allowed; }
-.choice__apply[aria-disabled="true"] .input__icon { background-color: var(--color-icon-disabled); }
+.choice:not([data-open]) :is(.choice__other, .choice__error) { visibility: hidden; }
+.choice__field {
+  flex: auto;
+  min-width: 0;
+  --input-border: var(--color-border-active);
+  --input-font-family: var(--typography-body-lg-font-family);
+  --input-font-size: var(--typography-body-lg-font-size);
+  --input-font-weight: var(--typography-body-lg-font-weight);
+  --input-line-height: var(--typography-body-lg-line-height);
+  --input-letter-spacing: var(--typography-body-lg-letter-spacing);
+}
+.choice__field .input__field { border-radius: var(--shape-button); background: var(--color-bg-surface-default); }
+.choice__input { text-align: center; }
+.choice__other .button { flex: none; }
+
+.choice__error {
+  position: absolute;
+  top: calc(100% + var(--space-component-gap-sm));
+  right: 0;
+  left: 0;
+  margin: 0;
+  color: var(--color-text-critical);
+  font-family: var(--typography-body-sm-font-family);
+  font-size: var(--typography-body-sm-font-size);
+  font-weight: var(--typography-body-sm-font-weight);
+  line-height: var(--typography-body-sm-line-height);
+  letter-spacing: var(--typography-body-sm-letter-spacing);
+  text-align: center;
+}
+.choice:has(.choice__error:not(:empty)) {
+  margin-bottom: calc(var(--space-component-gap-sm) + var(--typography-body-sm-font-size) * var(--typography-body-sm-line-height));
+}
+
+/* Grows from the place of Custom: the clip opens to the left. At rest it reaches past the row (-50%), so the focus
+   rings of the buttons are not cut. */
 .choice[data-open] .choice__other {
-  clip-path: inset(0 round var(--shape-button));
+  clip-path: inset(-50%);
   transition: clip-path var(--motion-duration-fast) var(--motion-easing-enter);
 }
 @starting-style {
-  .choice[data-open] .choice__other { clip-path: inset(0 0 0 50% round var(--shape-button)); }
+  .choice[data-open] .choice__other { clip-path: inset(0 0 0 50%); }
 }
 @media (prefers-reduced-motion: reduce) { .choice[data-open] .choice__other { transition: none; } }
 
