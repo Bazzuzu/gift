@@ -6,8 +6,9 @@
                <ul class="directory" aria-label="Contacts"> … </ul>
              </div>
            </section>
-   Desktop only; tablet and mobile — after the design (BACKLOG.md). The background — .section (#155). Semantic tokens
-   only (#82). */
+   On mobile (#191; Figma: Gift Card, mobile, Info section, node 89:15105) — the same section: the tokens of the section
+   and the heading group follow the breakpoint, the directory puts the cards one under another. Tablet — the desktop
+   layout. The background — .section (#155). Semantic tokens only (#82). */
 
 .global-directory {
   display: flex;

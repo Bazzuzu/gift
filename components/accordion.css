@@ -16,8 +16,9 @@
 /* Two columns: the question with the answer under it, and the icon. The icon hangs beside both (Figma: the text and
    the button side by side), so its column is as wide as icon-ghost sm and the item at least as tall. */
 .accordion {
-  --accordion-icon-width: calc(var(--space-component-px-xs) + var(--size-icon-xs) + var(--space-component-px-xs));
-  --accordion-icon-height: calc(var(--space-component-py-xs) + var(--size-icon-xs) + var(--space-component-py-xs));
+  /* icon-ghost sm: 8 + 20 + 8 (#190) */
+  --accordion-icon-width: calc(var(--space-component-px-xs) + var(--size-icon-sm) + var(--space-component-px-xs));
+  --accordion-icon-height: calc(var(--space-component-py-xs) + var(--size-icon-sm) + var(--space-component-py-xs));
   display: grid;
   grid-template-columns: [text-start] minmax(0, 1fr) [text-end] var(--accordion-icon-width) [row-end];
   align-content: start;
@@ -52,7 +53,7 @@
 }
 .accordion__question {
   grid-column: text-start / text-end;
-  padding-top: var(--space-component-py-2xs); /* Figma: the question 4 lower, to the middle of the icon */
+  padding-top: var(--space-component-py-xs); /* to the middle of the icon: 8 lower for the 36 button (#190; Figma 4 for 32) */
   font-family: var(--typography-title-md-font-family);
   font-size: var(--typography-title-md-font-size);
   font-weight: var(--typography-title-md-font-weight);

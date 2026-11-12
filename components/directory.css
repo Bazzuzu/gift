@@ -16,7 +16,9 @@
                </ul>
              </li>
            </ul>
-   As wide as its container; the cards share it equally. The heading level follows the page. Semantic tokens only (#82). */
+   As wide as its container; the cards share it equally. On mobile (#191; Figma: Gift Card, mobile, Info section,
+   node 89:15105) — one card under another in the same frame, each as wide as the frame; the line between them — at the
+   top of the card. The heading level follows the page. Semantic tokens only (#82). */
 
 .directory {
   display: grid;
@@ -79,6 +81,13 @@
 .directory__list a:focus-visible {
   outline: var(--size-focus-ring-width) solid var(--color-border-focus);
   outline-offset: var(--size-focus-ring-offset);
+}
+
+/* Mobile (#191): one card under another, each as wide as the frame; the line between them — at the top of the card. */
+[data-breakpoint="mobile"] .directory { grid-auto-columns: 1fr; grid-auto-flow: row; }
+[data-breakpoint="mobile"] .directory__card + .directory__card {
+  border-top: var(--size-border-default) solid var(--color-border-subtle);
+  border-left: 0;
 }
 
 /* Accessibility: forced colors drop the background — the icon box gets a border, the mask a system color. */

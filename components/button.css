@@ -110,7 +110,7 @@
   --button-gap: var(--space-component-gap-xs);
   --button-icon-only-py: var(--space-component-py-xs);
   --button-icon-only-px: var(--space-component-px-xs);
-  --button-icon-only-size: var(--size-icon-xs); /* icon only: 32 visible, hit area 44 */
+  --button-icon-only-size: var(--size-icon-sm); /* icon only: 8 + 20 + 8 = 36 visible, hit area 44 (#190) */
 }
 .button--lg {
   --button-py: var(--space-component-py-lg);
